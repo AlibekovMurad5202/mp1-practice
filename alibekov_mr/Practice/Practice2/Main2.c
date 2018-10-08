@@ -1,6 +1,7 @@
 #include<stdio.h>
 void main() {
 	int i, n, game_over = 0, x = 78, x_forChanges = 78, min = 1, max, x_igroka_forChanges, x_igroka, b=0, k=0;
+	short case0 = 0, case1 = 0, case2 = 0, case3 = 0, case4 = 0, case5 = 0, case6 = 0, case7 = 0, case8 = 0, case9 = 0;
 	do {
 		printf("Vvedite n\n");
 		scanf_s("%d", &n);
@@ -12,6 +13,22 @@ void main() {
 
 
 		scanf_s("%d", &x_igroka);
+		for (i = 0; i < n; i++) {  
+			switch (x_igroka_forChanges % 10)
+			{
+			case 0: case0++;
+			case 1: case1++;
+			case 2: case2++;
+			case 3: case3++;
+			case 4: case4++;
+			case 5: case5++;
+			case 6: case6++;
+			case 7: case7++;
+			case 8: case8++;
+			case 9: case9++;
+			}
+			x_igroka_forChanges /= 10;
+		}
 		while ((x_igroka < min) || (x_igroka >= max)) {
 			printf("Vvedeno plohoe chislo\n");
 			scanf_s("%d", &x_igroka);
