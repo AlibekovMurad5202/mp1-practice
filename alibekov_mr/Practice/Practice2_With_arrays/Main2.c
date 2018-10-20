@@ -1,14 +1,14 @@
+#define N 10
 #include<stdio.h>               //Скорость подбора x целиком
 #include<stdlib.h>				//и полностью зависит от текущего времени.
 #include<time.h>				//Программа работает быстро для n = 1,2,3,4.
 #include<stdbool.h>				//Нужно поменять способ подбора!
 #include<locale.h>				//(в частности, подбирать каждую цифру отдельно)
 #include<math.h>
-#define N 10
 void main() {
 	int x_igroka, new_game,p, i, j = 0, steps = 0, n, x = 1, x_forChanges, min = 1, max, x_igroka_forChanges, b = 0, k = 0;
-	short cells_x[N] = {0};//Создаем и обнуляем массив, в которых будут номера цифр в числе x 
-	short cells_x_igroka[N] = {0};//Создаем и обнуляем массив, в которых будут номера цифр в числе x_igroka
+	short cells_x[10] = {0};//Создаем и обнуляем массив, в которых будут номера цифр в числе x 
+	short cells_x_igroka[10] = {0};//Создаем и обнуляем массив, в которых будут номера цифр в числе x_igroka
 	_Bool GameOver = false, xIsGood = true, x_igrokaIsGood = true;
 	//int number_x[N] = {0};
 
