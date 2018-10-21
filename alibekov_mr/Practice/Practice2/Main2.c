@@ -18,7 +18,7 @@ void main() {
 	} 
 		x_igroka_forChanges = x_igroka;
 	for (i = 0; i < n; i++) {                        
-		while (j < (((((x_igroka_forChanges * (i + 1)) % 255) % 7) * n) % 10)) {
+		while (j < (((((unsigned char)(x_igroka_forChanges * (i + 1))) % 7) * n) % 10)) {
 			if (q < 10) q++;
 			else q = 1;
 			j++;
