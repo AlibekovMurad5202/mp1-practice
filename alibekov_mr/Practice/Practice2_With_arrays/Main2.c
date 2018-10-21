@@ -19,21 +19,23 @@ void main()
 
 	while (!GameOver) 
 	{
-		printf("Do you want to play honestly?             1 - yes.     0 - no.  ");
-		scanf_s("&d",&honestly_game);
+		printf("Do you want to play honestly?             1 - yes.     0 - no.\n");
+		scanf_s("%d",&honestly_game);
 		if (honestly_game == 1) GameIsHonest = true;
 		
 			do 
 			{                        
-				printf("Enter n (length of number)\n");
+				printf("Enter n (length of number).\n");
 				scanf_s("%d", &n);
 			} while ((n <= 0) || (n > 10));
 
 		for (i = 1; i < n; i++)  min *= 10;    
 		max = min * 10;                       
 
+		
 		printf("Number is generating. Please wait...\n");
-
+			i = 0;
+			xIsGood = true;
 			while (i < n) 
 			{
 				do
@@ -55,7 +57,7 @@ void main()
 							break;
 						};
 					} 
-					printf("%d\n", i);
+					//printf("%d\n", i);
 				} while (!xIsGood);
 				i++;
 			}
@@ -79,14 +81,14 @@ void main()
 					cells_x[x_forChanges % 10] = i + 1;
 					x_forChanges /= 10;
 			}
-		
+			printf("Number generated.\n");
 		do 
 		{
 			steps++;
 			do 
 			{ 
-				if (GameIsHonest) printf("%lli\n", x);
-				printf("Number generated.\nEnter number.\n");
+				if (!GameIsHonest) printf("%lli\n", x);
+				printf("Enter number.\n");
 				scanf_s("%lli", &x_igroka);
 				x_igroka_forChanges = x_igroka;
 				for (i = 0; i < n; i++) 
