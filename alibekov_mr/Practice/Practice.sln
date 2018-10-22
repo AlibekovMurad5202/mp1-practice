@@ -1,15 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Practice0", "Practice0\Practice0.vcxproj", "{6FC5326B-C557-48D7-964A-16EF4BF047B6}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Practice1", "Practice1\Practice1.vcxproj", "{C99E6A8A-E77D-4BB0-8D6A-F730F6591CAF}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Practice2", "Practice2\Practice2.vcxproj", "{76B6CE91-F4E0-4D14-A0DB-29321FA03BB3}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Practice2_Without_arrays", "Practice2\Practice2.vcxproj", "{76B6CE91-F4E0-4D14-A0DB-29321FA03BB3}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Practice2_With_arrays", "Practice2_With_arrays\Practice2_With_arrays.vcxproj", "{586012A7-6FB0-4B23-9BB8-529ABC6A75CE}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Practice2", "Practice2_With_arrays\Practice2_With_arrays.vcxproj", "{586012A7-6FB0-4B23-9BB8-529ABC6A75CE}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Practice3", "Practice3\Practice3.vcxproj", "{C420DAA3-24B9-4FBF-88B9-25BC279F5B3A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,14 @@ Global
 		{586012A7-6FB0-4B23-9BB8-529ABC6A75CE}.Release|x64.Build.0 = Release|x64
 		{586012A7-6FB0-4B23-9BB8-529ABC6A75CE}.Release|x86.ActiveCfg = Release|Win32
 		{586012A7-6FB0-4B23-9BB8-529ABC6A75CE}.Release|x86.Build.0 = Release|Win32
+		{C420DAA3-24B9-4FBF-88B9-25BC279F5B3A}.Debug|x64.ActiveCfg = Debug|x64
+		{C420DAA3-24B9-4FBF-88B9-25BC279F5B3A}.Debug|x64.Build.0 = Debug|x64
+		{C420DAA3-24B9-4FBF-88B9-25BC279F5B3A}.Debug|x86.ActiveCfg = Debug|Win32
+		{C420DAA3-24B9-4FBF-88B9-25BC279F5B3A}.Debug|x86.Build.0 = Debug|Win32
+		{C420DAA3-24B9-4FBF-88B9-25BC279F5B3A}.Release|x64.ActiveCfg = Release|x64
+		{C420DAA3-24B9-4FBF-88B9-25BC279F5B3A}.Release|x64.Build.0 = Release|x64
+		{C420DAA3-24B9-4FBF-88B9-25BC279F5B3A}.Release|x86.ActiveCfg = Release|Win32
+		{C420DAA3-24B9-4FBF-88B9-25BC279F5B3A}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
