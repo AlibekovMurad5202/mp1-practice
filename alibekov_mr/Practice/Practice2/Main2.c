@@ -1,124 +1,170 @@
-#include<stdio.h>
-void main() {
-	int i, j = 0, q = 0, n, game_over = 0, x = 0, x_forChanges, min = 1, max, x_igroka_forChanges, x_igroka, b = 0, k = 0;
-	short case0 = 0, case1 = 0, case2 = 0, case3 = 0, case4 = 0, case5 = 0, case6 = 0, case7 = 0, case8 = 0, case9 = 0;
-	do {
-		printf("Vvedite n\n");
-		scanf_s("%d", &n);
-	} while (n<=0);
+#include<stdio.h>               
+#include<stdlib.h>				
+#include<time.h>				
+#include<stdbool.h>
+#define N 10				
+void main() 
+{
+	int  new_game = 1, p, i = 0, j = 0, steps = 0, n, b = 0, k = 0, honestly_game;
+	long long x_igroka, x = 0, x_forChanges, x_igroka_forChanges, min = 1, max;
+	short cells_x[10] = {0}, cells_x_igroka[10] = {0};
+	_Bool GameOver = false, xIsGood = true, x_igrokaIsGood = true, ThereIs0 = false, GameIsHonest = false;
+	long long number_x[N] = {0};
 
-	for (i = 1; i < n; i++) { min *= 10; } //min znachenie chisla dlini n
-	max = min * 10;
+	printf("Hello. This is game %cBulls and Cows%c.\n", '"', '"');
+	printf("Do you want to play?             1 - yes.       0 - no.\n");
+	scanf_s("%d",&new_game);
+	if (new_game == 0) GameOver = true;
+	if (new_game == 1) GameOver = false;
 
-	scanf_s("%d", &x_igroka);
-	while ((x_igroka < min) || (x_igroka >= max)) {
-		printf("Vvedeno plohoe chislo\n");
-		scanf_s("%d", &x_igroka);
+	while (!GameOver) 
+	{
+		printf("Do you want to play honestly?             1 - yes.     0 - no.\n");
+		scanf_s("%d",&honestly_game);
+		if (honestly_game == 1) GameIsHonest = true;
 		
-	} 
-		x_igroka_forChanges = x_igroka;
-	for (i = 0; i < n; i++) {                        
-		while (j < (((((unsigned char)(x_igroka_forChanges * (i + 1))) % 7) * n) % 10)) {
-			if (q < 10) q++;
-			else q = 1;
-			j++;
-		}
-		j = 0;
-		while (j < i) {
-			q *= 10;
-			j++;
-		}
-		x += q;
-		q = 0;
-	}
+			do 
+			{                        
+				printf("Enter n (length of number).\n");
+				scanf_s("%d", &n);
+			} while ((n <= 0) || (n > 10));
 
-	while (game_over == 0) {
-		
-		scanf_s("%d", &x_igroka);
-		while ((x_igroka < min) || (x_igroka >= max)) {
-			printf("Vvedeno plohoe chislo\n");
-			scanf_s("%d", &x_igroka);
-		}
-			printf("\n%d\n", x);
+		for (i = 1; i < n; i++)  min *= 10;    
+		max = min * 10;                       
 
-		x_forChanges = x;
-		x_igroka_forChanges = x_igroka;
-		for (i = 1; i <= n; i++) {                          //while (x_forChanges !=0 )
-			if ((x_forChanges % 10) == (x_igroka_forChanges % 10)) b++;
-			x_forChanges /= 10;
-			x_igroka_forChanges /= 10;
-		}
-		x_forChanges = x;
-		x_igroka_forChanges = x_igroka;
-		printf("Kolichestvo bikov: %d\n", b);
 		
-		/* k = ?
-		for (i = 1; i <= n; i++){
-		cells_of_x[i] = x_forChanges % 10;                       //massiv iz zifr chisla komputera
-		cells_of_x_igroka[i] = x_igroka_forChanges % 10;         //massiv iz zifr chisla igroka
-		x_forChanges /= 10;
-		x_igroka_forChanges /= 10;
-		}
-		*/
-		for (i = 1; i <= n; i++) {
-			switch (x_forChanges % 10) {
-			case 0: case0 = i;
-					break;
-			case 1: case1 = i;
-				break;
-			case 2: case2 = i;
-				break;
-			case 3: case3 = i;
-				break;
-			case 4: case4 = i;
-				break;
-			case 5: case5 = i;
-				break;
-			case 6: case6 = i;
-				break;
-			case 7: case7 = i;
-				break;
-			case 8: case8 = i;
-				break;
-			case 9: case9 = i;
+		printf("Number is generating. Please wait...\n");
+			i = 0;
+			xIsGood = true;
+			while (i < n) 
+			{
+				do
+				{
+					xIsGood = true;
+					srand((unsigned int)time(0));
+					number_x[i] = rand() % 10;
+					if ((i != 9) && (number_x[i] == 0)) ThereIs0 = true;
+					for (j = 0; j < i; j++) {
+						if ((number_x[i] == number_x[j]) || ((i == (n - 1)) && (number_x[i] == 0))) 
+						{
+							if ((n == 10) && (number_x[i] == 0) && (i == 9) && (!ThereIs0)) 
+							{
+								i = 7;
+								ThereIs0 = false;
+							}
+							number_x[i] = 0;
+							xIsGood = false;
+							break;
+						};
+					} 
+					//printf("%d\n", i);
+				} while (!xIsGood);
+				i++;
+			}
+
+			for (i = 0; i < n; i++) 
+			{
+				for ( j = 0; j < i; j++)
+				{
+					number_x[i] *= 10;
+				}	
+			}
+
+			for (i = 0; i < n; i++) 
+			{
+				x += number_x[i];
+			}
+
+			x_forChanges = x;
+			for (i = 0; i < n; i++) 
+			{             
+					cells_x[x_forChanges % 10] = i + 1;
+					x_forChanges /= 10;
+			}
+			printf("Number generated.\n");
+		do 
+		{
+			steps++;
+			do 
+			{ 
+				if (!GameIsHonest) printf("%lli\n", x);
+				printf("Enter number.\n");
+				scanf_s("%lli", &x_igroka);
+				x_igroka_forChanges = x_igroka;
+				for (i = 0; i < n; i++) 
+				{ 
+					if ((cells_x_igroka[x_igroka_forChanges % 10] == 0) && (x_igroka >= min) && (x_igroka < max)) 
+					{
+						cells_x_igroka[x_igroka_forChanges % 10] = i + 1;
+						x_igrokaIsGood = true;
+						x_igroka_forChanges /= 10; 
+					}
+					else 
+					{
+						printf("You entered bad number.\n");
+						steps++;
+						x_igrokaIsGood = false;
+						for (p = 0; p < N; p++)
+						{
+							cells_x_igroka[p] = 0;
+						}
+						break;
+					}
+				}
+			} while (!x_igrokaIsGood);  
+
+			for (i = 0; i < N; i++) 
+			{
+				if ((cells_x[i] != 0) && (cells_x_igroka[i] != 0)) cells_x[i] == cells_x_igroka[i] ? b++ : k++;
+			}
+
+			if (b != n)
+			printf("Number of bulls: %d\nNumber of cows: %d\n", b, k);
+			else 
+			{
+				printf("\n\nYou win!\nMy number is %lli\n", x);
+				steps == 1 ? printf("Win in 1 step. \n") : printf("Win in %d steps. \n", steps);
+				printf("Do you want to play again?      1 - yes.       0 - no.\n");
+				scanf_s("%d", &new_game);
+				if (new_game == 0) GameOver = true;
 				break;
 			}
-			x_forChanges /= 10;
-		}
-		x_forChanges = x;
-		for (i = 1; i <= n; i++) {
-			switch (x_igroka_forChanges % 10){
-			case 0: if ((case0 != i) && (case0 != 0)) k++;
-				break;
-			case 1: if ((case1 != i) && (case1 != 0)) k++;
-				break;
-			case 2: if ((case2 != i) && (case2 != 0)) k++;
-				break;
-			case 3: if ((case3 != i) && (case3 != 0)) k++;
-				break;
-			case 4: if ((case4 != i) && (case4 != 0)) k++;
-				break;
-			case 5: if ((case5 != i) && (case5 != 0)) k++;
-				break;
-			case 6: if ((case6 != i) && (case6 != 0)) k++;
-				break;
-			case 7: if ((case7 != i) && (case7 != 0)) k++;
-				break;
-			case 8: if ((case8 != i) && (case8 != 0)) k++;
-				break;
-			case 9: if ((case9 != i) && (case9 != 0)) k++;
-				break;
+			b = 0;
+			k = 0;
+			x_igroka = 0;
+			x_igroka_forChanges = 0;
+			for (p = 0; p <N; p++)
+			{
+				cells_x_igroka[p] = 0;
 			}
-			x_igroka_forChanges /= 10;
-		}
-		x_igroka_forChanges = x_igroka;
-		printf("Kolichestvo korov: %d\n", k);
 
-		if (b == n){             //if (x = x_igroka) {
-			game_over = 1;
-			printf("You win\n");
+		} while (b != n);
+		for (p = 0; p <N; p++) 
+		{
+			cells_x[p] = 0;
 		}
+		for (p = 0; p <N; p++) 
+		{
+			cells_x_igroka[p] = 0;
+		}
+		GameIsHonest = false;
+		honestly_game = 0;
+		x = 0;
+		x_forChanges = 0;
+		n = 0;
 		b = 0;
 		k = 0;
-	}
+		min = 1;
+		max = 1;
+		x_igroka = 0;
+		x_igroka_forChanges = 0;
+		for (p = 0; p <N; p++) 
+		{
+			cells_x[p] = 0;
+		}
+		for (p = 0; p <N; p++) {
+			number_x[p] = 0;
+		}
+		steps = 0;
+	} 
 }
