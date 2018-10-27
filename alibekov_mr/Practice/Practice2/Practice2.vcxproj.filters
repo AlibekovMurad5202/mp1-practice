@@ -7,7 +7,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\Practice2_\Main2.c">
+    <ClCompile Include="Main.c">
       <Filter>Файлы ресурсов</Filter>
     </ClCompile>
   </ItemGroup>
