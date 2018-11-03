@@ -133,17 +133,17 @@ void main()
       k = 0;
       x_igroka = 0;
       x_igroka_forChanges = 0;
-      for (p = 0; p <N; p++)
+      for (p = 0; p < N; p++)
     {
       cells_x_igroka[p] = 0;
     }
 
     } while (b != n);
-    for (p = 0; p <N; p++)
+    for (p = 0; p < N; p++)
     {
       cells_x[p] = 0;
     }
-    for (p = 0; p <N; p++)
+    for (p = 0; p < N; p++)
     {
       cells_x_igroka[p] = 0;
     }
@@ -158,11 +158,11 @@ void main()
     max = 1;
     x_igroka = 0;
     x_igroka_forChanges = 0;
-    for (p = 0; p <N; p++)
+    for (p = 0; p < N; p++)
     {
       cells_x[p] = 0;
     }
-    for (p = 0; p <N; p++) 
+    for (p = 0; p < N; p++) 
     {
       number_x[p] = 0;
     }
