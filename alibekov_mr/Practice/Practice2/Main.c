@@ -90,7 +90,7 @@ void main()
       {
         if (!GameIsHonest) printf("%lli\n", x);
         printf("Enter number.\n");
-        scanf_s("%lli", &x_igroka);
+        scanf("%lli", &x_igroka);
         x_igroka_forChanges = x_igroka;
         for (i = 0; i < n; i++)
         {
