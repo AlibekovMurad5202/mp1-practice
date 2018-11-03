@@ -2,7 +2,8 @@
 #include<stdlib.h>				
 #include<time.h>				
 #include<stdbool.h>
-#define N 10				
+#define N 10	
+
 void main()
 {
   int  new_game = 1, p, i = 0, j = 0, steps = 0, n, b = 0, k = 0, honestly_game;
@@ -13,20 +14,20 @@ void main()
 
   printf("Hello. This is game %cBulls and Cows%c.\n", '"', '"');
   printf("Do you want to play?             1 - yes.       0 - no.\n");
-  scanf_s("%d", &new_game);
+  scanf("%d", &new_game);
   if (new_game == 0) GameOver = true;
   if (new_game == 1) GameOver = false;
  
   while (!GameOver)
   {
     printf("Do you want to play honestly?             1 - yes.     0 - no.\n");
-    scanf_s("%d", &honestly_game);
+    scanf("%d", &honestly_game);
     if (honestly_game == 1) GameIsHonest = true;
 
     do
     {
       printf("Enter n (length of number).\n");
-      scanf_s("%d", &n);
+      scanf("%d", &n);
     } while ((n <= 0) || (n > 10));
 
     for (i = 1; i < n; i++)  min *= 10;
@@ -88,7 +89,7 @@ void main()
       {
         if (!GameIsHonest) printf("%lli\n", x);
         printf("Enter number.\n");
-        scanf_s("%lli", &x_igroka);
+        scanf("%lli", &x_igroka);
         x_igroka_forChanges = x_igroka;
         for (i = 0; i < n; i++)
         {
@@ -123,7 +124,7 @@ void main()
         printf("\n\nYou win!\nMy number is %lli\n", x);
         steps == 1 ? printf("Win in 1 step. \n") : printf("Win in %d steps. \n", steps);
         printf("Do you want to play again?      1 - yes.       0 - no.\n");
-        scanf_s("%d", &new_game);
+        scanf("%d", &new_game);
         if (new_game == 0) GameOver = true;
         break;
       }
@@ -131,17 +132,17 @@ void main()
       k = 0;
       x_igroka = 0;
       x_igroka_forChanges = 0;
-      for (p = 0; p <N; p++)
+      for (p = 0; p < N; p++)
       {
         cells_x_igroka[p] = 0;
       }
 
     } while (b != n);
-    for (p = 0; p <N; p++)
+    for (p = 0; p < N; p++)
     {
       cells_x[p] = 0;
     }
-    for (p = 0; p <N; p++)
+    for (p = 0; p < N; p++)
     { 
       cells_x_igroka[p] = 0;
     }
@@ -156,11 +157,11 @@ void main()
     max = 1;
     x_igroka = 0;
     x_igroka_forChanges = 0;
-    for (p = 0; p <N; p++)
+    for (p = 0; p < N; p++)
     {
       cells_x[p] = 0;
     }
-    for (p = 0; p <N; p++) 
+    for (p = 0; p < N; p++) 
     {
       number_x[p] = 0;
     }
