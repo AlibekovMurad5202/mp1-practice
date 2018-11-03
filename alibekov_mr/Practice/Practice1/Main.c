@@ -1,4 +1,5 @@
 #include<stdio.h>
+
 void main() {
   double pl_DVP, pl_DSP, pl_d, m, m_stenka, m_2bokovini, m_2krishi, m_2dveri, m_polki;
   double w, h, d;
@@ -14,7 +15,7 @@ void main() {
   m_stenka = (h * w * 0.005) * pl_DVP;
   m_2bokovini = 2 * (h * d * 0.015) * pl_DSP;
   m_2krishi = 2 * (w * d * 0.015) * pl_DSP;
-  m_2dveri = 2 * (h * (w / 2) * 0, 01) * pl_d;
+  m_2dveri = 2 * (h * (w / 2) * 0.01) * pl_d;
   m_polki = ((h / 0.4) * w * d * 0.015) * pl_DSP;
   m = m_stenka + m_2bokovini + m_2krishi + m_polki + m_2dveri;
   printf("%lf kg\n", m);
