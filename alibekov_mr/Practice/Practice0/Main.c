@@ -1,10 +1,11 @@
 #include<stdio.h>
 #include<math.h>
+
 void main()
 {
 	double r1, r2, x1, x2, y1, y2, r_megdu_centrami;
 	printf("Vvedite: r1 (r1 > 0), r2 (r2 > 0), x1, x2, y1, y2\n");
-	scanf_s("%lf %lf %lf %lf %lf %lf", &r1, &r2, &x1, &x2, &y1, &y2);
+	scanf("%lf %lf %lf %lf %lf %lf", &r1, &r2, &x1, &x2, &y1, &y2);
 	r_megdu_centrami = sqrt(((x1 - x2)*(x1 - x2) + (y1 - y2)*(y1 - y2)));
 	if ((r1 <= 0) || (r2 <= 0))
 	{
@@ -18,7 +19,7 @@ void main()
 		return;
 	}
 
-	if (r_megdu_centrami > (r1 + r2))
+  if (r_megdu_centrami > (r1 + r2))
 	{
 		printf("Ne imeut nichego obshego (0 obshih tochek)\n");
 		return;

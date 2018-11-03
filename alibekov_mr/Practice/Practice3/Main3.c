@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<time.h>
+
 void main() 
  {
   int PC_igraet = -1, x, i = 0, x_igroka, a = 1, b = 1000, t = 1, RetryGame = 0, GameHonestly = -1;
@@ -9,10 +10,10 @@ void main()
   do 
    {
     printf("Who generate number?    1 - PC.    0 - User\n");
-    scanf_s("%d", &PC_igraet);
+    scanf("%d", &PC_igraet);
     if (PC_igraet == 1) {
     printf("Do you want to play honestly?     1 - Yes.       0 - No\n");
-    scanf_s("%d", &GameHonestly);
+    scanf("%d", &GameHonestly);
    }
 
   srand((unsigned int)time(0));
@@ -25,7 +26,7 @@ void main()
     printf("Enter your number.\n");
     do 
      {
-      scanf_s("%d", &x_igroka);
+      scanf("%d", &x_igroka);
      } while ((x_igroka <= 1) || (x_igroka >= 1000));
     if (x_igroka == x) 
      {
@@ -45,7 +46,7 @@ void main()
        printf("Enter your number.\nYour number: ");
        do 
         {
-         scanf_s("%d", &x_igroka);
+         scanf("%d", &x_igroka);
         } while ((x_igroka < 1) || (x_igroka > 1000));
        t = 0;
       }		
@@ -56,7 +57,7 @@ void main()
      printf("Enter '=' if your number = my number.\n");
      do 
       {   
-       scanf_s("%c", &znak);
+       scanf("%c", &znak);
       } while ((znak != '>') && (znak != '<') && (znak != '='));
       switch (znak) 
        {
@@ -72,6 +73,6 @@ void main()
     };	
 
    printf("Retry?        1 - Yes.     0 - No\n");	
-   scanf_s("%d", &RetryGame);
+   scanf("%d", &RetryGame);
   } while (RetryGame == 1);
 }
