@@ -41,7 +41,13 @@ int scan_new_item()
     return ind;
 }
 
-
+void output_information_of_item(int item, int ind, int price_of_one_item, int cashback)
+{
+    printf("Code of item: %d\n", item);
+    printf("Item: item ¹%d\n", ind);
+    printf("Price_of_one_item: %d\n", price_of_one_item);
+    printf("Cashback: %d\n", cashback);
+}
 
 void main()
 {
@@ -59,6 +65,8 @@ void main()
     {
       case 1: ind = scan_new_item();
               number_of_items[ind]++;
+              break;
+      case 2: output_information_of_item(items[ind], ind, price_of_one_item[ind], cashback[ind]);
               break;
     }
     
