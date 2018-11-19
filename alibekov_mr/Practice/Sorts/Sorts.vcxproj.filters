@@ -7,7 +7,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Main4.c">
+    <ClCompile Include="Main_Sorts.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
