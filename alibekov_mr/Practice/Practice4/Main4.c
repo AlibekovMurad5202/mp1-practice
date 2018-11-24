@@ -1,79 +1,3 @@
-/*#include<stdio.h>
-#include<stdlib.h>
-#include<time.h>
-#define N 1000
-
-void fill_items(int items[], int number_of_items)
-{
-    srand((unsigned)time(0));
-    int i;
-    for (i = 1; i < number_of_items; i++)
-    {
-        items[i] = rand();
-    }
-}
-
-void fill_price_of_one_item(int price_of_one_item[], int number_of_items)
-{
-    srand((unsigned)time(0));
-    int i;
-    for (i = 1; i < number_of_items; i++)
-    {
-        price_of_one_item[i] = rand();
-    }
-}
-
-void fill_cashback(int cashback[], int number_of_items)
-{
-    srand((unsigned)time(0));
-    int i;
-    for (i = 1; i < number_of_items; i++)
-    {
-        cashback[i] = 49.0/RAND_MAX*rand()+1;
-    }
-}
-
-
-int scan_new_item() 
-{  
-    int ind;
-    scanf("%d", &ind);
-    return ind;
-}
-
-void output_information_of_item(int item, int ind, int price_of_one_item, int cashback)
-{
-    printf("Code of item: %d\n", item);
-    printf("Item: item ¹%d\n", ind);
-    printf("Price_of_one_item: %d\n", price_of_one_item);
-    printf("Cashback: %d\n", cashback);
-}
-
-void main()
-{
-    int items[N] = { 0 };
-    int price_of_one_item[N] = { 0 };
-    int cashback[N] = { 0 };
-    int number_of_items[N] = { 0 };
-    int z, ind;
-    fill_items(items, N);
-    fill_price_of_one_item(price_of_one_item, N);
-    fill_cashback(cashback, N);
-    printf("Enter: 1 - scan;  2 - ...");
-    scanf("%d", &z);
-    switch (z) 
-    {
-      case 1: ind = scan_new_item();
-              number_of_items[ind]++;
-              break;
-      case 2: output_information_of_item(items[ind], ind, price_of_one_item[ind], cashback[ind]);
-              break;
-    }
-    
-
-}
-*/
-
 #include<stdio.h>
 #include<stdlib.h>
 #include<time.h>
@@ -81,9 +5,10 @@ void main()
 #define MAX_LENGTH 16
 #define NUMBER_OF_ITEMS 71
  
-int flag1 = 0, flag3 = 0;
+int flag1 = 0, flag3 = 0, flag4 = 0;
 
-typedef struct {
+typedef struct 
+{
   char name[MAX_LENGTH];
   int price;
   int cashback;
@@ -93,14 +18,17 @@ typedef struct {
 
 TItem items[N];
 
-void Fill_names() {
+void Fill_names() 
+{
   int i;
-  for (i = 1; i < NUMBER_OF_ITEMS; i += 7) {
+  for (i = 1; i < NUMBER_OF_ITEMS; i += 7) 
+  {
     items[i].name[0] = 'G';
     items[i].name[1] = 'u';
     items[i].name[2] = 'n';
   }
-  for (i = 2; i < NUMBER_OF_ITEMS; i += 7) {
+  for (i = 2; i < NUMBER_OF_ITEMS; i += 7) 
+  {
     items[i].name[0] = 'P';
     items[i].name[1] = 'o';
     items[i].name[2] = 't';
@@ -108,7 +36,8 @@ void Fill_names() {
     items[i].name[4] = 't';
     items[i].name[5] = 'o';
   }
-  for (i = 3; i < NUMBER_OF_ITEMS; i += 7) {
+  for (i = 3; i < NUMBER_OF_ITEMS; i += 7) 
+  {
     items[i].name[0] = 'T';
     items[i].name[1] = 'o';
     items[i].name[2] = 'm';
@@ -116,23 +45,27 @@ void Fill_names() {
     items[i].name[4] = 't';
     items[i].name[5] = 'o';
   }
-  for (i = 4; i < NUMBER_OF_ITEMS; i += 7) {
+  for (i = 4; i < NUMBER_OF_ITEMS; i += 7) 
+  {
     items[i].name[0] = 'E';
     items[i].name[1] = 'y';
     items[i].name[2] = 'e';
   }
-  for (i = 5; i < NUMBER_OF_ITEMS; i += 7) {
+  for (i = 5; i < NUMBER_OF_ITEMS; i += 7) 
+  {
     items[i].name[0] = 'F';
     items[i].name[1] = 'r';
     items[i].name[2] = 'o';
     items[i].name[3] = 'g';
   }
-  for (i = 6; i < NUMBER_OF_ITEMS; i += 7) {
+  for (i = 6; i < NUMBER_OF_ITEMS; i += 7) 
+  {
     items[i].name[0] = 'B';
     items[i].name[1] = 'u';
     items[i].name[2] = 'g';
   }
-  for (i = 7; i < NUMBER_OF_ITEMS; i += 7) {
+  for (i = 7; i < NUMBER_OF_ITEMS; i += 7) 
+  {
     items[i].name[0] = 'C';
     items[i].name[1] = 'h';
     items[i].name[2] = 'e';
@@ -140,8 +73,10 @@ void Fill_names() {
     items[i].name[4] = 's';
     items[i].name[5] = 'e';
   }
-  for (i = 1; i < NUMBER_OF_ITEMS; i++) {
-    switch (i % 10) {
+  for (i = 1; i < NUMBER_OF_ITEMS; i++) 
+  {
+    switch (i % 10) 
+    {
     case 0: break;
     case 1: items[i].name[7] = 'f';
       items[i].name[8] = 'r';
@@ -203,13 +138,15 @@ void Fill_names() {
   }
 }
 
-void Fill_struct_without_names() {
+void Fill_struct_without_names() 
+{
   srand((unsigned)time(0));
   int i, j;
-  for (i = 1; i < N; i++) {
+  for (i = 1; i < N; i++) 
+  {
     if (items[i].name[0] != '0')
     {
-      items[i].price = 99.0 / RAND_MAX * rand() + 1;
+      items[i].price = 399.0 / RAND_MAX * rand() + 20;
       items[i].cashback = 49.0 / RAND_MAX * rand() + 1;
       items[i].id_code = i;
       items[i].k = 0;
@@ -217,7 +154,51 @@ void Fill_struct_without_names() {
   }
 }
 
-int Scan_new_item() {
+int Choose_an_action() 
+{
+  int z = 0;
+  if (flag1 == 0) 
+  {
+    printf("Please, enter number of action what you want to do:\n");
+    printf("1 - Scan ID_code of item;\n6 - Exit from %cShop for witches%c.\nEnter: ", '"', '"');
+    scanf("%d", &z);
+    while ((z != 1) && (z != 6)) 
+    {
+      printf("Please, enter 1 or 6.\nEnter: ");
+      scanf("%d", &z);
+    }
+    if (z == 1) printf("Please enter ID_code of item: ");
+  }
+  else if (flag4 == 1) 
+  {
+    printf("Please, enter number of action what you want to do:\n5 - Bill;\n");
+    printf("6 - Exit from %cShop for witches%c.\nEnter: ", '"', '"');
+    scanf("%d", &z);
+    while ((z != 5) && (z != 6)) 
+    {
+      printf("Please, enter 5 or 6.\nEnter: ");
+      scanf("%d", &z);
+    }
+  }
+  else 
+  {
+    printf("Please, enter number of action what you want to do:\n");
+    printf("1 - Scan ID_code of another item;\n2 - Show information about scanned item;\n");
+    printf("3 - Add scanned item to check;\n4 - Create check;\n5 - Bill;\n");
+    printf("6 - Exit from %cShop for witches%c.\nEnter: ", '"', '"');
+    scanf("%d", &z);
+    if (z == 1) printf("Please enter ID_code of item: ");
+    while ((z < 1) || (z > 6)) 
+    {
+      printf("Please, enter one number from 1 to 6.\nEnter: ");
+      scanf("%d", &z);
+    }
+  }
+  return z;
+}
+
+int Scan_new_item() 
+{
   int id;
   scanf("%d", &id);
   while ((items[id].name[0] == 0)||(id < 0)||(id >= N))
@@ -230,7 +211,8 @@ int Scan_new_item() {
   return id;
 }
 
-void Output_info_about_item(int id) {
+void Output_info_about_item(int id) 
+{
   printf("     Name: ");
   int i;
   for (i = 0; i < MAX_LENGTH; i++)
@@ -244,17 +226,21 @@ void Output_info_about_item(int id) {
   printf("\n");
 }
 
-void Add_item(int id) {
+void Add_item(int id) 
+{
   items[id].k++;
   printf("\n");
   flag3 = 1;
 }
 
-void Check() {
+void Check() 
+{
   int i;
   printf("\n        ---------------------------------------\n");
-  for (i = 0; i < N; i++) {
-    if (items[i].k != 0) {
+  for (i = 0; i < N; i++) 
+  {
+    if (items[i].k != 0) 
+    {
       int q;
       printf("         ");
       for (q = 0; q < MAX_LENGTH; q++)
@@ -262,17 +248,19 @@ void Check() {
       printf(" - %d", items[i].price);
       printf(" - %d", items[i].k);
       printf(" - %d", ((items[i].price) * (items[i].k)));
-
+      printf("\n");
     }
-    printf("\n");
   }
   printf("\n        ---------------------------------------\n\n");
 }
 
-void Bill() {
+void Bill() 
+{
   int i, pay = 0, cash_back = 0;
-  for (i = 0; i < N; i++) {
-    if (items[i].k != 0) {
+  for (i = 0; i < N; i++) 
+  {
+    if (items[i].k != 0) 
+    {
       pay += (items[i].price) * (1 - (0.01 * items[i].cashback))* (items[i].k);
       cash_back += (items[i].price) * (0.01 * items[i].cashback)* (items[i].k);
     }
@@ -280,50 +268,39 @@ void Bill() {
   printf("\n                                   Bill: %d rub.", pay + cash_back);
   printf("\n                               Cashback: %d rub.", cash_back);
   printf("\n                                 To pay: %d rub.\n", pay);
+  printf("\n          *** Thank you for buying. Come again. ***\n\n");
 }
 
-void main() {
-  int z = 0, ind, exit_from_shop = 0;
+void main() 
+{
+  int choose = 0, ind;
   Fill_names();
   Fill_struct_without_names();
-  printf("Good day. Welcome to %cShop for witches%c. Here you can buy gun, eye, frog and other.\n\n", '"', '"');
-  while (exit_from_shop != 6)
+  printf("         Good day. Welcome to %cShop for witches%c. ", '"', '"');
+  printf("Here you can buy gun, eye, frog and other.\n\n");
+  while (1)
   {
-    if (flag1 !=0)
+    choose = Choose_an_action();
+    if (choose != 1) printf("\n");
+
+    switch (choose) 
     {
-      printf("Please, enter number of action what you want to do:\n1 - Scan ID_code of item;\n2 - Show information about scanned item;\n");
-      printf("3 - Add item to check;\n4 - Create check;\n5 - Bill;\n6 - Exit from %cShop for witches%c.\nEnter: ", '"', '"');
-      scanf("%d", &z);
-      if (z == 1) printf("Please enter ID_code of item: ");
-      while ((z < 1) || (z > 6)) {
-        printf("Please, enter one number from 1 to 6.\nEnter: ");
-        scanf("%d", &z);
-      }
-    }
-      else
-      {
-        printf("Please, enter number of action what you want to do:\n1 - Scan ID_code of item;\n6 - Exit from %cShop for witches%c.\nEnter: ", '"', '"');
-        scanf("%d", &z);
-        while ((z != 1) && (z != 6)) {
-          printf("Please, enter 1 or 6.\nEnter: ");
-          scanf("%d", &z);
-        }
-        if (z == 1) printf("Please enter ID_code of item: ");
-      }
-    if (z != 1) printf("\n");
-    switch (z) {
     case 1: ind = Scan_new_item();
-      break;
+            break;
     case 2: Output_info_about_item(ind);
-      break;
+            break;
     case 3: Add_item(ind);
-      break;
+            break;
     case 4: Check();
-      break;
+            break;
     case 5: Bill();
-      return;
-    case 6: if (flag3 == 1) Bill();
-      return;
+            return;
+    case 6: if (flag3 == 1) 
+            {
+              printf("Please, pay before you exit.\n");
+              Bill();
+            }
+            return;
     }
   }
 }
