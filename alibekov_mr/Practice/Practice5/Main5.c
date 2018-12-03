@@ -69,6 +69,48 @@ void Counting_Sort(int a[], int n) {
   }
 }
 
+void quick_split(int a[], int *i, int *j, int p) {
+    do {
+        while (a[(*i)] < p) (*i)++;
+        while (a[(*j)] > p) (*j)--;
+        if ((*i) <= (*j)) {
+            int tmp = a[(*i)];
+            a[(*i)] = a[(*j)];
+            a[(*j)] = tmp;
+        }
+    } while ((*i) < (*j));
+}
+
+void Quick_Sort(int a[], int n1, int n2) {
+    int m = (n1 + n2) / 2;
+    int i = n1, j = n2;
+    quick_split(a, &i, &j, a[m]);
+    if (i > n1) Quick_Sort(a, n1, i);
+    if (j < n2) Quick_Sort(a, j, n2);
+}
+
+/*void merge(int a[], int l, int m, int r) {
+    int i = l, j = m, s = 0, tmp;
+    while ((i < m) && (j < r)) {
+        if (a[i] < a[j]) {
+            i++;
+        }
+        else {
+            j++;
+            i++;
+        }
+    }
+}
+
+void Merge_Sort(int a[], int l, int r) {
+    int m;
+    if (l <= r) return;
+    m = (l + r) / 2;
+    Merge_Sort(a, l, m);
+    Merge_Sort(a, m, r);
+    merge(a, l , m ,r);
+}*/
+
 void main() {
   int a[N] = { 0 };
   int choose;
@@ -76,7 +118,8 @@ void main() {
   input_a(a, N);
   printf("Your array: ");
   output_a(a, N);
-  printf("\nChoose method of sort:\n1)Choose Sort\n2)Insert Sort\n3)Bubble Sort\n4)Counting Sort\n");
+  printf("\nChoose method of sort:\n1)Choose Sort\n2)Insert Sort\n3)Bubble Sort\n");
+  printf("4)Counting Sort\n5)Quick Sort\n6)Merge Sort\n");
   scanf("%d", &choose);
   switch (choose)
   {
@@ -88,6 +131,10 @@ void main() {
     break;
   case 4: Counting_Sort(a, N);
     break;
+  case 5: Quick_Sort(a, 0, N-1);
+    break;
+ // case 6: Merge_Sort(a, 0, N-1);
+   //   break;
   }
   printf("\n");
   output_a(a, N);
