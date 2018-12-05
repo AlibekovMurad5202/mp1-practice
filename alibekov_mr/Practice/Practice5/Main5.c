@@ -1,6 +1,9 @@
 #include<stdio.h>
+#include<stdlib.h>
 #define N 10
 #define k 5
+  
+//int bm[N];
 
 void input_a(int a[], int n) {
   int i;
@@ -85,35 +88,41 @@ void Quick_Sort(int a[], int n1, int n2) {
     int m = (n1 + n2) / 2;
     int i = n1, j = n2;
     quick_split(a, &i, &j, a[m]);
-    if (i > n1) Quick_Sort(a, n1, i);
-    if (j < n2) Quick_Sort(a, j, n2);
+    if (i > n1) Quick_Sort(a, n1, i - 1);
+    if (j < n2) Quick_Sort(a, j + 1, n2);
 }
 
-/*void merge(int a[], int l, int m, int r) {
-    int i = l, j = m, s = 0, tmp;
-    while ((i < m) && (j < r)) {
-        if (a[i] < a[j]) {
-            i++;
-        }
-        else {
-            j++;
-            i++;
-        }
-    }
+/*
+void Merge(int *a, int size_a, int *b, int size_b, int *c) {
+  int i, j, s;
+  i = j = s = 0;
+  while ((i < size_a) && (j < size_b))
+  {
+    if (a[i] <= b[j]) c[s++] = a[i++];
+    else c[s++] = b[j++];
+  }
+  if (i == size_a)
+    while (j < size_b) c[s++] = b[j++];
+  if (j == size_b)
+    while (i < size_a) c[s++] = a[i++];
 }
 
-void Merge_Sort(int a[], int l, int r) {
-    int m;
-    if (l <= r) return;
-    m = (l + r) / 2;
-    Merge_Sort(a, l, m);
-    Merge_Sort(a, m, r);
-    merge(a, l , m ,r);
-}*/
+void Merge_Sort(int a[], int left, int right) {
+  int mid, i;
+  //int *b = (int *)malloc(N * sizeof(int));
 
+  if (left <= right) return;
+  mid = (left + right) / 2;
+  Merge_Sort(a, left, mid);
+  Merge_Sort(a, mid + 1, right);
+  Merge(a + left, mid + left - 1, a + mid, right - mid + 1, bm);
+ // return &(b[0]);
+}
+*/
 void main() {
   int a[N] = { 0 };
-  int choose;
+  int choose, i;
+//  int *bm;
   printf("Enter array.\n");
   input_a(a, N);
   printf("Your array: ");
@@ -131,10 +140,13 @@ void main() {
     break;
   case 4: Counting_Sort(a, N);
     break;
-  case 5: Quick_Sort(a, 0, N-1);
+  case 5: Quick_Sort(a, 0, N - 1);
     break;
- // case 6: Merge_Sort(a, 0, N-1);
-   //   break;
+ /* case 6: Merge_Sort(a, 0, N - 1);
+    for (i = 0; i < N; i++) {
+      a[i] = bm[i];
+    }
+    break;*/
   }
   printf("\n");
   output_a(a, N);
