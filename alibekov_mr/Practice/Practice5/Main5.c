@@ -6,7 +6,7 @@
 #define ULL unsigned long long int
 
 int down = 1;
-int cof = 0;
+ULL cof = 0;
 //int exit_from_loop = 0;
 int Exit = 0;
 typedef char* word;
@@ -18,7 +18,7 @@ void input_a(ULL a[], ULL *sizes) {
 }
 
 void output(ULL sizes[], int ind[], word *names) {
-  int k;
+  ULL k = 0;
   for (k = 0; k < cof; k++) {
     printf("%s ", (names[ind[k]]));
     printf("%llu\n", sizes[ind[k]]);
@@ -26,7 +26,8 @@ void output(ULL sizes[], int ind[], word *names) {
 }
 
 void Choose_Sort(ULL a[] , int n) {
-  int i, j, min, min_ind;
+  int i, j, min_ind;
+  ULL min;
   for (i = 0; i < n; i++) {
     min = a[i];
     min_ind = i;
@@ -90,12 +91,13 @@ void Counting_Sort(ULL a[], int n) {
   }
 }
 
-void quick_split(ULL a[], int *i, int *j, int p) {
-  do {
+void quick_split(ULL a[], int *i, int *j, ULL p) {
+    do {
+        printf("%d, %d\n",*i,*j);
     while (a[(*i)] < p) (*i)++;
     while (a[(*j)] > p) (*j)--;
     if ((*i) <= (*j)) {
-      int tmp = a[(*i)];
+      ULL tmp = a[(*i)];
       a[(*i)] = a[(*j)];
       a[(*j)] = tmp;
     }
@@ -105,12 +107,15 @@ void quick_split(ULL a[], int *i, int *j, int p) {
 void Quick_Sort(ULL a[], int n1, int n2) {
   int m = (n1 + n2) / 2;
   int i = n1, j = n2;
+  
   quick_split(a, &i, &j, a[m]);
+  
   if (i > n1) Quick_Sort(a, n1, i - 1);
   if (j < n2) Quick_Sort(a, j + 1, n2);
+ 
 }
 
-void Merge(ULL *a, int left, int mid, int right) {
+void Merge(ULL *a, ULL left, ULL mid, ULL right) {
   int i = 0, j = 0, k;
   ULL *c = (ULL *)malloc((right - left) * sizeof(ULL));
   while ((left + i < mid) && (mid + j < right))
@@ -136,8 +141,9 @@ void Merge(ULL *a, int left, int mid, int right) {
   free(c);
 }
 
-void Merge_Sort(ULL a[], int left, int right) {
-  int mid, i;
+void Merge_Sort(ULL a[], ULL left, ULL right) {
+  ULL mid;
+  int i;
   if (left + 1 >= right) return;
   mid = (right + left) / 2;
   Merge_Sort(a, left, mid);
@@ -145,12 +151,12 @@ void Merge_Sort(ULL a[], int left, int right) {
   Merge(a, left, mid, right);
 }
 
-int Count_of_files(const wchar_t *sDir)
+ULL Count_of_files(const wchar_t *sDir)
 {
   WIN32_FIND_DATA fdFile;
   HANDLE hFind = NULL;
   wchar_t sPath[2048];
-  int i = 0;
+  ULL i = 0;
   wsprintf(sPath, L"%s\\*.*", sDir);
   if ((hFind = FindFirstFile(sPath, &fdFile)) == INVALID_HANDLE_VALUE)
     return 0;
@@ -201,7 +207,7 @@ void main() {
   int choose, i, choose_action;
   clock_t t1;
   clock_t t2;
-  ULL tmp = 0;
+  ULL tmp = 0, illu = 0, jllu = 0;
   int k, j = 0;
   printf("Good day. ");
   do
@@ -256,11 +262,11 @@ void main() {
           a[cof - 1 - i] = tmp;
         }
       }
-      for (i = 0; i < cof; i++) {
-        for (j = 0; j < cof; j++)
-          if ((sizes[i] == a[j]) && (c_ar[j] == 0)) {
-            ind[j] = i;
-            c_ar[j] = 1;
+      for (i = 0; illu < cof; illu++) {
+        for (jllu = 0; jllu < cof; jllu++)
+          if ((sizes[illu] == a[jllu]) && (c_ar[jllu] == 0)) {
+            ind[jllu] = illu;
+            c_ar[jllu] = 1;
             break;
           }
       }
