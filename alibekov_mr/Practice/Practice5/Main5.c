@@ -2,11 +2,12 @@
 #include<stdlib.h>
 #include <windows.h>
 #include <string.h>
+#include <time.h>
 #define ULL unsigned long long int
 
 int down = 1;
 int cof = 0;
-int exit_from_loop = 0;
+//int exit_from_loop = 0;
 int Exit = 0;
 typedef char* word;
 
@@ -198,12 +199,14 @@ int GetInfoAboutFiles(const wchar_t *sDir, char ***names, ULL *sizes)
 
 void main() {
   int choose, i, choose_action;
+  clock_t t1;
+  clock_t t2;
   ULL tmp = 0;
   int k, j = 0;
-  printf("Good day. Please, enter the path.\n");
-  
+  printf("Good day. ");
   do
   {
+    printf("Please, enter the path.\n");
     word aw = (word)malloc(2048 * sizeof(char));
     scanf("%s", aw);
     wchar_t *wa = (wchar_t *)malloc(2048 * sizeof(char));
@@ -214,25 +217,21 @@ void main() {
       printf("Please, enter another path.\n");
       continue;
     }
-
     char **names;
     ULL *sizes = (ULL *)malloc(cof * sizeof(ULL));
     GetInfoAboutFiles(wa, &names, sizes);
-
     do {
-
       ULL *a = (ULL *)malloc(cof * sizeof(ULL));
       char *c_ar = (char *)malloc(cof * sizeof(char));
       for (i = 0; i < cof; i++) c_ar[i] = 0;
       int *ind = (int *)malloc(cof * sizeof(int));
       ind[0] = 0;
       input_a(a, sizes);
-
-      printf("\nChoose method of sort:\n1)Choose Sort\n2)Insert Sort\n3)Bubble Sort\n4)Counting Sort\n5)Quick Sort\n6)Merge Sort\n0)exit_from_loop\n");
+      printf("\nChoose method of sort:\n1)Choose Sort\n2)Insert Sort\n3)Bubble Sort\n4)Counting Sort\n5)Quick Sort\n6)Merge Sort\n");
       scanf("%d", &choose);
       printf("Choose characteristic of sort: 1 - down     0 - up\n");
       scanf("%d", &down);
-
+      t1 = clock();
       switch (choose)
       {
       case 1: Choose_Sort(a, cof);
@@ -247,11 +246,9 @@ void main() {
         break;
       case 6: Merge_Sort(a, 0, cof);
         break;
-      case 0: exit_from_loop = 1;
-        break;
       }
-      printf("\n");
-
+      t2 = clock();
+      printf("%lf sec\n", ((double)(t2-t1))/CLOCKS_PER_SEC);
       if (down) {
         for (i = 0; i < cof / 2; i++) {
           tmp = a[i];
@@ -259,7 +256,6 @@ void main() {
           a[cof - 1 - i] = tmp;
         }
       }
-
       for (i = 0; i < cof; i++) {
         for (j = 0; j < cof; j++)
           if ((sizes[i] == a[j]) && (c_ar[j] == 0)) {
@@ -269,19 +265,20 @@ void main() {
           }
       }
       printf("Please, enter number of action what you want to do:\n1)Change path\n2)Sort\n");
-      printf("3)Show\n");
+      printf("3)Show\n4)Exit\n");
       scanf("%d", &choose_action);
       if (choose_action == 1)
         break;
       else if (choose_action == 3)
         output(sizes, ind, names);
-      printf("\nWhat you want?\n1)Use another sort.\n2)Change path.");
+      else if (choose_action == 4) return;
+      printf("\nWhat you want?\n1)Use another sort.\n2)Change path.\n");
       scanf("%d", &choose_action);
       if (choose_action == 2) break;
       free(a);
       free(ind);
       free(c_ar);
-    } while (exit_from_loop == 0);
+    } while (1);//while (exit_from_loop == 0);
     free(names);
     free(sizes);
     free(wa);
