@@ -6,6 +6,8 @@
 
 int down = 1;
 int cof = 0;
+int exit_from_loop = 0;
+int Exit = 0;
 typedef char* word;
 
 void input_a(ULL a[], ULL *sizes) {
@@ -14,11 +16,11 @@ void input_a(ULL a[], ULL *sizes) {
     a[i] = sizes[i];
 }
 
-void output_a(ULL a[], int n) {
-  int i;
-  for (i = 0; i < n; i++) {
-    printf("%llu", a[i]);
-    printf(" ");
+void output(ULL sizes[], int ind[], word *names) {
+  int k;
+  for (k = 0; k < cof; k++) {
+    printf("%s ", (names[ind[k]]));
+    printf("%llu\n", sizes[ind[k]]);
   }
 }
 
@@ -179,21 +181,14 @@ int GetInfoAboutFiles(const wchar_t *sDir, char ***names, ULL *sizes)
       ULONGLONG fileSize = fdFile.nFileSizeHigh;
       fileSize <<= sizeof(fdFile.nFileSizeHigh) * 8;
       fileSize |= fdFile.nFileSizeLow;
-
       wsprintf(sPath, L"%s\\%s", sDir, fdFile.cFileName);
-
-     // wprintf(L"File: %s Size: %d\n", sPath, fileSize);
       while ((int)(*(fdFile.cFileName + i)) != 0) {
-      //  printf("\%s", fdFile.cFileName + i);
         if (i == 0) strcpy((*names)[j], fdFile.cFileName + 0);
         else strcat((*names)[j], fdFile.cFileName + i);
         i++;
-
         sizes[j] = fileSize;
       }
-     // printf("\n");
       strcat((*names)[j], "\0");
-     // printf("\%s\n", (*names)[j]);
       j++;
     }
   } while (FindNextFile(hFind, &fdFile));
@@ -202,83 +197,94 @@ int GetInfoAboutFiles(const wchar_t *sDir, char ***names, ULL *sizes)
 }
 
 void main() {
-  int choose, i;
+  int choose, i, choose_action;
   ULL tmp = 0;
   int k, j = 0;
-  word aw = (word)malloc(2048 * sizeof(char));
-  scanf("%s", aw);
-  wchar_t *wa = (wchar_t *)malloc(2048 * sizeof(char));
-  swprintf(wa, 2048 * sizeof(char), L"%hs", aw);
-  cof = Count_of_files(wa);
-  if (cof == 0) {
-    wprintf(L"Path not found: [%s]\n", wa);
-    return;
-  }
-  char **names;
-  ULL *sizes = (ULL *)malloc(cof * sizeof(ULL));
-  GetInfoAboutFiles(wa, &names, sizes);
-    
-
-    for (k = 0; k < cof; k++) {
-      printf("%s ", (names[k]));
-      printf("%llu\n", sizes[k]);
-    }
-
-
-
- // printf("Enter count of elements in array.\n");
-  //scanf("%d", &N);
-  //ULL *a = (ULL *)malloc(N * sizeof(ULL));
-  ULL *a = (ULL *)malloc(cof * sizeof(ULL));
-  int *ind = (int *)malloc(cof * sizeof(int));
-//  for (i = 0; i < cof; i++) ind[i] = i;
-  //printf("Enter array.\n");
-  //input_a(a, N);
-  input_a(a, sizes);
- /* printf("Your array: ");
-  output_a(a, cof);
- */
-  printf("\nChoose method of sort:\n1)Choose Sort\n2)Insert Sort\n3)Bubble Sort\n4)Counting Sort\n5)Quick Sort\n6)Merge Sort\n");
-  scanf("%d", &choose);
-  printf("Choose characteristic of sort: 1 - down     0 - up\n");
-  scanf("%d", &down);
-
-  switch (choose)
+  printf("Good day. Please, enter the path.\n");
+  
+  do
   {
-  case 1: Choose_Sort(a, cof);
-    break;
-  case 2: Insert_Sort(a, cof);
-    break;
-  case 3: Bubble_Sort(a, cof);
-    break;
-  case 4: Counting_Sort(a, cof);
-    break;
-  case 5: Quick_Sort(a, 0, cof - 1);
-    break;
-  case 6: Merge_Sort(a, 0, cof);
-    break;
-  }
-  printf("\n");
-
-  if (down) {
-    for (i = 0; i < cof / 2 ; i++) {
-      tmp = a[i];
-      a[i] = a[cof - 1 - i];
-      a[cof - 1 - i] = tmp;
+    word aw = (word)malloc(2048 * sizeof(char));
+    scanf("%s", aw);
+    wchar_t *wa = (wchar_t *)malloc(2048 * sizeof(char));
+    swprintf(wa, 2048 * sizeof(char), L"%hs", aw);
+    cof = Count_of_files(wa);
+    if (cof == 0) {
+      wprintf(L"Path not found: [%s]\n", wa);
+      printf("Please, enter another path.\n");
+      continue;
     }
-  }
 
-  for (i = 0; i < cof; i++) {
-    for (j = 0; j < cof; j++)
-      if (sizes[i] == a[j]) {
-        ind[j] = i;
+    char **names;
+    ULL *sizes = (ULL *)malloc(cof * sizeof(ULL));
+    GetInfoAboutFiles(wa, &names, sizes);
+
+    do {
+
+      ULL *a = (ULL *)malloc(cof * sizeof(ULL));
+      char *c_ar = (char *)malloc(cof * sizeof(char));
+      for (i = 0; i < cof; i++) c_ar[i] = 0;
+      int *ind = (int *)malloc(cof * sizeof(int));
+      ind[0] = 0;
+      input_a(a, sizes);
+
+      printf("\nChoose method of sort:\n1)Choose Sort\n2)Insert Sort\n3)Bubble Sort\n4)Counting Sort\n5)Quick Sort\n6)Merge Sort\n0)exit_from_loop\n");
+      scanf("%d", &choose);
+      printf("Choose characteristic of sort: 1 - down     0 - up\n");
+      scanf("%d", &down);
+
+      switch (choose)
+      {
+      case 1: Choose_Sort(a, cof);
+        break;
+      case 2: Insert_Sort(a, cof);
+        break;
+      case 3: Bubble_Sort(a, cof);
+        break;
+      case 4: Counting_Sort(a, cof);
+        break;
+      case 5: Quick_Sort(a, 0, cof - 1);
+        break;
+      case 6: Merge_Sort(a, 0, cof);
+        break;
+      case 0: exit_from_loop = 1;
         break;
       }
-  }
+      printf("\n");
 
-  for (k = 0; k < cof; k++) {
-    printf("%s ", (names[ind[k]]));
-    printf("%llu\n", sizes[ind[k]]);
-  }
-  free(a);
+      if (down) {
+        for (i = 0; i < cof / 2; i++) {
+          tmp = a[i];
+          a[i] = a[cof - 1 - i];
+          a[cof - 1 - i] = tmp;
+        }
+      }
+
+      for (i = 0; i < cof; i++) {
+        for (j = 0; j < cof; j++)
+          if ((sizes[i] == a[j]) && (c_ar[j] == 0)) {
+            ind[j] = i;
+            c_ar[j] = 1;
+            break;
+          }
+      }
+      printf("Please, enter number of action what you want to do:\n1)Change path\n2)Sort\n");
+      printf("3)Show\n");
+      scanf("%d", &choose_action);
+      if (choose_action == 1)
+        break;
+      else if (choose_action == 3)
+        output(sizes, ind, names);
+      printf("\nWhat you want?\n1)Use another sort.\n2)Change path.");
+      scanf("%d", &choose_action);
+      if (choose_action == 2) break;
+      free(a);
+      free(ind);
+      free(c_ar);
+    } while (exit_from_loop == 0);
+    free(names);
+    free(sizes);
+    free(wa);
+    free(aw);
+  } while (Exit == 0);
 }
