@@ -7,7 +7,6 @@
 
 int down = 1;
 ULL cof = 0;
-//int exit_from_loop = 0;
 int Exit = 0;
 typedef char* word;
 
@@ -40,23 +39,19 @@ void Choose_Sort(ULL a[] , ULL n) {
     a[min_ind] = a[i];
     a[i] = min;
   }
-  for (i = 0; i < n; i++) printf("__ %llu __", a[i]);
 }
 
 void Insert_Sort(ULL a[], ULL n) {
   ULL i, j = 0, tmp = 0;
   for (i = 1; i < n; i++) {
-   // printf("\n%llu   %llu   %llu\n", a[j], a[i], tmp);
     tmp = a[i];
-    j = i - 1;
-    while ((j >= 0) && (a[j] > tmp)) {
-      a[j + 1] = a[j];
-      a[j] = tmp;
+    j = i;
+    while((j > 0) && (a[j - 1] > tmp)){
+      a[j] = a[j - 1];
       j--;
     }
-   // printf("\n%llu   %llu   %llu\n", a[i - 1], a[i], tmp);
+    a[j] = tmp;
   }
-  for (i = 0; i < n; i++) printf("__ %llu __", a[i]);
 }
 
 void Bubble_Sort(ULL a[], ULL n) {
@@ -95,28 +90,63 @@ void Counting_Sort(ULL a[], ULL n) {
   }
 }
 
-void quick_split(ULL a[], ULL *i, ULL *j, ULL p) {
+/*
+void quick_split(ULL a[], ULL *i, ULL *j) {
+  ULL mid = a[(*i + *j) / 2];
+  
     do {
         printf("%d, %d\n",*i,*j);
-    while (a[(*i)] < p) (*i)++;
-    while (a[(*j)] > p) (*j)--;
-    if ((*i) <= (*j)) {
+    while (a[(*i)] < mid) (*i)++;
+    while (a[(*j)] > mid) (*j)--;
+    if (*i <= *j) {
       ULL tmp = a[(*i)];
       a[(*i)] = a[(*j)];
       a[(*j)] = tmp;
+      (*i)++;
+      (*j)--;
     }
-  } while ((*i) < (*j));
+  } while ((*i) <= (*j));
 }
 
-void Quick_Sort(ULL a[], ULL n1, ULL n2) {
-  ULL m = (n1 + n2) / 2;
-  ULL i = n1, j = n2;
-  
-  quick_split(a, &i, &j, a[m]);
-  
-  if (i > n1) Quick_Sort(a, n1, i - 1);
-  if (j < n2) Quick_Sort(a, j + 1, n2);
- 
+void Quick_Sort(ULL a[], ULL left, ULL right) {
+  if (right > left)
+  {
+   // ULL mid = (left + right) / 2;
+    ULL i = left, j = right;
+
+    quick_split(a, &i, &j);
+    /*quick_split(a, &i, &j, a[mid]);
+
+    if (i > left) Quick_Sort(a, left, i - 1);
+    if (j < right) Quick_Sort(a, j + 1, right);
+    
+    while (i < j) {
+      if (j > left) Quick_Sort(a, left, j - 1);
+      if (i < right) Quick_Sort(a, i + 1, right);
+    }
+  }
+}
+*/
+
+void Quick_Sort(ULL a[], ULL left, ULL right) {
+  ULL mid = a[(left + right) / 2];
+  ULL i = left, j = right, tmp;
+  do {
+    while (a[i] < mid) i++;
+    while (a[j] > mid) j--;
+    if (i <= j) {
+      if (i < j)
+      {
+        tmp = a[i];
+        a[i] = a[j];
+        a[j] = tmp;
+      }
+      i++;
+      j--;
+    }
+  } while (i <= j);
+  if (j > left) Quick_Sort(a, left, j);
+  if (i < right) Quick_Sort(a, i, right);
 }
 
 void Merge(ULL *a, ULL left, ULL mid, ULL right) {
@@ -162,10 +192,10 @@ ULL Count_of_files(const wchar_t *sDir)
   ULL i = 0;
   wsprintf(sPath, L"%s\\*.*", sDir);
   if ((hFind = FindFirstFile(sPath, &fdFile)) == INVALID_HANDLE_VALUE)
-    return 0;
+    return -1;
   do {
     if (wcscmp(fdFile.cFileName, L".") != 0 && wcscmp(fdFile.cFileName, L"..") != 0)
-      i++;
+    i++;
   } while (FindNextFile(hFind, &fdFile));
   FindClose(hFind);
   return i;
@@ -179,9 +209,8 @@ int GetInfoAboutFiles(const wchar_t *sDir, char ***names, ULL *sizes)
   int i, j = 0;
   wsprintf(sPath, L"%s\\*.*", sDir);
   *names = (char **)malloc(cof * sizeof(char *));
-  for (i = 0; i < cof; i++) {
+  for (i = 0; i < cof; i++) 
     (*names)[i] = (word)malloc(2048 * sizeof(char));
-  }
   hFind = FindFirstFile(sPath, &fdFile);
   do
   {
@@ -208,30 +237,31 @@ int GetInfoAboutFiles(const wchar_t *sDir, char ***names, ULL *sizes)
 
 void main() {
   int choose, choose_action;
-  ULL i;
-  clock_t t1;
-  clock_t t2;
-  ULL tmp = 0, illu, jllu;
-  printf("Good day. ");
+  clock_t time_begin;
+  clock_t time_end;
+  ULL tmp = 0, i, j;
+  printf("Good day. Please, enter the path.\n");
   do
   {
-    printf("Please, enter the path.\n");
-    word aw = (word)malloc(2048 * sizeof(char));
-    scanf("%s", aw);
+    word path_to_dir = (word)malloc(2048 * sizeof(char));
+    scanf("%s", path_to_dir);
     wchar_t *wa = (wchar_t *)malloc(2048 * sizeof(char));
-    swprintf(wa, 2048 * sizeof(char), L"%hs", aw);
+    swprintf(wa, 2048 * sizeof(char), L"%hs", path_to_dir);
     cof = Count_of_files(wa);
-    if (cof == 0) {
+    if (cof == -1) {
       wprintf(L"Path not found: [%s]\n", wa);
-      printf("Please, enter another path.\n");
+      printf("\nPlease, enter another path.\n");
+      continue;
+    }
+    else if (cof == 0) {
+      printf("This folder is empty.\n");
+      printf("\nPlease, enter another path.\n");
       continue;
     }
     char **names;
     ULL *sizes = (ULL *)malloc(cof * sizeof(ULL));
     GetInfoAboutFiles(wa, &names, sizes);
     do {
-      illu = 0;
-      jllu = 0;
       ULL *a = (ULL *)malloc(cof * sizeof(ULL));
       char *c_ar = (char *)malloc(cof * sizeof(char));
       for (i = 0; i < cof; i++) c_ar[i] = 0;
@@ -242,7 +272,7 @@ void main() {
       scanf("%d", &choose);
       printf("Choose characteristic of sort: 1 - down     0 - up\n");
       scanf("%d", &down);
-      t1 = clock();
+      time_begin = clock();
       switch (choose)
       {
       case 1: Choose_Sort(a, cof);
@@ -265,40 +295,40 @@ void main() {
           a[cof - 1 - i] = tmp;
         }
       }
-      t2 = clock();
-      printf("%lf sec\n", ((double)(t2-t1))/CLOCKS_PER_SEC);
-      for (i = 0; illu < cof; illu++) {
-        for (jllu = 0; jllu < cof; jllu++)
-          if ((sizes[illu] == a[jllu]) && (c_ar[jllu] == 0)) {
-            ind[jllu] = illu;
-            c_ar[jllu] = 1;
+      time_end = clock();
+      printf("%.3lf sec\n", ((double)(time_end-time_begin))/CLOCKS_PER_SEC);
+      for (i = 0; i < cof; i++) {
+        for (j = 0; j < cof; j++)
+          if ((sizes[i] == a[j]) && (c_ar[j] == 0)) {
+            ind[j] = i;
+            c_ar[j] = 1;
             break;
           }
       }
-
-      for (i = 0; i < cof; i++)
-        printf(" %llu ", ind[i]);
-
-      printf("Please, enter number of action what you want to do:\n1)Change path\n2)Sort\n");
-      printf("3)Show\n4)Exit\n");
+      printf("\nPlease, enter number of action what you want to do:\n1)Change path\n2)Choose another sort\n");
+      printf("3)Show sorted list\n4)Exit\n");
       scanf("%d", &choose_action);
       if (choose_action == 1)
         break;
       else if (choose_action == 3)
         output(sizes, ind, names);
       else if (choose_action == 4) return;
-      printf("\nWhat you want?\n1)Use another sort.\n2)Change path.\n");
+      printf("\nWhat you want?\n1)Use another sort.\n2)Change path.\n3)Exit.\n");
       scanf("%d", &choose_action);
-      printf("e");
       free(a);
       free(ind);
       free(c_ar);
       down = 0;
-      if (choose_action == 2) break;
-    } while (1);//while (exit_from_loop == 0);
+      if (choose_action == 3) {
+        Exit = 1;
+        break;
+      }
+      if (choose_action == 2) 
+        break;
+    } while (1);
     free(names);
     free(sizes);
     free(wa);
-    free(aw);
+    free(path_to_dir);
   } while (Exit == 0);
 }
