@@ -12,12 +12,12 @@ int Exit = 0;
 typedef char* word;
 
 void input_a(ULL a[], ULL *sizes) {
-  int i;
+  ULL i;
   for (i = 0; i < cof; i++)
     a[i] = sizes[i];
 }
 
-void output(ULL sizes[], int ind[], word *names) {
+void output(ULL sizes[], ULL ind[], word *names) {
   ULL k = 0;
   for (k = 0; k < cof; k++) {
     printf("%s ", (names[ind[k]]));
@@ -25,8 +25,8 @@ void output(ULL sizes[], int ind[], word *names) {
   }
 }
 
-void Choose_Sort(ULL a[] , int n) {
-  int i, j, min_ind;
+void Choose_Sort(ULL a[] , ULL n) {
+  ULL i, j, min_ind;
   ULL min;
   for (i = 0; i < n; i++) {
     min = a[i];
@@ -40,11 +40,13 @@ void Choose_Sort(ULL a[] , int n) {
     a[min_ind] = a[i];
     a[i] = min;
   }
+  for (i = 0; i < n; i++) printf("__ %llu __", a[i]);
 }
 
-void Insert_Sort(ULL a[], int n) {
-  int i, j, tmp;
-  for (i = 0; i < n; i++) {
+void Insert_Sort(ULL a[], ULL n) {
+  ULL i, j = 0, tmp = 0;
+  for (i = 1; i < n; i++) {
+   // printf("\n%llu   %llu   %llu\n", a[j], a[i], tmp);
     tmp = a[i];
     j = i - 1;
     while ((j >= 0) && (a[j] > tmp)) {
@@ -52,11 +54,13 @@ void Insert_Sort(ULL a[], int n) {
       a[j] = tmp;
       j--;
     }
+   // printf("\n%llu   %llu   %llu\n", a[i - 1], a[i], tmp);
   }
+  for (i = 0; i < n; i++) printf("__ %llu __", a[i]);
 }
 
-void Bubble_Sort(ULL a[], int n) {
-  int i, j, tmp;
+void Bubble_Sort(ULL a[], ULL n) {
+  ULL i, j, tmp;
   for (i = 0; i < n; i++) {
     for (j = 1; j < n - i; j++) {
       if (a[j - 1] > a[j]) {
@@ -68,8 +72,8 @@ void Bubble_Sort(ULL a[], int n) {
   }
 }
 
-void Counting_Sort(ULL a[], int n) {
-  int i, j, k = 0;
+void Counting_Sort(ULL a[], ULL n) {
+  ULL i, j, k = 0;
   k = a[0];
   for (i = 1; i < n; i++)
     if (a[i] > k)
@@ -81,7 +85,7 @@ void Counting_Sort(ULL a[], int n) {
     *(count + a[i]) = *(count + a[i]) + 1;
     count - a[i];
   }
-  int index = 0;
+  ULL index = 0;
   for (j = 0; j < k; j++) {
     for (i = 0; i < count[j]; i++) {
       a[index] = j;
@@ -91,7 +95,7 @@ void Counting_Sort(ULL a[], int n) {
   }
 }
 
-void quick_split(ULL a[], int *i, int *j, ULL p) {
+void quick_split(ULL a[], ULL *i, ULL *j, ULL p) {
     do {
         printf("%d, %d\n",*i,*j);
     while (a[(*i)] < p) (*i)++;
@@ -104,9 +108,9 @@ void quick_split(ULL a[], int *i, int *j, ULL p) {
   } while ((*i) < (*j));
 }
 
-void Quick_Sort(ULL a[], int n1, int n2) {
-  int m = (n1 + n2) / 2;
-  int i = n1, j = n2;
+void Quick_Sort(ULL a[], ULL n1, ULL n2) {
+  ULL m = (n1 + n2) / 2;
+  ULL i = n1, j = n2;
   
   quick_split(a, &i, &j, a[m]);
   
@@ -116,7 +120,7 @@ void Quick_Sort(ULL a[], int n1, int n2) {
 }
 
 void Merge(ULL *a, ULL left, ULL mid, ULL right) {
-  int i = 0, j = 0, k;
+  ULL i = 0, j = 0, k;
   ULL *c = (ULL *)malloc((right - left) * sizeof(ULL));
   while ((left + i < mid) && (mid + j < right))
   {
@@ -143,7 +147,6 @@ void Merge(ULL *a, ULL left, ULL mid, ULL right) {
 
 void Merge_Sort(ULL a[], ULL left, ULL right) {
   ULL mid;
-  int i;
   if (left + 1 >= right) return;
   mid = (right + left) / 2;
   Merge_Sort(a, left, mid);
@@ -204,11 +207,11 @@ int GetInfoAboutFiles(const wchar_t *sDir, char ***names, ULL *sizes)
 }
 
 void main() {
-  int choose, i, choose_action;
+  int choose, choose_action;
+  ULL i;
   clock_t t1;
   clock_t t2;
-  ULL tmp = 0, illu = 0, jllu = 0;
-  int k, j = 0;
+  ULL tmp = 0, illu, jllu;
   printf("Good day. ");
   do
   {
@@ -227,10 +230,12 @@ void main() {
     ULL *sizes = (ULL *)malloc(cof * sizeof(ULL));
     GetInfoAboutFiles(wa, &names, sizes);
     do {
+      illu = 0;
+      jllu = 0;
       ULL *a = (ULL *)malloc(cof * sizeof(ULL));
       char *c_ar = (char *)malloc(cof * sizeof(char));
       for (i = 0; i < cof; i++) c_ar[i] = 0;
-      int *ind = (int *)malloc(cof * sizeof(int));
+      ULL *ind = (ULL *)malloc(cof * sizeof(ULL));
       ind[0] = 0;
       input_a(a, sizes);
       printf("\nChoose method of sort:\n1)Choose Sort\n2)Insert Sort\n3)Bubble Sort\n4)Counting Sort\n5)Quick Sort\n6)Merge Sort\n");
@@ -253,8 +258,6 @@ void main() {
       case 6: Merge_Sort(a, 0, cof);
         break;
       }
-      t2 = clock();
-      printf("%lf sec\n", ((double)(t2-t1))/CLOCKS_PER_SEC);
       if (down) {
         for (i = 0; i < cof / 2; i++) {
           tmp = a[i];
@@ -262,6 +265,8 @@ void main() {
           a[cof - 1 - i] = tmp;
         }
       }
+      t2 = clock();
+      printf("%lf sec\n", ((double)(t2-t1))/CLOCKS_PER_SEC);
       for (i = 0; illu < cof; illu++) {
         for (jllu = 0; jllu < cof; jllu++)
           if ((sizes[illu] == a[jllu]) && (c_ar[jllu] == 0)) {
@@ -270,6 +275,10 @@ void main() {
             break;
           }
       }
+
+      for (i = 0; i < cof; i++)
+        printf(" %llu ", ind[i]);
+
       printf("Please, enter number of action what you want to do:\n1)Change path\n2)Sort\n");
       printf("3)Show\n4)Exit\n");
       scanf("%d", &choose_action);
@@ -280,10 +289,12 @@ void main() {
       else if (choose_action == 4) return;
       printf("\nWhat you want?\n1)Use another sort.\n2)Change path.\n");
       scanf("%d", &choose_action);
-      if (choose_action == 2) break;
+      printf("e");
       free(a);
       free(ind);
       free(c_ar);
+      down = 0;
+      if (choose_action == 2) break;
     } while (1);//while (exit_from_loop == 0);
     free(names);
     free(sizes);
