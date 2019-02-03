@@ -33,7 +33,6 @@ void main()
     for (i = 1; i < n; i++)  min *= 10;
     max = min * 10;
  
- 
     printf("Number is generating. Please wait...\n");
     i = 0;
     xIsGood = true;
@@ -69,10 +68,6 @@ void main()
       {
         number_x[i] *= 10;
       }
-    }
-
-    for (i = 0; i < n; i++)
-    {
       x += number_x[i];
     }
 
@@ -102,14 +97,14 @@ void main()
           }
           else
           {
-          printf("You entered bad number.\n");
-          steps++;
-          x_igrokaIsGood = false;
-          for (p = 0; p < N; p++)
-          {
-          cells_x_igroka[p] = 0;
-          }
-          break;
+            printf("You entered bad number.\n");
+            steps++;
+            x_igrokaIsGood = false;
+            for (p = 0; p < N; p++)
+            {
+              cells_x_igroka[p] = 0;
+            }
+            break;
           }
         }
       } while (!x_igrokaIsGood);
@@ -134,9 +129,9 @@ void main()
       x_igroka = 0;
       x_igroka_forChanges = 0;
       for (p = 0; p < N; p++)
-    {
-      cells_x_igroka[p] = 0;
-    }
+      {
+        cells_x_igroka[p] = 0;
+      }
 
     } while (b != n);
     for (p = 0; p < N; p++)
