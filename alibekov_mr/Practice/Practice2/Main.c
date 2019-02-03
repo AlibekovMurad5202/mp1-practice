@@ -68,10 +68,6 @@ void main()
       {
         number_x[i] *= 10;
       }
-    }
-
-    for (i = 0; i < n; i++)
-    {
       x += number_x[i];
     }
 
