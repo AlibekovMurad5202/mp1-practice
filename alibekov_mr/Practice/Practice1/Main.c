@@ -20,7 +20,7 @@ void main()
   m_2bokovini = 2 * (h * d * 0.015) * pl_DSP;
   m_2krishi = 2 * (w * d * 0.015) * pl_DSP;
   m_2dveri = 2 * (h * (w / 2) * 0.01) * pl_d;
-  m_polki = (((h - 2 * 0.015) / (0.4 + 0.015)) * (w - 2 * 0.015) * (d - 0.005) * 0.015) * pl_DSP;
+  m_polki = ((int)((h - 2 * 0.015) / (0.4 + 0.015)) * (w - 2 * 0.015) * (d - 0.005) * 0.015) * pl_DSP;
   m = m_stenka + m_2bokovini + m_2krishi + m_polki + m_2dveri;
   printf("%lf kg\n", m);
 }
