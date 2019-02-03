@@ -1,6 +1,7 @@
 #include<stdio.h>
 
-void main() {
+void main() 
+{
   double pl_DVP, pl_DSP, pl_d, m, m_stenka, m_2bokovini, m_2krishi, m_2dveri, m_polki;
   double w, h, d;
   printf("Vvedite (v sm): w (ot 80 do 120), h (ot 180 do 220), d (ot 50 do 90)\n");
