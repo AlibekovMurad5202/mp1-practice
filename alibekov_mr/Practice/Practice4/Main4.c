@@ -26,6 +26,10 @@ void Fill_names()
     items[i].name[0] = 'G';
     items[i].name[1] = 'u';
     items[i].name[2] = 'n';
+    items[i].name[3] = ' ';
+    items[i].name[4] = ' ';
+    items[i].name[5] = ' ';
+    items[i].name[6] = ' ';
   }
   for (i = 2; i < NUMBER_OF_ITEMS; i += 7) 
   {
@@ -35,6 +39,7 @@ void Fill_names()
     items[i].name[3] = 'a';
     items[i].name[4] = 't';
     items[i].name[5] = 'o';
+    items[i].name[6] = ' ';
   }
   for (i = 3; i < NUMBER_OF_ITEMS; i += 7) 
   {
@@ -44,12 +49,17 @@ void Fill_names()
     items[i].name[3] = 'a';
     items[i].name[4] = 't';
     items[i].name[5] = 'o';
+    items[i].name[6] = ' ';
   }
   for (i = 4; i < NUMBER_OF_ITEMS; i += 7) 
   {
     items[i].name[0] = 'E';
     items[i].name[1] = 'y';
     items[i].name[2] = 'e';
+    items[i].name[3] = ' ';
+    items[i].name[4] = ' ';
+    items[i].name[5] = ' ';
+    items[i].name[6] = ' ';
   }
   for (i = 5; i < NUMBER_OF_ITEMS; i += 7) 
   {
@@ -57,12 +67,19 @@ void Fill_names()
     items[i].name[1] = 'r';
     items[i].name[2] = 'o';
     items[i].name[3] = 'g';
+    items[i].name[4] = ' ';
+    items[i].name[5] = ' ';
+    items[i].name[6] = ' ';
   }
   for (i = 6; i < NUMBER_OF_ITEMS; i += 7) 
   {
     items[i].name[0] = 'B';
     items[i].name[1] = 'u';
     items[i].name[2] = 'g';
+    items[i].name[3] = ' ';
+    items[i].name[4] = ' ';
+    items[i].name[5] = ' ';
+    items[i].name[6] = ' ';
   }
   for (i = 7; i < NUMBER_OF_ITEMS; i += 7) 
   {
@@ -72,6 +89,7 @@ void Fill_names()
     items[i].name[3] = 'e';
     items[i].name[4] = 's';
     items[i].name[5] = 'e';
+    items[i].name[6] = ' ';
   }
   for (i = 1; i < NUMBER_OF_ITEMS; i++) 
   {
@@ -142,7 +160,7 @@ void Fill_struct_without_names()
 {
   srand((unsigned)time(0));
   int i, j;
-  for (i = 1; i < N; i++) 
+  for (i = 1; i < NUMBER_OF_ITEMS; i++) 
   {
     if (items[i].name[0] != '0')
     {
@@ -201,7 +219,7 @@ int Scan_new_item()
 {
   int id;
   scanf("%d", &id);
-  while ((items[id].name[0] == 0)||(id < 0)||(id >= N))
+  while ((id < 0)||(id > NUMBER_OF_ITEMS))
   {
     printf("Item with this ID_code is not exist.\nPlease, enter another ID_code: ");
     scanf("%d", &id);
@@ -215,8 +233,9 @@ void Output_info_about_item(int id)
 {
   printf("     Name: ");
   int i;
-  for (i = 0; i < MAX_LENGTH; i++)
-    printf("%c", items[id].name[i]);
+  /*for (i = 0; i < MAX_LENGTH; i++)
+    printf("%c", items[id].name[i]);*/
+  printf("%s", items[id].name);
   printf("\n     Price: %d rub.", items[id].price);
   printf("\n     Cashback: %d %c\n     ID_code: ", items[id].cashback, '%');
   if (id >= 1000) printf("%d\n", id);
