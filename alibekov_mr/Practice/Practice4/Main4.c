@@ -12,7 +12,7 @@ typedef struct
   char name[MAX_LENGTH];
   int price;
   int cashback;
-  int id_code;
+  char id[4];
   int k;
 } TItem;
 
@@ -162,11 +162,15 @@ void Fill_struct_without_names()
   int i, j;
   for (i = 1; i < NUMBER_OF_ITEMS; i++) 
   {
+    j = i;
     if (items[i].name[0] != '0')
     {
       items[i].price = 399.0 / RAND_MAX * rand() + 20;
       items[i].cashback = 49.0 / RAND_MAX * rand() + 1;
-      items[i].id_code = i;
+      items[i].id[3] = i % 10;
+      items[i].id[2] = (i / 10) % 10;
+      items[i].id[1] = (i / 100) % 10;
+      items[i].id[0] = (i / 1000) % 10;
       items[i].k = 0;
     }
   }
@@ -219,7 +223,7 @@ int Scan_new_item()
 {
   int id;
   scanf("%d", &id);
-  while ((id < 0)||(id > NUMBER_OF_ITEMS))
+  while ((id <= 0)||(id > NUMBER_OF_ITEMS))
   {
     printf("Item with this ID_code is not exist.\nPlease, enter another ID_code: ");
     scanf("%d", &id);
@@ -232,16 +236,11 @@ int Scan_new_item()
 void Output_info_about_item(int id) 
 {
   printf("     Name: ");
-  int i;
-  /*for (i = 0; i < MAX_LENGTH; i++)
-    printf("%c", items[id].name[i]);*/
+  int i = 0;
   printf("%s", items[id].name);
   printf("\n     Price: %d rub.", items[id].price);
   printf("\n     Cashback: %d %c\n     ID_code: ", items[id].cashback, '%');
-  if (id >= 1000) printf("%d\n", id);
-  else if (id >= 100) printf("0%d\n", id);
-  else if (id >= 10) printf("00%d\n", id);
-  else printf("000%d\n", id);
+  for (; i < 4; i++) printf("%d", (int)items[id].id[i]);
   printf("\n");
 }
 
@@ -301,7 +300,6 @@ void main()
   {
     choose = Choose_an_action();
     if (choose != 1) printf("\n");
-
     switch (choose) 
     {
     case 1: ind = Scan_new_item();
