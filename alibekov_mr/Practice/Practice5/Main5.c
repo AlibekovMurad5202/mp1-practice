@@ -1,8 +1,9 @@
-#include<stdio.h>
-#include<stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include <windows.h>
 #include <string.h>
 #include <time.h>
+#include <locale.h>
 #define ULL unsigned long long int
 
 int down = 1;
@@ -236,6 +237,7 @@ int GetInfoAboutFiles(const wchar_t *sDir, char ***names, ULL *sizes)
 }
 
 void main() {
+  setlocale(LC_ALL, "Russian");
   int choose, choose_action;
   clock_t time_begin;
   clock_t time_end;
