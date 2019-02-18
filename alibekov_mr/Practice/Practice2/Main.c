@@ -17,7 +17,7 @@ void main()
   scanf("%d", &new_game);
   if (new_game == 0) GameOver = true;
   if (new_game == 1) GameOver = false;
- 
+
   while (!GameOver)
   {
     printf("Do you want to play honestly?             1 - yes.     0 - no.\n");
@@ -44,7 +44,7 @@ void main()
         srand((unsigned int)time(0));
         number_x[i] = rand() % 10;
         if ((i != 9) && (number_x[i] == 0)) ThereIs0 = true;
-        for (j = 0; j < i; j++) 
+        for (j = 0; j < i; j++)
         {
           if ((number_x[i] == number_x[j]) || ((i == (n - 1)) && (number_x[i] == 0)))
           {
@@ -68,10 +68,6 @@ void main()
       {
         number_x[i] *= 10;
       }
-    }
-
-    for (i = 0; i < n; i++)
-    {
       x += number_x[i];
     }
 
@@ -143,7 +139,7 @@ void main()
       cells_x[p] = 0;
     }
     for (p = 0; p < N; p++)
-    { 
+    {
       cells_x_igroka[p] = 0;
     }
     GameIsHonest = false;
@@ -161,7 +157,7 @@ void main()
     {
       cells_x[p] = 0;
     }
-    for (p = 0; p < N; p++) 
+    for (p = 0; p < N; p++)
     {
       number_x[p] = 0;
     }

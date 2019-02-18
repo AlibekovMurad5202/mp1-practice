@@ -1,8 +1,9 @@
-#include<stdio.h>
-#include<stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include <windows.h>
 #include <string.h>
 #include <time.h>
+//#include <locale.h>
 #define ULL unsigned long long int
 
 int down = 1;
@@ -89,44 +90,6 @@ void Counting_Sort(ULL a[], ULL n) {
     count - j;
   }
 }
-
-/*
-void quick_split(ULL a[], ULL *i, ULL *j) {
-  ULL mid = a[(*i + *j) / 2];
-  
-    do {
-        printf("%d, %d\n",*i,*j);
-    while (a[(*i)] < mid) (*i)++;
-    while (a[(*j)] > mid) (*j)--;
-    if (*i <= *j) {
-      ULL tmp = a[(*i)];
-      a[(*i)] = a[(*j)];
-      a[(*j)] = tmp;
-      (*i)++;
-      (*j)--;
-    }
-  } while ((*i) <= (*j));
-}
-
-void Quick_Sort(ULL a[], ULL left, ULL right) {
-  if (right > left)
-  {
-   // ULL mid = (left + right) / 2;
-    ULL i = left, j = right;
-
-    quick_split(a, &i, &j);
-    /*quick_split(a, &i, &j, a[mid]);
-
-    if (i > left) Quick_Sort(a, left, i - 1);
-    if (j < right) Quick_Sort(a, j + 1, right);
-    
-    while (i < j) {
-      if (j > left) Quick_Sort(a, left, j - 1);
-      if (i < right) Quick_Sort(a, i + 1, right);
-    }
-  }
-}
-*/
 
 void Quick_Sort(ULL a[], ULL left, ULL right) {
   ULL mid = a[(left + right) / 2];
@@ -236,6 +199,7 @@ int GetInfoAboutFiles(const wchar_t *sDir, char ***names, ULL *sizes)
 }
 
 void main() {
+//  setlocale(LC_ALL, "Russian");
   int choose, choose_action;
   clock_t time_begin;
   clock_t time_end;
