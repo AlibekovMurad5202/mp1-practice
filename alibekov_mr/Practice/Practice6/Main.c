@@ -25,6 +25,7 @@ void main()
 		if (CreateVector(&count3, &_vector3)) { system("pause"); return; }
 	}
 
+
 	printf("Enter the first vector: \n");
 	for (i = 0; i < count1; i++) scanf("%lf", &(_vector1->d)[i]);
 	printf("Enter the second vector: \n");
