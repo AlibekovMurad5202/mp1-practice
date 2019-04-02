@@ -1,4 +1,3 @@
-//#pragma once
 #ifndef __VECTOR_H__
 #define __VECTOR_H__
 
@@ -11,7 +10,7 @@ enum Errors
 {
 	ItWorks,                    //0
 	DifferentDimensions,        //1
-	DimensionIsLessThanZero,    //2
+	DimensionIsOrLessThanZero,  //2
 	VectorIsEmpty,              //3
 	LengthIsZero                //4
 };
@@ -19,11 +18,11 @@ enum Errors
 
 int CreateVector(int *_n, vector **_vector);
 
-int DeleteVector(vector *_vector);
+void DeleteVector(vector *_vector);
 
-int Summation(vector *v1, vector *v2, vector *rezult);
+int Addition(vector *v1, vector *v2, vector **rezult);
 
-int Subtraction(vector *v1, vector *v2, vector *rezult);
+int Subtraction(vector *v1, vector *v2, vector **rezult);
 
 int Length(vector *_vector, double *_length);
 
