@@ -152,5 +152,5 @@ void main()
 		DeleteVector(v_rezult);
 	}
 
-	system("pause");
+	system("pause"); 
 }
