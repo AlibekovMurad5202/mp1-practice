@@ -41,6 +41,9 @@ public:
 
   void* operator new (size_t _size);
   void operator delete (void *pointerOfDeletingElement);
+
+  void* operator new[] (size_t _size);
+  void operator delete[] (void *pointerOfDeletingElement);
 };
 
 

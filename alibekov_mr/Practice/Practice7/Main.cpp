@@ -5,8 +5,12 @@ int main() {
   Vector v2(v1);
   Vector v3(2);
   Vector v4;
-  Vector* v5 = new Vector[10];
-  v5[1] = v2;
+  Vector* v5 = new Vector;
+  Vector* v_arr = new Vector[10];
+  for (int i = 0; i < 10; i++) {
+    v_arr[i] = v2;
+  }
+  *v5 = v2;
   try {
     double q = v1[5];
   }
@@ -32,8 +36,12 @@ int main() {
   v3.Print();*/
 
   v5->Print();
+  for (int i = 0; i < 10; i++) {
+    std::cout << v_arr[i];
+  }
  // std::cout << v5;
   delete v5;
+  delete[] v_arr;
   system("pause");
   return 0;
 }

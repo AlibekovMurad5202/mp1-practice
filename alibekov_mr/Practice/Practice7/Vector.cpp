@@ -187,6 +187,22 @@ void Vector::operator delete(void * pointerOfDeletingElement)
   free(pointerOfDeletingElement);
 }
 
+void * Vector::operator new[](size_t _size)
+{
+  void *pointerToMemory;
+  pointerToMemory = malloc(_size);
+  if (!pointerToMemory) {
+    ExceptionBadAlloc e(__LINE__, __FILE__);
+    throw e;
+  }
+  return pointerToMemory;
+}
+
+void Vector::operator delete[](void * pointerOfDeletingElement)
+{
+  free(pointerOfDeletingElement);
+}
+
 std::ostream & operator<<(std::ostream & out, const Vector & _vector)
 {
   out << " (";
