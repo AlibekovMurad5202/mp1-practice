@@ -55,4 +55,15 @@ public:
   ~ExceptionBadAlloc() { line = -1; }
 };
 
+class ExceptionEmptyVector : public MyException
+{
+public:
+  ExceptionEmptyVector() { str_what = "Vector is empty!"; line = -1; file = 0; }
+
+  ExceptionEmptyVector(int _line, const char *_file) {  \
+      str_what = "Vector is empty!"; line = _line; file = _file; }
+
+  ~ExceptionEmptyVector() { line = -1; }
+};
+
 #endif // !__MY_EXCEPTIONS_H__

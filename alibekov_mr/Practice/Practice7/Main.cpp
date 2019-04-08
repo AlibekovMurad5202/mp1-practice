@@ -12,7 +12,7 @@ int main() {
   }
   *v5 = v2;
   try {
-    double q = v1[5];
+    double q = v1[-1];
   }
   catch (ExceptionOutOfRange e){
     std::cout << "errorLine: " << e.errorLine() << "\nerrorFile:" << e.errorFile();
@@ -20,6 +20,7 @@ int main() {
   v2 += 5;
   v3.Print();
   
+ // v_arr[7] = v4;
   try {
     v4 = v1 + v2;
     v4.Print();
@@ -27,7 +28,6 @@ int main() {
   catch (ExceptionDifferentDimensions e) {
     std::cout << "errorLine: " << e.errorLine() << "\nerrorFile:" << e.errorFile();
   }
-  
  /*
   v1 = v3 = v2;
   //std::cout << v.Length();

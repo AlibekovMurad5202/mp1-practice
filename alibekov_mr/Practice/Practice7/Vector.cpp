@@ -1,6 +1,4 @@
 #include "Vector.h"
-#include "iostream"
-#include "math.h"
 
 Vector::Vector()
 {
@@ -28,10 +26,15 @@ Vector::Vector(int _size, double * _elements)
 
 Vector::Vector(const Vector & _vector)
 {
+  if (_vector.size == 0) 
+  {
+    ExceptionEmptyVector e(__LINE__, __FILE__);
+    throw e;
+  }
   size = _vector.size;
   elements = new double[size];
   for (int i = 0; i < size; i++) 
-    elements[i] = _vector.elements[i];
+    elements[i] = _vector[i];
 }
 
 Vector::~Vector()
@@ -42,6 +45,11 @@ Vector::~Vector()
 
 Vector Vector::operator+(const Vector & _vector) const
 {
+  if (_vector.size == 0)
+  {
+    ExceptionEmptyVector e(__LINE__, __FILE__);
+    throw e;
+  }
   if (size != _vector.size) {
     ExceptionDifferentDimensions e(__LINE__, __FILE__);
     throw e;
@@ -54,6 +62,11 @@ Vector Vector::operator+(const Vector & _vector) const
 
 Vector Vector::operator-(const Vector & _vector) const
 {
+  if (_vector.size == 0)
+  {
+    ExceptionEmptyVector e(__LINE__, __FILE__);
+    throw e;
+  }
   if (size != _vector.size) {
     ExceptionDifferentDimensions e(__LINE__, __FILE__);
     throw e;
@@ -66,6 +79,11 @@ Vector Vector::operator-(const Vector & _vector) const
 
 double Vector::operator*(const Vector & _vector) const
 {
+  if (_vector.size == 0)
+  {
+    ExceptionEmptyVector e(__LINE__, __FILE__);
+    throw e;
+  }
   if (size != _vector.size) {
     ExceptionDifferentDimensions e(__LINE__, __FILE__);
     throw e;
@@ -105,12 +123,17 @@ Vector Vector::operator*(double _d) const
 
 const Vector & Vector::operator=(const Vector & _vector)
 {
+  if (_vector.size == 0)
+  {
+    ExceptionEmptyVector e(__LINE__, __FILE__);
+    throw e;
+  }
   if (this != &_vector) {
     size = _vector.size;
     delete[] elements;
     elements = new double[size];
     for (int i = 0; i < size; i++)
-      elements[i] = _vector.elements[i];
+      elements[i] = _vector[i];
   }
   return *this;
 }
@@ -161,7 +184,7 @@ double Vector::Length()
 {
   double lengthSquared = 0;
   for (int i = 0; i < size; i++) {
-    lengthSquared += (elements[i] * elements[i]);
+    lengthSquared += elements[i] * elements[i];
   }
   return sqrt(lengthSquared);
 }

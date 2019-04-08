@@ -1,6 +1,7 @@
 #ifndef __VECTOR_H__
 #define __VECTOR_H__
 
+#include "math.h"
 #include "iostream" 
 #include "MyExceptions.h"
 
@@ -9,6 +10,7 @@ struct Vector
 private:
   int size;
   double *elements;
+
 public:
   Vector();
   Vector(int _size);
@@ -45,6 +47,5 @@ public:
   void* operator new[] (size_t _size);
   void operator delete[] (void *pointerOfDeletingElement);
 };
-
 
 #endif // !__VECTOR_H__
