@@ -66,4 +66,15 @@ public:
   ~ExceptionEmptyVector() { line = -1; }
 };
 
+class ExceptionNotPositiveDimension : public MyException
+{
+public:
+  ExceptionNotPositiveDimension() { str_what = "Dimension is or less than zero!"; line = -1; file = 0; }
+  
+  ExceptionNotPositiveDimension(int _line, const char *_file) {  \
+      str_what = "Dimension is or less than zero!"; line = _line; file = _file; }
+  
+  ~ExceptionNotPositiveDimension() { line = -1; }
+};
+
 #endif // !__MY_EXCEPTIONS_H__

@@ -8,6 +8,10 @@ Vector::Vector()
 
 Vector::Vector(int _size)
 {
+  if (_size <= 0) {
+    ExceptionNotPositiveDimension e(__LINE__, __FILE__);
+    throw e;
+  }
   size = _size;
   elements = new double[size];
   std::cout << "Enter elements: " << std::endl;
@@ -18,6 +22,10 @@ Vector::Vector(int _size)
 
 Vector::Vector(int _size, double * _elements)
 {
+  if (_size <= 0) {
+    ExceptionNotPositiveDimension e(__LINE__, __FILE__);
+    throw e;
+  }
   size = _size;
   elements = new double [size];
   for (int i = 0; i < size; i++) 
