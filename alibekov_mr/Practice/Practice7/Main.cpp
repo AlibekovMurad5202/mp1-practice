@@ -5,6 +5,8 @@ int main() {
   Vector v2(v1);
   Vector v3(2);
   Vector v4;
+  Vector* v5 = new Vector[10];
+  v5[1] = v2;
   try {
     double q = v1[5];
   }
@@ -29,6 +31,9 @@ int main() {
   v2.Print();
   v3.Print();*/
 
+  v5->Print();
+ // std::cout << v5;
+  delete v5;
   system("pause");
   return 0;
 }

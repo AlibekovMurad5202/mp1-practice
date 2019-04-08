@@ -44,5 +44,15 @@ public:
   ~ExceptionDifferentDimensions() { line = -1; }
 };
 
+class ExceptionBadAlloc : public MyException
+{
+public:
+  ExceptionBadAlloc() { str_what = "Bad memory allocation!"; line = -1; file = 0; }
+
+  ExceptionBadAlloc(int _line, const char *_file) {  \
+      str_what = "Bad memory allocation!"; line = _line; file = _file; }
+
+  ~ExceptionBadAlloc() { line = -1; }
+};
 
 #endif // !__MY_EXCEPTIONS_H__

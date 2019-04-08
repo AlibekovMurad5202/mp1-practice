@@ -38,6 +38,9 @@ public:
 
   friend std::ostream& operator<< (std::ostream& out, const Vector& _vector); 
   friend std::istream& operator>> (std::istream& in, Vector& _vector);
+
+  void* operator new (size_t _size);
+  void operator delete (void *pointerOfDeletingElement);
 };
 
 
