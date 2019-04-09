@@ -8,7 +8,8 @@ Vector::Vector()
 
 Vector::Vector(int _size)
 {
-  if (_size <= 0) {
+  if (_size <= 0) 
+  {
     ExceptionNotPositiveDimension e(__LINE__, __FILE__);
     throw e;
   }
@@ -22,7 +23,8 @@ Vector::Vector(int _size)
 
 Vector::Vector(int _size, double * _elements)
 {
-  if (_size <= 0) {
+  if (_size <= 0) 
+  {
     ExceptionNotPositiveDimension e(__LINE__, __FILE__);
     throw e;
   }
@@ -58,7 +60,8 @@ Vector Vector::operator+(const Vector & _vector) const
     ExceptionEmptyVector e(__LINE__, __FILE__);
     throw e;
   }
-  if (size != _vector.size) {
+  if (size != _vector.size) 
+  {
     ExceptionDifferentDimensions e(__LINE__, __FILE__);
     throw e;
   }
@@ -75,7 +78,8 @@ Vector Vector::operator-(const Vector & _vector) const
     ExceptionEmptyVector e(__LINE__, __FILE__);
     throw e;
   }
-  if (size != _vector.size) {
+  if (size != _vector.size) 
+  {
     ExceptionDifferentDimensions e(__LINE__, __FILE__);
     throw e;
   }
@@ -92,7 +96,8 @@ double Vector::operator*(const Vector & _vector) const
     ExceptionEmptyVector e(__LINE__, __FILE__);
     throw e;
   }
-  if (size != _vector.size) {
+  if (size != _vector.size) 
+  {
     ExceptionDifferentDimensions e(__LINE__, __FILE__);
     throw e;
   }
@@ -105,7 +110,8 @@ double Vector::operator*(const Vector & _vector) const
 Vector Vector::operator+(double _d) const
 {
   Vector tmp(*this);
-  for (int i = 0; i < size; i++) {
+  for (int i = 0; i < size; i++) 
+  {
     tmp[i] = elements[i] + _d;
   }
   return tmp;
@@ -114,7 +120,8 @@ Vector Vector::operator+(double _d) const
 Vector Vector::operator-(double _d) const
 {
   Vector tmp(*this);
-  for (int i = 0; i < size; i++) {
+  for (int i = 0; i < size; i++) 
+  {
     tmp[i] = elements[i] - _d;
   }
   return tmp;
@@ -123,7 +130,8 @@ Vector Vector::operator-(double _d) const
 Vector Vector::operator*(double _d) const
 {
   Vector tmp(*this);
-  for (int i = 0; i < size; i++) {
+  for (int i = 0; i < size; i++) 
+  {
     tmp[i] = elements[i] * _d;
   }
   return tmp;
@@ -136,7 +144,8 @@ const Vector & Vector::operator=(const Vector & _vector)
     ExceptionEmptyVector e(__LINE__, __FILE__);
     throw e;
   }
-  if (this != &_vector) {
+  if (this != &_vector) 
+  {
     size = _vector.size;
     delete[] elements;
     elements = new double[size];
@@ -148,7 +157,8 @@ const Vector & Vector::operator=(const Vector & _vector)
 
 double & Vector::operator[](int index)
 {
-  if ((index < 0) || (index > size)) {
+  if ((index < 0) || (index > size)) 
+  {
     ExceptionOutOfRange e(__LINE__, __FILE__);
     throw e;
   }
@@ -157,7 +167,8 @@ double & Vector::operator[](int index)
 
 const double & Vector::operator[](int index) const
 {
-  if ((index < 0) || (index > size)) {
+  if ((index < 0) || (index > size)) 
+  {
     ExceptionOutOfRange e(__LINE__, __FILE__);
     throw e;
   }
@@ -166,7 +177,8 @@ const double & Vector::operator[](int index) const
 
 Vector & Vector::operator+=(double _d)
 {
-  for (int i = 0; i < size; i++) {
+  for (int i = 0; i < size; i++) 
+  {
     elements[i] += _d;
   }
   return *this;
@@ -174,7 +186,8 @@ Vector & Vector::operator+=(double _d)
 
 Vector & Vector::operator-=(double _d)
 {
-  for (int i = 0; i < size; i++) {
+  for (int i = 0; i < size; i++) 
+  {
     elements[i] -= _d;
   }
   return *this;
@@ -182,7 +195,8 @@ Vector & Vector::operator-=(double _d)
 
 Vector & Vector::operator*=(double _d)
 {
-  for (int i = 0; i < size; i++) {
+  for (int i = 0; i < size; i++) 
+  {
     elements[i] *= _d;
   }
   return *this;
@@ -191,7 +205,8 @@ Vector & Vector::operator*=(double _d)
 double Vector::Length()
 {
   double lengthSquared = 0;
-  for (int i = 0; i < size; i++) {
+  for (int i = 0; i < size; i++) 
+  {
     lengthSquared += elements[i] * elements[i];
   }
   return sqrt(lengthSquared);
@@ -199,14 +214,16 @@ double Vector::Length()
 
 void Vector::Print()
 {
-  for (int i = 0; i < size; i++) std::cout << "\n" << elements[i]; std::cout << "\n";
+  for (int i = 0; i < size; i++) 
+    std::cout << "\n" << elements[i]; std::cout << "\n";
 }
 
 void * Vector::operator new(size_t _size)
 {
   void *pointerToMemory;
   pointerToMemory = malloc(_size);
-  if (!pointerToMemory) {
+  if (!pointerToMemory) 
+  {
     ExceptionBadAlloc e(__LINE__, __FILE__);
     throw e;
   }
@@ -222,7 +239,8 @@ void * Vector::operator new[](size_t _size)
 {
   void *pointerToMemory;
   pointerToMemory = malloc(_size);
-  if (!pointerToMemory) {
+  if (!pointerToMemory) 
+  {
     ExceptionBadAlloc e(__LINE__, __FILE__);
     throw e;
   }
