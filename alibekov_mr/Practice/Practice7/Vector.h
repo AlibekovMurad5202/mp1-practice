@@ -2,6 +2,7 @@
 #define __VECTOR_H__
 
 #include "math.h"
+#include "stdlib.h"
 #include "iostream" 
 #include "MyExceptions.h"
 
