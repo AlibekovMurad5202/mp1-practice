@@ -1,7 +1,9 @@
 #ifndef __MY_EXCEPTIONS_H__
 #define __MY_EXCEPTIONS_H__
 
-class MyException
+#include <exception> 
+
+class MyException : public std::exception
 {
 protected: 
   char s[20] = "Unknown exception!";

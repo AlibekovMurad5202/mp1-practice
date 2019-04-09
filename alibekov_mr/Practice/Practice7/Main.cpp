@@ -1,14 +1,20 @@
 #include "Vector.h"
 
 int main() {
+  Vector v1(3);
+  Vector v2(v1);
+  Vector v3(2);
+  Vector v4;
+  Vector* v5 = new Vector;
+  Vector* v_arr = new Vector[10];
   try
   {
-    Vector v1(3);
+   /* Vector v1(3);
     Vector v2(v1);
     Vector v3(2);
     Vector v4;
     Vector* v5 = new Vector;
-    Vector* v_arr = new Vector[10];
+    Vector* v_arr = new Vector[10];*/
     for (int i = 0; i < 10; i++) {
       v_arr[i] = v2;
     }
@@ -44,8 +50,8 @@ int main() {
 
     std::cout << v_arr[3].Length();
 
-    delete v5;
-    delete[] v_arr;
+    /*delete v5;
+    delete[] v_arr;*/
     }
     catch (MyException e)
     {
@@ -57,6 +63,9 @@ int main() {
       std::cout << std::endl << "I don't know what was happened. I'm scared. \
         I cann't fix it. I'm just a computer. :(" << std::endl;
     }
+
+    delete v5;
+    delete[] v_arr;
 
   system("pause");
   return 0;
