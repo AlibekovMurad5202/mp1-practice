@@ -10,13 +10,11 @@ protected:
   const char* file;
 
 public:
-  MyException() { str_what = 0; line = 0; file = 0; };
-  MyException(int _line, const char *_file) { str_what = 0; line = _line; file = _file; };
-  MyException(const MyException& _exception) : str_what(_exception.what()), line(_exception.errorLine()), \
-    file(_exception.errorFile()) {};
-  MyException(const char* message, int _line, const char *_file) 
-        : str_what(message), line(_line), file(_file) {};
-  ~MyException() { line = -1; }
+  MyException();
+  MyException(int _line, const char *_file);
+  MyException(const MyException& _exception);
+  MyException(const char* message, int _line, const char *_file);
+  ~MyException();
 
   virtual const char* what() const { return str_what ? str_what : s;  }
   virtual int errorLine() const { return line; }
@@ -26,87 +24,46 @@ public:
 class ExceptionOutOfRange : public MyException 
 {
 public:
-  ExceptionOutOfRange() { str_what = "Index out of bounds!"; line = -1; file = 0; }
-  
-  ExceptionOutOfRange(const ExceptionOutOfRange& _exception) {
-    str_what = _exception.what();
-    line = _exception.errorLine();
-    file = _exception.errorFile();
-  };
-
-  ExceptionOutOfRange(int _line, const char *_file) { \
-    str_what = "Index out of bounds!"; line = _line; file = _file; }
-  
-  ~ExceptionOutOfRange() { line = -1; }
+  ExceptionOutOfRange();
+  ExceptionOutOfRange(const ExceptionOutOfRange& _exception);
+  ExceptionOutOfRange(int _line, const char *_file);
+  ~ExceptionOutOfRange();
 };
 
 class ExceptionDifferentDimensions : public MyException
 {
 public:
-  ExceptionDifferentDimensions() {  \
-    str_what = "Vectors have different dimensions!"; line = -1; file = 0; }
-
-  ExceptionDifferentDimensions(const ExceptionDifferentDimensions& _exception) {
-    str_what = _exception.what();
-    line = _exception.errorLine();
-    file = _exception.errorFile();
-  }
-
-  ExceptionDifferentDimensions(int _line, const char *_file) {  \
-    str_what = "Vectors have different dimensions!"; line = _line; file = _file; }
-  
-  ~ExceptionDifferentDimensions() { line = -1; }
+  ExceptionDifferentDimensions();
+  ExceptionDifferentDimensions(const ExceptionDifferentDimensions& _exception);
+  ExceptionDifferentDimensions(int _line, const char *_file);
+  ~ExceptionDifferentDimensions();
 };
 
 class ExceptionBadAlloc : public MyException
 {
 public:
-  ExceptionBadAlloc() { str_what = "Bad memory allocation!"; line = -1; file = 0; }
-
-  ExceptionBadAlloc(const ExceptionBadAlloc& _exception) {
-    str_what = _exception.what();
-    line = _exception.errorLine();
-    file = _exception.errorFile();
-  }
-
-  ExceptionBadAlloc(int _line, const char *_file) {  \
-      str_what = "Bad memory allocation!"; line = _line; file = _file; }
-
-  ~ExceptionBadAlloc() { line = -1; }
+  ExceptionBadAlloc();
+  ExceptionBadAlloc(const ExceptionBadAlloc& _exception);
+  ExceptionBadAlloc(int _line, const char *_file);
+  ~ExceptionBadAlloc();
 };
 
 class ExceptionEmptyVector : public MyException
 {
 public:
-  ExceptionEmptyVector() { str_what = "Vector is empty!"; line = -1; file = 0; }
-
-  ExceptionEmptyVector(const ExceptionEmptyVector& _exception) {
-    str_what = _exception.what();
-    line = _exception.errorLine();
-    file = _exception.errorFile();
-  }
-
-  ExceptionEmptyVector(int _line, const char *_file) {  \
-      str_what = "Vector is empty!"; line = _line; file = _file; }
-
-  ~ExceptionEmptyVector() { line = -1; }
+  ExceptionEmptyVector();
+  ExceptionEmptyVector(const ExceptionEmptyVector& _exception);
+  ExceptionEmptyVector(int _line, const char *_file);
+  ~ExceptionEmptyVector();
 };
 
 class ExceptionNotPositiveDimension : public MyException
 {
 public:
-  ExceptionNotPositiveDimension() { str_what = "Dimension is or less than zero!"; line = -1; file = 0; }
-
-  ExceptionNotPositiveDimension(const ExceptionNotPositiveDimension& _exception) {
-    str_what = _exception.what();
-    line = _exception.errorLine();
-    file = _exception.errorFile();
-  }
-  
-  ExceptionNotPositiveDimension(int _line, const char *_file) {  \
-      str_what = "Dimension is or less than zero!"; line = _line; file = _file; }
-  
-  ~ExceptionNotPositiveDimension() { line = -1; }
+  ExceptionNotPositiveDimension();
+  ExceptionNotPositiveDimension(const ExceptionNotPositiveDimension& _exception);
+  ExceptionNotPositiveDimension(int _line, const char *_file);
+  ~ExceptionNotPositiveDimension();
 };
 
 #endif // !__MY_EXCEPTIONS_H__
