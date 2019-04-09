@@ -48,7 +48,6 @@ int main() {
     }
 
     std::cout << v_arr[3].Length() << std::endl;
-    v1[-2] = 1;
 
   }
   catch (MyException const & e)
