@@ -25,21 +25,6 @@ MyException::~MyException()
   line = -1; 
 }
 
-/*const char* MyException::what() const 
-{
-  return str_what ? str_what : s; 
-}
-
-int MyException::errorLine() const 
-{
-  return line; 
-}
-
-const char* MyException::errorFile() const 
-{
-  return file; 
-}*/
-
 ExceptionOutOfRange::ExceptionOutOfRange() 
 {
   str_what = "Index out of bounds!"; 
