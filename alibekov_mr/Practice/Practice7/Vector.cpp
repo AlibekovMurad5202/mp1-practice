@@ -157,7 +157,7 @@ const Vector & Vector::operator=(const Vector & _vector)
 
 double & Vector::operator[](int index)
 {
-  if ((index < 0) || (index > size)) 
+  if ((index < 0) || (index >= size)) 
   {
     ExceptionOutOfRange e(__LINE__, __FILE__);
     throw e;
@@ -167,7 +167,7 @@ double & Vector::operator[](int index)
 
 const double & Vector::operator[](int index) const
 {
-  if ((index < 0) || (index > size)) 
+  if ((index < 0) || (index >= size)) 
   {
     ExceptionOutOfRange e(__LINE__, __FILE__);
     throw e;
