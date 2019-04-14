@@ -2,12 +2,16 @@
 
 MyException::MyException() 
 {
-  str_what = 0; line = 0; file = 0; 
+  str_what = 0; 
+  line = 0; 
+  file = 0; 
 }
 
 MyException::MyException(int _line, const char *_file)
 {
-  str_what = 0; line = _line; file = _file;
+  str_what = 0; 
+  line = _line; 
+  file = _file;
 }
   
 MyException::MyException(const MyException& _exception) 
@@ -41,7 +45,9 @@ ExceptionOutOfRange::ExceptionOutOfRange(const ExceptionOutOfRange& _exception)
 
 ExceptionOutOfRange::ExceptionOutOfRange(int _line, const char *_file) 
 {
-  str_what = "Index out of bounds!"; line = _line; file = _file;
+  str_what = "Index out of bounds!"; 
+  line = _line; 
+  file = _file;
 }
 
 ExceptionOutOfRange::~ExceptionOutOfRange() 
@@ -51,7 +57,9 @@ ExceptionOutOfRange::~ExceptionOutOfRange()
 
 ExceptionDifferentDimensions::ExceptionDifferentDimensions() 
 {
-  str_what = "Vectors have different dimensions!"; line = -1; file = 0;
+  str_what = "Vectors have different dimensions!"; 
+  line = -1; 
+  file = 0;
 }
 
 ExceptionDifferentDimensions::ExceptionDifferentDimensions(const ExceptionDifferentDimensions& _exception) 
@@ -63,7 +71,9 @@ ExceptionDifferentDimensions::ExceptionDifferentDimensions(const ExceptionDiffer
 
 ExceptionDifferentDimensions::ExceptionDifferentDimensions(int _line, const char *_file) 
 {
-  str_what = "Vectors have different dimensions!"; line = _line; file = _file;
+  str_what = "Vectors have different dimensions!"; 
+  line = _line; 
+  file = _file;
 }
 
 ExceptionDifferentDimensions::~ExceptionDifferentDimensions() 
@@ -87,7 +97,9 @@ ExceptionBadAlloc::ExceptionBadAlloc(const ExceptionBadAlloc& _exception)
 
 ExceptionBadAlloc::ExceptionBadAlloc(int _line, const char *_file) 
 {
-  str_what = "Bad memory allocation!"; line = _line; file = _file;
+  str_what = "Bad memory allocation!"; 
+  line = _line; 
+  file = _file;
 }
 
 ExceptionBadAlloc::~ExceptionBadAlloc() 
@@ -111,7 +123,9 @@ ExceptionEmptyVector::ExceptionEmptyVector(const ExceptionEmptyVector& _exceptio
 
 ExceptionEmptyVector::ExceptionEmptyVector(int _line, const char *_file) 
 {
-  str_what = "Vector is empty!"; line = _line; file = _file;
+  str_what = "Vector is empty!"; 
+  line = _line; 
+  file = _file;
 }
 
 ExceptionEmptyVector::~ExceptionEmptyVector() 
@@ -135,7 +149,9 @@ ExceptionNotPositiveDimension::ExceptionNotPositiveDimension(const ExceptionNotP
 
 ExceptionNotPositiveDimension::ExceptionNotPositiveDimension(int _line, const char *_file) 
 {
-  str_what = "Dimension is or less than zero!"; line = _line; file = _file;
+  str_what = "Dimension is or less than zero!"; 
+  line = _line; 
+  file = _file;
 }
 
 ExceptionNotPositiveDimension::~ExceptionNotPositiveDimension() 
