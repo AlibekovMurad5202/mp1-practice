@@ -76,12 +76,11 @@ Matrix Matrix::operator+(const Matrix & _matrix) const
     ExceptionDifferentDimensions e(__LINE__, __FILE__);
     throw e;
   }
-
   Matrix tmp(*this);
   for (int i = 0; i < rows; i++)
   {
     for (int j = 0; j < columns; j++)
-      cells[(columns * i) + j] += _matrix.cells[(columns * i) + j];
+      tmp.cells[(columns * i) + j] += _matrix.cells[(columns * i) + j];
   }
   return tmp;
 }
@@ -98,7 +97,7 @@ Matrix Matrix::operator+(double d) const
   for (int i = 0; i < rows; i++)
   {
     for (int j = 0; j < columns; j++)
-      cells[(columns * i) + j] += d;
+      tmp.cells[(columns * i) + j] += d;
   }
   return tmp;
 }
@@ -120,7 +119,7 @@ Matrix Matrix::operator-(const Matrix & _matrix) const
   for (int i = 0; i < rows; i++)
   {
     for (int j = 0; j < columns; j++)
-      cells[(columns * i) + j] -= _matrix.cells[(columns * i) + j];
+      tmp.cells[(columns * i) + j] -= _matrix.cells[(columns * i) + j];
   }
   return tmp;
 }
@@ -137,7 +136,7 @@ Matrix Matrix::operator-(double d) const
   for (int i = 0; i < rows; i++)
   {
     for (int j = 0; j < columns; j++)
-      cells[(columns * i) + j] -= d;
+      tmp.cells[(columns * i) + j] -= d;
   }
   return tmp;
 }
@@ -149,7 +148,7 @@ Matrix Matrix::operator*(const Matrix & _matrix) const
     ExceptionEmptyMatrix e(__LINE__, __FILE__);
     throw e;
   }
-  if ((_matrix.rows != rows) || (_matrix.columns != columns))
+  if (_matrix.rows != columns)
   {
     ExceptionUndefinedMultiplication e(__LINE__, __FILE__);
     throw e;
@@ -163,8 +162,7 @@ Matrix Matrix::operator*(const Matrix & _matrix) const
       double dotProductOfRowOfTheFirstMatrixAndColumnOfTheSecondMatrix = 0;
       for (int k = 0; k < columns; k++)
       {
-        dotProductOfRowOfTheFirstMatrixAndColumnOfTheSecondMatrix +=
-          cells[(columns * i) + k] * _matrix.cells[(_matrix.columns * k) + j];
+        dotProductOfRowOfTheFirstMatrixAndColumnOfTheSecondMatrix += cells[(columns * i) + k] * _matrix.cells[(_matrix.columns * k) + j];
       }
       tmp.cells[(tmp.columns * i) + j] = dotProductOfRowOfTheFirstMatrixAndColumnOfTheSecondMatrix;
     }
@@ -172,11 +170,11 @@ Matrix Matrix::operator*(const Matrix & _matrix) const
   return tmp;
 }
 
-// _   _  
-//| 1 5 |
-//| 2 6 | 
-//| 3 7 | 
-//|_4 8_|
+// _      _  
+//| 1 5 9  |    
+//| 2 6 10 |   
+//| 3 7 11 |   
+//|_4 8 12_|   
 //
 // 1, 2, ... - the order of finding the values 
 // of elements of resulting matrix
@@ -193,7 +191,7 @@ Matrix Matrix::operator*(double d) const
   for (int i = 0; i < rows; i++)
   {
     for (int j = 0; j < columns; j++)
-      cells[(columns * i) + j] *= d;
+      tmp.cells[(columns * i) + j] *= d;
   }
   return tmp;
 }
@@ -245,15 +243,35 @@ std::istream & operator>>(std::istream & in, Matrix & _matrix)
 }
 
 std::ostream & operator<<(std::ostream & out, Matrix & _matrix)
-{
-  if ((_matrix.rows == 0) || (_matrix.columns == 0) || (_matrix.cells == nullptr))
+{  if ((_matrix.rows == 0) || (_matrix.columns == 0))
   {
     out << "Matrix is empty!\n";
     return out;
   }
 
+  double *dml = new double[_matrix.columns];
+  for (int j = 0; j < _matrix.columns; j++)
+  {
+    int s = 1;
+    for (int i = 0; i < _matrix.rows; i++)
+    {
+      dml[j] = 0;
+      int l = (_matrix[i])[j];
+      do {
+        l /= 10;
+        dml[j]++;
+      } while (l != 0);
+      if (s < dml[j]) s = dml[j];
+    }
+    dml[j] = s;
+  }
+
+  int z = 0;
+  for (int i = 0; i < _matrix.columns; i++) 
+    z += dml[i];
+
   out << "\n _";
-  for (int k = 0; k < 2 * _matrix.columns - 1; k++)
+  for (int k = 0; k < _matrix.columns + z - 1; k++)
     out << " ";
   out << "_\n";
 
@@ -261,7 +279,16 @@ std::ostream & operator<<(std::ostream & out, Matrix & _matrix)
   {
     out << "| ";
     for (int j = 0; j < _matrix.columns; j++)
-      out << (_matrix[i])[j] << " ";
+    {
+      out << (_matrix[i])[j];
+      int s = 0, l = (_matrix[i])[j];
+      do {
+        s++;
+        l /= 10;
+      } while (l != 0);
+      for (int f = 0; f < dml[j] - s + 1; f++)
+        out << " ";
+    }
     out << "|\n";
   }
 
@@ -269,21 +296,16 @@ std::ostream & operator<<(std::ostream & out, Matrix & _matrix)
   for (int j = 0; j < _matrix.columns; j++)
   {
     out << (_matrix[_matrix.rows - 1])[j];
+    int s = 0;
+    int l = (_matrix[_matrix.rows - 1])[j];
+    do {
+      s++;
+      l /= 10;
+    } while (l != 0);
+    for (int f = 0; f < dml[j] - s; f++) 
+      out << " ";
     j != _matrix.columns - 1 ? out << " " : out << "_|\n";
   }
 
   return out;
 }
-/*
-double * findMaxLengths (const Matrix & _matrix, double * dml)
-{
-  for (int i = 0; i < _matrix.rows; i++)
-  {
-    int s = 1;
-    for (int j = 0; j < _matrix.columns; j++)
-    {
-
-    }
-  }
-  
-}*/;
