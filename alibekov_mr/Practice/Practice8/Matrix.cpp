@@ -243,7 +243,8 @@ std::istream & operator>>(std::istream & in, Matrix & _matrix)
 }
 
 std::ostream & operator<<(std::ostream & out, Matrix & _matrix)
-{  if ((_matrix.rows == 0) || (_matrix.columns == 0))
+{  
+  if ((_matrix.rows == 0) || (_matrix.columns == 0))
   {
     out << "Matrix is empty!\n";
     return out;
@@ -252,11 +253,11 @@ std::ostream & operator<<(std::ostream & out, Matrix & _matrix)
   double *dml = new double[_matrix.columns];
   for (int j = 0; j < _matrix.columns; j++)
   {
-    int s = 1;
+    double s = 1;
     for (int i = 0; i < _matrix.rows; i++)
     {
       dml[j] = 0;
-      int l = (_matrix[i])[j];
+      double l = (_matrix[i])[j];
       do {
         l /= 10;
         dml[j]++;
@@ -266,7 +267,7 @@ std::ostream & operator<<(std::ostream & out, Matrix & _matrix)
     dml[j] = s;
   }
 
-  int z = 0;
+  double z = 0;
   for (int i = 0; i < _matrix.columns; i++) 
     z += dml[i];
 
@@ -281,7 +282,8 @@ std::ostream & operator<<(std::ostream & out, Matrix & _matrix)
     for (int j = 0; j < _matrix.columns; j++)
     {
       out << (_matrix[i])[j];
-      int s = 0, l = (_matrix[i])[j];
+      int s = 0;
+      double l = (_matrix[i])[j];
       do {
         s++;
         l /= 10;
@@ -297,7 +299,7 @@ std::ostream & operator<<(std::ostream & out, Matrix & _matrix)
   {
     out << (_matrix[_matrix.rows - 1])[j];
     int s = 0;
-    int l = (_matrix[_matrix.rows - 1])[j];
+    double l = (_matrix[_matrix.rows - 1])[j];
     do {
       s++;
       l /= 10;
@@ -306,6 +308,7 @@ std::ostream & operator<<(std::ostream & out, Matrix & _matrix)
       out << " ";
     j != _matrix.columns - 1 ? out << " " : out << "_|\n";
   }
+  delete[] dml;
 
   return out;
 }
