@@ -23,6 +23,9 @@
     <ClCompile Include="MyExceptions.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="TimeAndDate.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Tasks.h">
@@ -32,6 +35,9 @@
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="MyExceptions.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="TimeAndDate.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

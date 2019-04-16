@@ -119,11 +119,13 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MyExceptions.cpp" />
     <ClCompile Include="Tasks.cpp" />
+    <ClCompile Include="TimeAndDate.cpp" />
     <ClCompile Include="ToDoList.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MyExceptions.h" />
     <ClInclude Include="Tasks.h" />
+    <ClInclude Include="TimeAndDate.h" />
     <ClInclude Include="ToDoList.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
