@@ -12,8 +12,12 @@ public:
   Time(UINT _hours, UINT _minutes);
   Time(const Time & _time);
   ~Time();
-  UINT getHours() { return hours; }
-  UINT getMinuts() { return minutes; }
+
+  UINT getHours();
+  UINT getMinuts();
+  
+  void setHours(UINT _hours);
+  void setMinutes(UINT _minutes);
 
 private:
   UINT hours;
@@ -31,9 +35,13 @@ public:
   bool operator== (const TaskDate& _date) const;
   const TaskDate & operator=(const TaskDate & _date);
 
-  UINT getDay() { return day; }
-  UINT getMonth() { return month; }
-  UINT getYear() { return year; }
+  UINT getDay();
+  UINT getMonth();
+  UINT getYear();
+
+  void setDay(UINT _day);
+  void setMonth(UINT _month);
+  void setYear(UINT _year);
 
 private:
   UINT day;
@@ -74,7 +82,7 @@ class TaskForTime : public Task
 {
 public:
   TaskForTime();
-  TaskForTime(const char * _toDo, TaskDate _date);
+  TaskForTime(const char * _toDo, TaskDate _date, UINT _duration);
   TaskForTime(const TaskForTime & _task);
   ~TaskForTime();
 

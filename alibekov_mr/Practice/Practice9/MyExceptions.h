@@ -36,15 +36,6 @@ public:
   ~ExceptionOutOfRange();
 };
 
-class ExceptionUndefinedMultiplication : public MyException
-{
-public:
-  ExceptionUndefinedMultiplication();
-  ExceptionUndefinedMultiplication(const ExceptionUndefinedMultiplication& _exception);
-  ExceptionUndefinedMultiplication(int _line, const char *_file);
-  ~ExceptionUndefinedMultiplication();
-};
-
 class ExceptionBadAlloc : public MyException
 {
 public:
@@ -54,22 +45,22 @@ public:
   ~ExceptionBadAlloc();
 };
 
-class ExceptionEmptyMatrix : public MyException
+class ExceptionTaskWithoutName : public MyException
 {
 public:
-  ExceptionEmptyMatrix();
-  ExceptionEmptyMatrix(const ExceptionEmptyMatrix& _exception);
-  ExceptionEmptyMatrix(int _line, const char *_file);
-  ~ExceptionEmptyMatrix();
+  ExceptionTaskWithoutName();
+  ExceptionTaskWithoutName(const ExceptionTaskWithoutName& _exception);
+  ExceptionTaskWithoutName(int _line, const char *_file);
+  ~ExceptionTaskWithoutName();
 };
 
-class ExceptionNotPositiveDimension : public MyException
+class ExceptionTaskWithoutDate : public MyException
 {
 public:
-  ExceptionNotPositiveDimension();
-  ExceptionNotPositiveDimension(const ExceptionNotPositiveDimension& _exception);
-  ExceptionNotPositiveDimension(int _line, const char *_file);
-  ~ExceptionNotPositiveDimension();
+  ExceptionTaskWithoutDate();
+  ExceptionTaskWithoutDate(const ExceptionTaskWithoutDate& _exception);
+  ExceptionTaskWithoutDate(int _line, const char *_file);
+  ~ExceptionTaskWithoutDate();
 };
 
 class ExceptionDifferentDimensions : public MyException

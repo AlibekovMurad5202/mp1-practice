@@ -64,35 +64,6 @@ ExceptionOutOfRange::~ExceptionOutOfRange()
   line = -1;
 }
 
-ExceptionUndefinedMultiplication::ExceptionUndefinedMultiplication()
-{
-  str_what = "Matrices can't be multiplied!";
-  str_why = "The number of columns in the first does not equal the number of rows in the second.";
-  line = -1;
-  file = 0;
-}
-
-ExceptionUndefinedMultiplication::ExceptionUndefinedMultiplication(const ExceptionUndefinedMultiplication& _exception)
-{
-  str_why = _exception.why();
-  str_what = _exception.what();
-  line = _exception.errorLine();
-  file = _exception.errorFile();
-}
-
-ExceptionUndefinedMultiplication::ExceptionUndefinedMultiplication(int _line, const char *_file)
-{
-  str_what = "Matrices can't be multiplied!";
-  str_why = "The number of columns in the first does not equal the number of rows in the second.";
-  line = _line;
-  file = _file;
-}
-
-ExceptionUndefinedMultiplication::~ExceptionUndefinedMultiplication()
-{
-  line = -1;
-}
-
 ExceptionBadAlloc::ExceptionBadAlloc()
 {
   str_why = 0;
@@ -122,7 +93,7 @@ ExceptionBadAlloc::~ExceptionBadAlloc()
   line = -1;
 }
 
-ExceptionEmptyMatrix::ExceptionEmptyMatrix()
+ExceptionTaskWithoutName::ExceptionTaskWithoutName()
 {
   str_what = "Matrix is empty!";
   str_why = "The matrix was not filled.";
@@ -130,7 +101,7 @@ ExceptionEmptyMatrix::ExceptionEmptyMatrix()
   file = 0;
 }
 
-ExceptionEmptyMatrix::ExceptionEmptyMatrix(const ExceptionEmptyMatrix& _exception)
+ExceptionTaskWithoutName::ExceptionTaskWithoutName(const ExceptionTaskWithoutName& _exception)
 {
   str_why = _exception.why();
   str_what = _exception.what();
@@ -138,7 +109,7 @@ ExceptionEmptyMatrix::ExceptionEmptyMatrix(const ExceptionEmptyMatrix& _exceptio
   file = _exception.errorFile();
 }
 
-ExceptionEmptyMatrix::ExceptionEmptyMatrix(int _line, const char *_file)
+ExceptionTaskWithoutName::ExceptionTaskWithoutName(int _line, const char *_file)
 {
   str_what = "Matrix is empty!";
   str_why = "The matrix was not filled.";
@@ -146,12 +117,12 @@ ExceptionEmptyMatrix::ExceptionEmptyMatrix(int _line, const char *_file)
   file = _file;
 }
 
-ExceptionEmptyMatrix::~ExceptionEmptyMatrix()
+ExceptionTaskWithoutName::~ExceptionTaskWithoutName()
 {
   line = -1;
 }
 
-ExceptionNotPositiveDimension::ExceptionNotPositiveDimension()
+ExceptionTaskWithoutDate::ExceptionTaskWithoutDate()
 {
   str_what = "Matrix has not positive dimensions!";
   str_why = "Number of columns or number of rows no more than zero.";
@@ -159,7 +130,7 @@ ExceptionNotPositiveDimension::ExceptionNotPositiveDimension()
   file = 0;
 }
 
-ExceptionNotPositiveDimension::ExceptionNotPositiveDimension(const ExceptionNotPositiveDimension& _exception)
+ExceptionTaskWithoutDate::ExceptionTaskWithoutDate(const ExceptionTaskWithoutDate& _exception)
 {
   str_why = _exception.why();
   str_what = _exception.what();
@@ -167,7 +138,7 @@ ExceptionNotPositiveDimension::ExceptionNotPositiveDimension(const ExceptionNotP
   file = _exception.errorFile();
 }
 
-ExceptionNotPositiveDimension::ExceptionNotPositiveDimension(int _line, const char *_file)
+ExceptionTaskWithoutDate::ExceptionTaskWithoutDate(int _line, const char *_file)
 {
   str_what = "Matrix has not positive dimensions!";
   str_why = "Number of columns or number of rows no more than zero.";
@@ -175,7 +146,7 @@ ExceptionNotPositiveDimension::ExceptionNotPositiveDimension(int _line, const ch
   file = _file;
 }
 
-ExceptionNotPositiveDimension::~ExceptionNotPositiveDimension()
+ExceptionTaskWithoutDate::~ExceptionTaskWithoutDate()
 {
   line = -1;
 }

@@ -1,11 +1,12 @@
 #include "iostream"
 #include "Tasks.h"
+#include "cstdio"
 
 int main()
 {
   try 
   {
-    TaskForDay t1(nullptr, TaskDate(16, 04, 2019));
+    TaskForTime t1("Do anything!", TaskDate(16, 04, 2019), 5);
     t1.PrintTask();
   }
   catch (ExceptionOutOfRange const & e)
@@ -15,6 +16,7 @@ int main()
     std::cout << "errorLine: " << e.errorLine() << std::endl;
     std::cout << "errorFile:" << e.errorFile() << std::endl;
   }
+
 
   system("pause");
   return 0;
