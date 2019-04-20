@@ -24,12 +24,23 @@ Time::~Time()
   setMinutes(0);
 }
 
+void Time::Print()
+{
+  //std::cout << " ";
+  if (hours < 10)
+    std::cout << "0";
+  std::cout << hours << ":";
+  if (minutes < 10)
+    std::cout << "0";
+  std::cout << minutes;// << " ";
+}
+
 UINT Time::getHours()
 {
   return hours;
 }
 
-UINT Time::getMinuts()
+UINT Time::getMinutes()
 {
   return minutes;
 }
@@ -55,7 +66,7 @@ TaskDate::TaskDate()
   setYear(1970);
 }
 
-TaskDate::TaskDate(UINT _day, UINT _month, UINT _year)
+TaskDate::TaskDate(UINT _day, UINT _month, int _year)
 {
   setDay(_day);
   setMonth(_month);
@@ -80,9 +91,10 @@ bool TaskDate::operator==(const TaskDate & _date) const
 {
   if (this == &_date)
     return true;
-  if ((_date.day == day) && (_date.month == month) && (_date.year == year))
+  /*if ((_date.day == day) && (_date.month == month) && (_date.year == year))
     return true;
-  return false;
+  return false;*/
+  return ((_date.day == day) && (_date.month == month) && (_date.year == year));
 }
 
 const TaskDate & TaskDate::operator=(const TaskDate & _date)
@@ -96,6 +108,15 @@ const TaskDate & TaskDate::operator=(const TaskDate & _date)
   return *this;
 }
 
+void TaskDate::Print()
+{
+  std::cout << day << ", " << months[month] << ", ";
+  if (year > 0)
+    std::cout << year << ".";
+  else
+    std::cout << (-1) * year << " B.C.";
+}
+
 UINT TaskDate::getDay()
 {
   return day;
@@ -106,7 +127,7 @@ UINT TaskDate::getMonth()
   return month;
 }
 
-UINT TaskDate::getYear()
+int TaskDate::getYear()
 {
   return year;
 }
@@ -114,8 +135,8 @@ UINT TaskDate::getYear()
 void TaskDate::setDay(UINT _day)
 {
   if (_day == 0 || _day > 31 ||
-    (_day == 31 && (getMonth() == 2 || getMonth() == 4 || getMonth() == 6 || getMonth() == 9 || getMonth() == 11)) ||
-    (getMonth() == 2 && (_day > (UINT)((getYear() % 4 == 0 && getYear() % 100 != 0 || getYear() % 400 == 0) ? 29 : 28))))
+    (_day == 31 && (month == 2 || month == 4 || month == 6 || month == 9 || month == 11)) ||
+    (month == 2 && (_day > (UINT)((getYear() % 4 == 0 && getYear() % 100 != 0 || getYear() % 400 == 0) ? 29 : 28))))
     throw ExceptionOutOfRange(__LINE__, __FILE__);
   day = _day;
 }
@@ -127,7 +148,7 @@ void TaskDate::setMonth(UINT _month)
   month = _month;
 }
 
-void TaskDate::setYear(UINT _year)
+void TaskDate::setYear(int _year)
 {
   year = _year;
 }

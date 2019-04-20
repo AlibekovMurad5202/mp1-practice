@@ -37,8 +37,8 @@ MyException::~MyException()
 
 ExceptionOutOfRange::ExceptionOutOfRange()
 {
-  str_what = "Index out of bounds!";
-  str_why = "Index less than 0 or over maximum value.";
+  str_what = "Value out of bounds!";
+  str_why = "Value less than 0 or over maximum value.";
   line = -1;
   file = 0;
 }
@@ -53,8 +53,8 @@ ExceptionOutOfRange::ExceptionOutOfRange(const ExceptionOutOfRange& _exception)
 
 ExceptionOutOfRange::ExceptionOutOfRange(int _line, const char *_file)
 {
-  str_what = "Index out of bounds!";
-  str_why = "Index less than 0 or over maximum value.";
+  str_what = "Value out of bounds!";
+  str_why = "Value less than 0 or over maximum value.";
   line = _line;
   file = _file;
 }

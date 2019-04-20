@@ -7,15 +7,15 @@ class ToDoList
 {
 public:
   ToDoList();
-  ToDoList(const ToDoList & _toDoList);
+  ToDoList(UINT _count);
   ~ToDoList();
 
-  void Print(TaskDate _date);
+  void Print(TaskDate _date) const;
   //void Read(const char * _toDo, );
 
 private:
   Task ** tasks;
-  int count;
+  UINT count;
 };
 
 #endif // !__TODOLIST__H__

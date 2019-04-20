@@ -14,6 +14,16 @@ Task::Task(const char * _toDo, TaskDate _date)
   date = _date;
 }
 
+Task::Task(const char * _toDo, UINT _day, UINT _month, int _year)
+{
+  if (_toDo == nullptr)
+    throw ExceptionTaskWithoutName(__LINE__, __FILE__);
+  toDo = _toDo;
+  date.setDay(_day);
+  date.setMonth(_month);
+  date.setYear(_year);
+}
+
 Task::Task(const Task & _task)
 {
   toDo = _task.toDo;
@@ -35,6 +45,16 @@ TaskForDay::TaskForDay(const TaskForDay & _taskForDay)
   date = _taskForDay.date;
 }
 
+TaskForDay::TaskForDay(const char * _toDo, UINT _day, UINT _month, int _year)
+{
+  if (_toDo == nullptr)
+    throw ExceptionTaskWithoutName(__LINE__, __FILE__);
+  toDo = _toDo;
+  date.setDay(_day);
+  date.setMonth(_month);
+  date.setYear(_year);
+}
+
 TaskForDay::TaskForDay(const char * _toDo, TaskDate _date)
 {
   if (_toDo == nullptr)
@@ -50,7 +70,9 @@ void TaskForDay::PrintTask()
 {
   if (toDo == nullptr)
     throw ExceptionTaskWithoutName(__LINE__, __FILE__);
-  std::cout << toDo << " : " << date.getDay() << ", " << date.getMonth() << ", " << date.getYear() << std::endl;
+  std::cout << toDo << " : ";
+  date.Print();
+  std::cout << std::endl;
 }
 
 TaskForTime::TaskForTime()
@@ -65,6 +87,17 @@ TaskForTime::TaskForTime(const char * _toDo, TaskDate _date, UINT _duration)
     throw ExceptionTaskWithoutName(__LINE__, __FILE__);
   toDo = _toDo;
   date = _date;
+  duration = _duration;
+}
+
+TaskForTime::TaskForTime(const char * _toDo, UINT _day, UINT _month, int _year, UINT _duration)
+{
+  if (_toDo == nullptr)
+    throw ExceptionTaskWithoutName(__LINE__, __FILE__);
+  toDo = _toDo;
+  date.setDay(_day);
+  date.setMonth(_month);
+  date.setYear(_year);
   duration = _duration;
 }
 
@@ -87,6 +120,13 @@ void TaskForTime::PrintTask()
 {
   if (toDo == nullptr)
     throw ExceptionTaskWithoutName(__LINE__, __FILE__);
-  std::cout << toDo << " : " << date.getDay() << ", " << date.getMonth() << ", " << date.getYear() << ", ";
-  std::cout << _time.getHours() << ":" << _time.getMinuts() << ". Duration: " << duration << " minutes" << std::endl;
+  std::cout << toDo << " : ";
+  date.Print();
+  std::cout << ". Begins at ";
+  _time.Print();
+  std::cout << ". Duration is " << duration;
+  if (duration == 1)
+    std::cout << " minute." << std::endl;
+  else
+    std::cout << " minutes." << std::endl;
 }

@@ -4,6 +4,16 @@
 #define UINT unsigned int
 
 #include "MyExceptions.h"
+#include "iostream"
+
+/*namespace Months
+{
+  const char* month[13] = { 0, "January" , "February", "March", "April", "May", 
+    "June", "July", "August", "September", "October", "November", "December" };
+}*/
+
+static const char* months[13] = { 0, "January" , "February", "March", "April", "May", 
+       "June", "July", "August", "September", "October", "November", "December" };
 
 class Time
 {
@@ -13,8 +23,10 @@ public:
   Time(const Time & _time);
   ~Time();
 
+  void Print();
+
   UINT getHours();
-  UINT getMinuts();
+  UINT getMinutes();
 
   void setHours(UINT _hours);
   void setMinutes(UINT _minutes);
@@ -28,25 +40,27 @@ class TaskDate
 {
 public:
   TaskDate();
-  TaskDate(UINT _day, UINT _month, UINT _year);
+  TaskDate(UINT _day, UINT _month, int _year);
   TaskDate(const TaskDate & _date);
   ~TaskDate();
 
   bool operator== (const TaskDate& _date) const;
   const TaskDate & operator=(const TaskDate & _date);
 
+  void Print();
+
   UINT getDay();
   UINT getMonth();
-  UINT getYear();
+  int getYear();
 
   void setDay(UINT _day);
   void setMonth(UINT _month);
-  void setYear(UINT _year);
+  void setYear(int _year);
 
 private:
   UINT day;
   UINT month;
-  UINT year;
+  int year;
 };
 
 #endif // !__TIME_AND_DATE_H__

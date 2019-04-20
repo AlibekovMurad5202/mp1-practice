@@ -12,8 +12,9 @@ public:
 
   Task();
   Task(const char * _toDo, TaskDate _date);
+  Task(const char * _toDo, UINT _day, UINT _month, int _year);
   Task(const Task& _task);
-  ~Task();
+  virtual ~Task();
 
   void virtual PrintTask() = 0 ;
 
@@ -26,6 +27,7 @@ class TaskForDay : public Task
 public:
   TaskForDay();
   TaskForDay(const TaskForDay & _taskForDay);
+  TaskForDay(const char * _toDo, UINT _day, UINT _month, int _year);
   TaskForDay(const char * _toDo, TaskDate _date);
   ~TaskForDay();
 
@@ -38,6 +40,7 @@ class TaskForTime : public Task
 public:
   TaskForTime();
   TaskForTime(const char * _toDo, TaskDate _date, UINT _duration);
+  TaskForTime(const char * _toDo, UINT _day, UINT _month, int _year, UINT _duration);
   TaskForTime(const TaskForTime & _task);
   ~TaskForTime();
 
