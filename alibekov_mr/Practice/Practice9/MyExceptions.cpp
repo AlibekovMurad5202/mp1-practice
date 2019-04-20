@@ -151,7 +151,7 @@ ExceptionTaskWithoutDate::~ExceptionTaskWithoutDate()
   line = -1;
 }
 
-ExceptionDifferentDimensions::ExceptionDifferentDimensions()
+ExceptionFileIsNotOpen::ExceptionFileIsNotOpen()
 {
   str_what = "Matrices have different dimensions!";
   str_why = "Number of columns or rows in the first matrix, respectively, is not equal to the number of columns or rows in the second matrix.";
@@ -159,7 +159,7 @@ ExceptionDifferentDimensions::ExceptionDifferentDimensions()
   file = 0;
 }
 
-ExceptionDifferentDimensions::ExceptionDifferentDimensions(const ExceptionDifferentDimensions& _exception)
+ExceptionFileIsNotOpen::ExceptionFileIsNotOpen(const ExceptionFileIsNotOpen& _exception)
 {
   str_why = _exception.why();
   str_what = _exception.what();
@@ -167,7 +167,7 @@ ExceptionDifferentDimensions::ExceptionDifferentDimensions(const ExceptionDiffer
   file = _exception.errorFile();
 }
 
-ExceptionDifferentDimensions::ExceptionDifferentDimensions(int _line, const char *_file)
+ExceptionFileIsNotOpen::ExceptionFileIsNotOpen(int _line, const char *_file)
 {
   str_what = "Matrices have different dimensions!";
   str_why = "Number of columns or rows in the first matrix, respectively, is not equal to the number of columns or rows in the second matrix.";
@@ -175,7 +175,7 @@ ExceptionDifferentDimensions::ExceptionDifferentDimensions(int _line, const char
   file = _file;
 }
 
-ExceptionDifferentDimensions::~ExceptionDifferentDimensions()
+ExceptionFileIsNotOpen::~ExceptionFileIsNotOpen()
 {
   line = -1;
 };

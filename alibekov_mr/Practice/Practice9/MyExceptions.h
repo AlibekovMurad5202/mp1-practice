@@ -1,7 +1,7 @@
 #ifndef __MY_EXCEPTIONS_H__
 #define __MY_EXCEPTIONS_H__
 
-#include <exception> 
+#include <exception>
 
 class MyException : public std::exception
 {
@@ -63,13 +63,13 @@ public:
   ~ExceptionTaskWithoutDate();
 };
 
-class ExceptionDifferentDimensions : public MyException
+class ExceptionFileIsNotOpen : public MyException
 {
 public:
-  ExceptionDifferentDimensions();
-  ExceptionDifferentDimensions(const ExceptionDifferentDimensions& _exception);
-  ExceptionDifferentDimensions(int _line, const char *_file);
-  ~ExceptionDifferentDimensions();
+  ExceptionFileIsNotOpen();
+  ExceptionFileIsNotOpen(const ExceptionFileIsNotOpen& _exception);
+  ExceptionFileIsNotOpen(int _line, const char *_file);
+  ~ExceptionFileIsNotOpen();
 };
 
 #endif // !__MY_EXCEPTIONS_H__

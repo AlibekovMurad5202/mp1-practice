@@ -23,6 +23,8 @@ public:
   Time(const Time & _time);
   ~Time();
 
+  const Time & operator= (const Time & _t);
+
   void Print();
 
   UINT getHours();
@@ -55,6 +57,7 @@ public:
 
   void setDay(UINT _day);
   void setMonth(UINT _month);
+  void setMonth(char *_monthName);
   void setYear(int _year);
 
 private:

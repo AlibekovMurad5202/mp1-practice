@@ -3,6 +3,8 @@
 
 #include "Tasks.h"
 
+#include "fstream"
+
 class ToDoList
 {
 public:
@@ -11,11 +13,12 @@ public:
   ~ToDoList();
 
   void Print(TaskDate _date) const;
-  //void Read(const char * _toDo, );
+  void Read(const char * _fileName);
 
-private:
+
   Task ** tasks;
   UINT count;
+private:
 };
 
 #endif // !__TODOLIST__H__

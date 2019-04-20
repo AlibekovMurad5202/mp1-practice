@@ -24,6 +24,16 @@ Time::~Time()
   setMinutes(0);
 }
 
+const Time & Time::operator=(const Time & _t)
+{
+  if (this != &_t)
+  {
+    setHours(getHours());
+    setMinutes(getMinutes());
+  }
+  return *this;
+}
+
 void Time::Print()
 {
   //std::cout << " ";
@@ -146,6 +156,17 @@ void TaskDate::setMonth(UINT _month)
   if ((_month < 1) || (_month > 12))
     throw ExceptionOutOfRange(__LINE__, __FILE__);
   month = _month;
+}
+
+void TaskDate::setMonth(char *_monthName)
+{
+  if (_monthName[0] = 0)
+    month = 0;
+  if (_monthName == "April")
+    month = 4;
+  for (int i = 0; i < 14; i++)
+    if (_monthName == months[i])
+      month = i;
 }
 
 void TaskDate::setYear(int _year)

@@ -7,7 +7,7 @@
 class Task
 {
 public:
-  const char* toDo;
+  char toDo[255];
   TaskDate date;
 
   Task();
@@ -19,7 +19,6 @@ public:
   void virtual PrintTask() = 0 ;
 
 private:
-
 };
 
 class TaskForDay : public Task
@@ -32,7 +31,7 @@ public:
   ~TaskForDay();
 
   void PrintTask();
-
+  const TaskForDay & operator= (const TaskForDay & _tfd);
 };
 
 class TaskForTime : public Task
@@ -45,6 +44,7 @@ public:
   ~TaskForTime();
 
   void PrintTask();
+  const TaskForTime & operator= (const TaskForTime & _tft);
 
 private:
   Time _time;
