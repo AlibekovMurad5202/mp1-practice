@@ -120,11 +120,11 @@ const TaskDate & TaskDate::operator=(const TaskDate & _date)
 
 void TaskDate::Print()
 {
-  std::cout << day << ", " << months[month] << ", ";
+  std::cout << months[month] << " " << day << ", ";
   if (year > 0)
     std::cout << year << ".";
   else
-    std::cout << (-1) * year << " B.C.";
+    std::cout << (-1) * year << " BC.";
 }
 
 UINT TaskDate::getDay()
@@ -160,7 +160,7 @@ void TaskDate::setMonth(UINT _month)
 
 void TaskDate::setMonth(char *_monthName)
 {
-  if (_monthName[0] = 0)
+  if (_monthName[0] == 0)
     month = 0;
   if (_monthName == "April")
     month = 4;

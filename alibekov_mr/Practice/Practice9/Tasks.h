@@ -9,6 +9,8 @@ class Task
 public:
   char toDo[255];
   TaskDate date;
+  Time _time;
+  UINT duration;
 
   Task();
   Task(const char * _toDo, TaskDate _date);
@@ -47,8 +49,6 @@ public:
   const TaskForTime & operator= (const TaskForTime & _tft);
 
 private:
-  Time _time;
-  UINT duration;
 };
 
 #endif // !__TASKS_H__

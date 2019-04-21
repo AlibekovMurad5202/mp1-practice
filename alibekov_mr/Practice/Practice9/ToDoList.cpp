@@ -68,7 +68,6 @@ void ToDoList::Read(const char * _fileName)
   cout << str << endl;
   toDoFile.getline(str, 255);
   cout << str << endl;
-  cout << _countOfTasks << endl;
 
   count = _countOfTasks;
   tasks = new Task*[count];
@@ -89,38 +88,88 @@ void ToDoList::Read(const char * _fileName)
     toDoFile.ignore(255, ':');
     ios::pos_type endPos = toDoFile.tellg();
     toDoFile.seekg(startPos);
-    toDoFile.getline(str, endPos - startPos - 1);
+    toDoFile.get(str, endPos - startPos - 1);
     int k = 0;
     while (str[k] != 0)
       tasks[i]->toDo[k] = str[k++];
     tasks[i]->toDo[k] = 0;
-    cout << tasks[i]->toDo;
-    //Why?
-    
-    toDoFile.seekg(startPos);
-    toDoFile.getline(str, endPos - startPos - 1);
-    cout << str;
 
-
-    system("pause");
+    toDoFile.ignore(2);
+    //toDoFile.seekg(startPos);
+    //toDoFile.getline(str, 1);
+    //cout << startPos << " ";
+    //cout << toDoFile.tellg();
 
     char _monthName[255];
-
     toDoFile >> _monthName;
-    tasks[i]->date.setMonth(_monthName);
-    cout << _monthName;
-    int _day;
-    toDoFile >> _day;
-    tasks[i]->date.setDay(_day);
-    //tasks[i]->date.Print();
+    //char z[255] = "April";
+    //if (_monthName == z)
+    //  cout << "________" << 4 << "________" << endl;
 
-    system("pause");  
+    for (UINT j = 1; j < 14; j++)
+    {
+      bool b = false;
+      int p = 0;
+      while ((months[j])[p])
+        if ((months[j])[p] != _monthName[p++])
+        {
+          b = true;
+          break;
+        }
+      if (!b)
+      {
+        tasks[i]->date.setMonth(j);
+        break;
+      }
+    }
 
-    toDoFile >> str;
+    {
+      int _day;
+      toDoFile >> _day;
+      tasks[i]->date.setDay(_day);
+    }
+    toDoFile.ignore(2);
+    {
+      int _year;
+      toDoFile >> _year;
+      char next;
+      toDoFile >> next;
+      if ((next != '.') && (s == '\n'))
+      { 
+        _year *= -1;
+        toDoFile.ignore(2);
+      }
+      tasks[i]->date.setYear(_year);
+    }
 
-    //tasks[i]->PrintTask();
+    if (s != '\n')
+    {
+      toDoFile.ignore(11);
+      {
+        int _hours;
+        toDoFile >> _hours;
+        tasks[i]->_time.setHours(_hours);
+        toDoFile.ignore(1);
+        int _minutes;
+        toDoFile >> _minutes;
+        tasks[i]->_time.setMinutes(_minutes);
+      }
+      toDoFile.ignore(14);
+      {
+        int _duration;
+        toDoFile >> _duration;
+        tasks[i]->duration = _duration;
+      }
+      toDoFile.ignore(255, '.');
+    }
+
+    tasks[i]->PrintTask();
+    toDoFile.ignore(1);
+
   }
+
+  toDoFile.getline(str, 255);
+  cout << str << endl;
   system("pause");
   toDoFile.close();
 }
-
