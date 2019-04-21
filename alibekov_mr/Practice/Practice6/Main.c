@@ -48,52 +48,52 @@ void main()
 	/* Angles */
 	{
 		if (Angle(_vector1, _vector2, &_rezult))
-			printf("That's why angle between the first and the second vectors cann't be found!\n");
+			printf("That's why angle between the first and the second vectors can't be found!\n");
 		else printf("Angle between the first and the second vectors: %lf\n", _rezult);
 
 		if (Angle(_vector2, _vector3, &_rezult))
-			printf("That's why angle between the second and the third vectors cann't be found!\n");
+			printf("That's why angle between the second and the third vectors can't be found!\n");
 		else printf("Angle between the second and the third vectors: %lf\n", _rezult);
 
 		if (Angle(_vector1, _vector3, &_rezult))
-			printf("That's why angle between the first and the third vectors cann't be found!\n\n");
+			printf("That's why angle between the first and the third vectors can't be found!\n\n");
 		else printf("Angle between the first and the third vectors: %lf\n\n", _rezult);
 	}   
 
 	/* ScalarProducts */
 	{
 		if (ScalarProduct(_vector1, _vector2, &_rezult))
-			printf("That's why scalar product between the first and the second vectors cann't be found!\n");
+			printf("That's why scalar product between the first and the second vectors can't be found!\n");
 		else printf("ScalarProduct between the first and the second vectors: %lf\n", _rezult);
 
 		if (ScalarProduct(_vector2, _vector3, &_rezult))
-			printf("That's why scalar product between the second and the third vectors cann't be found!\n");
+			printf("That's why scalar product between the second and the third vectors can't be found!\n");
 		else printf("ScalarProduct between the second and the third vectors: %lf\n", _rezult);
 
 		if (ScalarProduct(_vector1, _vector3, &_rezult))
-			printf("That's why scalar product between the first and the third vectors cann't be found!\n\n");
+			printf("That's why scalar product between the first and the third vectors can't be found!\n\n");
 		else printf("ScalarProduct between the first and the third vectors: %lf\n\n", _rezult);
 	}
 
 	/* Lengths */
 	{
 		if (Length(_vector1, &_rezult))
-			printf("That's why length of the first vector cann't be found!\n");
+			printf("That's why length of the first vector can't be found!\n");
 		else printf("Length of the first vector: %lf\n", _rezult);
 
 		if (Length(_vector2, &_rezult))
-			printf("That's why length of the second vector cann't be found!\n");
+			printf("That's why length of the second vector can't be found!\n");
 		else printf("Length of the second vector: %lf\n", _rezult);
 
 		if (Length(_vector3, &_rezult))
-			printf("That's why length of the third vector cann't be found!\n\n");
+			printf("That's why length of the third vector can't be found!\n\n");
 		else printf("Length of the third vector: %lf\n\n", _rezult);
 	}
 
 	/* Additions */
 	{
 		if (Addition(_vector1, _vector2, &v_rezult))
-			printf("That's why summation of the first and the second vectors cann't be found!\n");
+			printf("That's why summation of the first and the second vectors can't be found!\n");
 		else {
 			printf("Summation of the first and the second vectors: (");
 			for (i = 0; i < v_rezult->n; i++) printf(" %lf", (v_rezult->d)[i]);
@@ -101,7 +101,7 @@ void main()
 		}
 
 		if (Addition(_vector1, _vector3, &v_rezult))
-			printf("That's why summation of the first and the third vectors cann't be found!\n");
+			printf("That's why summation of the first and the third vectors can't be found!\n");
 		else {
 			printf("Summation of the first and the third vectors: (");
 			for (i = 0; i < v_rezult->n; i++) printf(" %lf", (v_rezult->d)[i]);
@@ -109,7 +109,7 @@ void main()
 		}
 
 		if (Addition(_vector2, _vector3, &v_rezult))
-			printf("That's why summation of the second and the third vectors cann't be found!\n\n");
+			printf("That's why summation of the second and the third vectors can't be found!\n\n");
 		else {
 			printf("Summation of the second and the third vectors: (");
 			for (i = 0; i < v_rezult->n; i++) printf(" %lf", (v_rezult->d)[i]);
@@ -120,7 +120,7 @@ void main()
 	/* Subtractions */
 	{
 		if (Subtraction(_vector1, _vector2, &v_rezult))
-			printf("Subtraction of the first and the second vectors cann't be found!\n");
+			printf("Subtraction of the first and the second vectors can't be found!\n");
 		else {
 			printf("Subtraction of the first and the second vectors: (");
 			for (i = 0; i < v_rezult->n; i++) printf(" %lf", (v_rezult->d)[i]);
@@ -128,7 +128,7 @@ void main()
 		}
 		
 		if (Subtraction(_vector1, _vector3, &v_rezult))
-			printf("Subtraction of the first and the third vectors cann't be found!\n");
+			printf("Subtraction of the first and the third vectors can't be found!\n");
 		else {
 			printf("Subtraction of the first and the third vectors: (");
 			for (i = 0; i < v_rezult->n; i++) printf(" %lf", (v_rezult->d)[i]);
@@ -136,7 +136,7 @@ void main()
 		}
 		
 		if (Subtraction(_vector2, _vector3, &v_rezult))
-			printf("Subtraction of the second and the third vectors cann't be found!\n\n");
+			printf("Subtraction of the second and the third vectors can't be found!\n\n");
 		else {
 			printf("Subtraction of the second and the third vectors: (");
 			for (i = 0; i < v_rezult->n; i++) printf(" %lf", (v_rezult->d)[i]);
