@@ -1,7 +1,4 @@
-#include "iostream"
-#include "Tasks.h"
 #include "ToDoList.h"
-#include "cstdio"
 
 int main()
 {

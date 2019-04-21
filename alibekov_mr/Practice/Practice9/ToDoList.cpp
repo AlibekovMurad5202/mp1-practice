@@ -151,6 +151,5 @@ void ToDoList::Read(const char * _fileName)
 
   toDoFile.getline(str, 255);
   cout << str << endl;
-  system("pause");
   toDoFile.close();
 }
