@@ -27,17 +27,45 @@ int main()
   }
   do
   {
+    bool wantToSeeExample = true;
     try 
     {
-      ToDoList td;
-      td.Read("example.txt");
-      for (int i = 0; i < td.count; i++)
+      std::cout << "Do you want to see example?  1 - Yes.  0 - No.\n";
+      std::cin >> wantToSeeExample;
+      if (wantToSeeExample)
       {
-        td.tasks[i]->PrintTask();
+        ToDoList td_example;
+        td_example.Read("example.txt");
+        std::cout << std::endl;
+        td_example.Print(TaskDate(21, 4, 2019));
+        std::cout << std::endl;
+        td_example.Print(TaskDate(1, 5, 2019));
+        std::cout << std::endl << "Enter date :";
+        int d, m, y;
+        std::cin >> d >> m >> y;
+        td_example.Print(TaskDate(d, m, y));
       }
-      std::cout << "\n";
-      td.Print(TaskDate(21, 4, 2019));
-      td.Print(TaskDate(1, 5, 2019));
+      else
+      {
+        std::cout << "Enter file's name: ";
+        char fileName[255];
+        std::cin >> fileName;
+        ToDoList td;
+        td.Read(fileName); 
+        bool wantToSeeTasksForDate = false;
+
+        std::cout << "Do you want to see tasks for a certain date?  1 - Yes.  0 - No.\n";
+        std::cin >> wantToSeeTasksForDate;
+        while (wantToSeeTasksForDate)
+        {
+          std::cout << std::endl << "Enter date :";
+          int d, m, y;
+          std::cin >> d >> m >> y;
+          td.Print(TaskDate(d, m, y));
+          std::cout << "\nDo you want to see tasks for an another date?  1 - Yes.  0 - No.\n";
+          std::cin >> wantToSeeTasksForDate;
+        }
+      }
     }
     catch (ExceptionOutOfRange const & e)
     {
@@ -45,6 +73,8 @@ int main()
       std::cout << "Reason: " << e.why() << std::endl;
       std::cout << "errorLine: " << e.errorLine() << std::endl;
       std::cout << "errorFile:" << e.errorFile() << std::endl;
+
+      std::cout << "\nAn error has occurred! ";
     }
     catch (ExceptionFileIsNotOpen const & e)
     {
@@ -52,6 +82,8 @@ int main()
       std::cout << "Reason: " << e.why() << std::endl;
       std::cout << "errorLine: " << e.errorLine() << std::endl;
       std::cout << "errorFile:" << e.errorFile() << std::endl;
+
+      std::cout << "\nAn error has occurred! ";
     }
     catch (Exception404 const & e)
     {
@@ -59,6 +91,8 @@ int main()
       std::cout << "Reason: " << e.why() << std::endl;
       std::cout << "errorLine: " << e.errorLine() << std::endl;
       std::cout << "errorFile:" << e.errorFile() << std::endl;
+
+      std::cout << "\nAn error has occurred! ";
     }
     catch (ExceptionTaskUndefined const & e)
     {
@@ -66,6 +100,8 @@ int main()
       std::cout << "Reason: " << e.why() << std::endl;
       std::cout << "errorLine: " << e.errorLine() << std::endl;
       std::cout << "errorFile:" << e.errorFile() << std::endl;
+
+      std::cout << "\nAn error has occurred! ";
     }
     catch (ExceptionTaskDateUndefined const & e)
     {
@@ -73,13 +109,22 @@ int main()
       std::cout << "Reason: " << e.why() << std::endl;
       std::cout << "errorLine: " << e.errorLine() << std::endl;
       std::cout << "errorFile:" << e.errorFile() << std::endl;
+
+      std::cout << "\nAn error has occurred! ";
     }
     catch (...)
     {
       std::cout << std::endl << "I don't know what was happened. I'm scared. \
       I cann't fix it. I'm just a computer. :(" << std::endl;
+
+      std::cout << "\nAn error has occurred! ";
     }
-    break;
+
+    std::cout << "Do you want to exit the program?  1 - Yes.  0 - No.\n";
+    bool wantToExit = true;
+    std::cin >> wantToExit;
+    if (wantToExit)
+      break;
   } while (1);
   
   system("pause");

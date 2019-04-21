@@ -32,6 +32,7 @@ ToDoList::~ToDoList()
 void ToDoList::Print(TaskDate _date) const
 {
   _date.Print();
+  bool smthIs = false;
   std::cout << std::endl;
   for (UINT i = 0; i < count; i++)
   {
@@ -39,8 +40,11 @@ void ToDoList::Print(TaskDate _date) const
     {
       tasks[i]->PrintTask();
       //std::cout << std::endl;
+      smthIs = true;
     }
   }
+  if (!smthIs)
+    std::cout << "You have not tasks for this date! Relax! :)" << std::endl;
 }
 
 void ToDoList::Read(const char * _fileName)
@@ -166,6 +170,11 @@ void ToDoList::Read(const char * _fileName)
     //tasks[i]->PrintTask();
     toDoFile.ignore(1);
 
+  }
+
+  for (UINT i = 0; i < count; i++)
+  {
+    tasks[i]->PrintTask();
   }
 
   toDoFile.getline(str, 255);
