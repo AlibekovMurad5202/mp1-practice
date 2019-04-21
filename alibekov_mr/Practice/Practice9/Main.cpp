@@ -40,10 +40,6 @@ int main()
         td_example.Print(TaskDate(21, 4, 2019));
         std::cout << std::endl;
         td_example.Print(TaskDate(1, 5, 2019));
-        std::cout << std::endl << "Enter date :";
-        int d, m, y;
-        std::cin >> d >> m >> y;
-        td_example.Print(TaskDate(d, m, y));
       }
       else
       {

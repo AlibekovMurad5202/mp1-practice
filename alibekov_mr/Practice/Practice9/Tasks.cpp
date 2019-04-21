@@ -12,7 +12,6 @@ Task::Task(const char * _toDo, TaskDate _date)
     throw ExceptionTaskUndefined(__LINE__, __FILE__);
   int k = 0;
   while (toDo[k] = _toDo[k++]);
-  //toDo = _toDo;
   date = _date;
 }
 
@@ -22,7 +21,6 @@ Task::Task(const char * _toDo, UINT _day, UINT _month, int _year)
     throw ExceptionTaskUndefined(__LINE__, __FILE__);
   int k = 0;
   while (toDo[k] = _toDo[k++]);
-  //toDo = _toDo;
   date.setDay(_day);
   date.setMonth(_month);
   date.setYear(_year);
@@ -32,7 +30,6 @@ Task::Task(const Task & _task)
 {
   int k = 0;
   while (toDo[k] = _task.toDo[k++]);
-  //toDo = _task.toDo;
   date = _task.date;
 }
 
@@ -49,7 +46,6 @@ TaskForDay::TaskForDay(const TaskForDay & _taskForDay)
 {
   int k = 0;
   while (toDo[k] = _taskForDay.toDo[k++]);
-  //toDo = _taskForDay.toDo;
   date = _taskForDay.date;
 }
 
@@ -59,7 +55,6 @@ TaskForDay::TaskForDay(const char * _toDo, UINT _day, UINT _month, int _year)
     throw ExceptionTaskUndefined(__LINE__, __FILE__);
   int k = 0;
   while (toDo[k] = _toDo[k++]);
-  //toDo = _toDo;
   date.setDay(_day);
   date.setMonth(_month);
   date.setYear(_year);
@@ -71,7 +66,6 @@ TaskForDay::TaskForDay(const char * _toDo, TaskDate _date)
     throw ExceptionTaskUndefined(__LINE__, __FILE__);
   int k = 0;
   while (toDo[k] = _toDo[k++]);
-//  toDo = _toDo;
   date = _date;
 }
 
@@ -92,7 +86,6 @@ const TaskForDay & TaskForDay::operator=(const TaskForDay & _tfd)
   date = _tfd.date;
   int k = 0;
   while (toDo[k] = _tfd.toDo[k++]);
-  //toDo = _tfd.toDo;
   return *this;
 }
 
@@ -108,7 +101,6 @@ TaskForTime::TaskForTime(const char * _toDo, TaskDate _date, UINT _duration)
     throw ExceptionTaskUndefined(__LINE__, __FILE__);
   int k = 0;
   while (toDo[k] = _toDo[k++]);
- // toDo = _toDo;
   date = _date;
   duration = _duration;
 }
@@ -119,7 +111,6 @@ TaskForTime::TaskForTime(const char * _toDo, UINT _day, UINT _month, int _year, 
     throw ExceptionTaskUndefined(__LINE__, __FILE__);
   int k = 0;
   while (toDo[k] = _toDo[k++]);
-  //toDo = _toDo;
   date.setDay(_day);
   date.setMonth(_month);
   date.setYear(_year);
@@ -132,7 +123,6 @@ TaskForTime::TaskForTime(const TaskForTime & _task)
     throw ExceptionTaskUndefined(__LINE__, __FILE__);
   int k = 0;
   while (toDo[k] = _task.toDo[k++]);
-  //toDo = _task.toDo;
   date = _task.date;
   duration = _task.duration;
 }
@@ -163,7 +153,6 @@ const TaskForTime & TaskForTime::operator=(const TaskForTime & _tft)
   date = _tft.date;
   int k = 0;
   while (toDo[k] = _tft.toDo[k++]);
-  //toDo = _tft.toDo;
   _time = _tft._time;
   duration = _tft.duration;
   return *this;

@@ -36,13 +36,12 @@ const Time & Time::operator=(const Time & _t)
 
 void Time::Print()
 {
-  //std::cout << " ";
   if (hours < 10)
     std::cout << "0";
   std::cout << hours << ":";
   if (minutes < 10)
     std::cout << "0";
-  std::cout << minutes;// << " ";
+  std::cout << minutes;
 }
 
 UINT Time::getHours()
@@ -101,9 +100,6 @@ bool TaskDate::operator==(const TaskDate & _date) const
 {
   if (this == &_date)
     return true;
-  /*if ((_date.day == day) && (_date.month == month) && (_date.year == year))
-    return true;
-  return false;*/
   return ((_date.day == day) && (_date.month == month) && (_date.year == year));
 }
 
@@ -160,13 +156,22 @@ void TaskDate::setMonth(UINT _month)
 
 void TaskDate::setMonth(char *_monthName)
 {
-  if (_monthName[0] == 0)
-    month = 0;
-  if (_monthName == "April")
-    month = 4;
-  for (int i = 0; i < 14; i++)
-    if (_monthName == months[i])
-      month = i;
+  for (UINT j = 1; j < 14; j++)
+  {
+    bool b = false;
+    int p = 0;
+    while ((months[j])[p])
+      if ((months[j])[p] != _monthName[p++])
+      {
+        b = true;
+        break;
+      }
+    if (!b)
+    {
+      setMonth(j);
+      break;
+    }
+  }
 }
 
 void TaskDate::setYear(int _year)

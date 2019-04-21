@@ -20,7 +20,6 @@ public:
 
   void virtual PrintTask() = 0 ;
 
-private:
 };
 
 class TaskForDay : public Task
@@ -34,6 +33,7 @@ public:
 
   void PrintTask();
   const TaskForDay & operator= (const TaskForDay & _tfd);
+
 };
 
 class TaskForTime : public Task
@@ -48,7 +48,6 @@ public:
   void PrintTask();
   const TaskForTime & operator= (const TaskForTime & _tft);
 
-private:
 };
 
 #endif // !__TASKS_H__

@@ -2,21 +2,14 @@
 
 ToDoList::ToDoList()
 {
-  tasks;
+  tasks = nullptr;
   count = 0;
 }
 
 ToDoList::ToDoList(UINT _count)
 {
-
   count = _count;
   tasks = new Task*[count];
-  
-  /*for (UINT i = 0; i < count; i++)
-  {
-    tasks[i] = new TaskForDay("B", TaskDate(2, 4, 2000 + i));
-    tasks[i]->PrintTask();
-  }*/
 }
 
 ToDoList::~ToDoList()
@@ -39,7 +32,6 @@ void ToDoList::Print(TaskDate _date) const
     if (tasks[i]->date == _date) 
     {
       tasks[i]->PrintTask();
-      //std::cout << std::endl;
       smthIs = true;
     }
   }
@@ -54,7 +46,10 @@ void ToDoList::Read(const char * _fileName)
   ifstream toDoFile;
   toDoFile.open(_fileName);
   if (!toDoFile.is_open())
+  {
+    toDoFile.close();
     throw ExceptionFileIsNotOpen(__LINE__, __FILE__);
+  }
 
   char str[255];
   toDoFile.getline(str, 255);
@@ -99,33 +94,11 @@ void ToDoList::Read(const char * _fileName)
     tasks[i]->toDo[k] = 0;
 
     toDoFile.ignore(2);
-    //toDoFile.seekg(startPos);
-    //toDoFile.getline(str, 1);
-    //cout << startPos << " ";
-    //cout << toDoFile.tellg();
 
     char _monthName[255];
     toDoFile >> _monthName;
-    //char z[255] = "April";
-    //if (_monthName == z)
-    //  cout << "________" << 4 << "________" << endl;
 
-    for (UINT j = 1; j < 14; j++)
-    {
-      bool b = false;
-      int p = 0;
-      while ((months[j])[p])
-        if ((months[j])[p] != _monthName[p++])
-        {
-          b = true;
-          break;
-        }
-      if (!b)
-      {
-        tasks[i]->date.setMonth(j);
-        break;
-      }
-    }
+    tasks[i]->date.setMonth(_monthName);
 
     {
       int _day;
@@ -167,7 +140,6 @@ void ToDoList::Read(const char * _fileName)
       toDoFile.ignore(255, '.');
     }
 
-    //tasks[i]->PrintTask();
     toDoFile.ignore(1);
 
   }
