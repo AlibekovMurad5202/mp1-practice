@@ -36,31 +36,31 @@ public:
   ~ExceptionOutOfRange();
 };
 
-class ExceptionBadAlloc : public MyException
+class Exception404 : public MyException
 {
 public:
-  ExceptionBadAlloc();
-  ExceptionBadAlloc(const ExceptionBadAlloc& _exception);
-  ExceptionBadAlloc(int _line, const char *_file);
-  ~ExceptionBadAlloc();
+  Exception404();
+  Exception404(const Exception404& _exception);
+  Exception404(int _line, const char *_file);
+  ~Exception404();
 };
 
-class ExceptionTaskWithoutName : public MyException
+class ExceptionTaskUndefined : public MyException
 {
 public:
-  ExceptionTaskWithoutName();
-  ExceptionTaskWithoutName(const ExceptionTaskWithoutName& _exception);
-  ExceptionTaskWithoutName(int _line, const char *_file);
-  ~ExceptionTaskWithoutName();
+  ExceptionTaskUndefined();
+  ExceptionTaskUndefined(const ExceptionTaskUndefined& _exception);
+  ExceptionTaskUndefined(int _line, const char *_file);
+  ~ExceptionTaskUndefined();
 };
 
-class ExceptionTaskWithoutDate : public MyException
+class ExceptionTaskDateUndefined : public MyException
 {
 public:
-  ExceptionTaskWithoutDate();
-  ExceptionTaskWithoutDate(const ExceptionTaskWithoutDate& _exception);
-  ExceptionTaskWithoutDate(int _line, const char *_file);
-  ~ExceptionTaskWithoutDate();
+  ExceptionTaskDateUndefined();
+  ExceptionTaskDateUndefined(const ExceptionTaskDateUndefined& _exception);
+  ExceptionTaskDateUndefined(int _line, const char *_file);
+  ~ExceptionTaskDateUndefined();
 };
 
 class ExceptionFileIsNotOpen : public MyException

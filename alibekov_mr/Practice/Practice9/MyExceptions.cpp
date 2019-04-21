@@ -38,7 +38,7 @@ MyException::~MyException()
 ExceptionOutOfRange::ExceptionOutOfRange()
 {
   str_what = "Value out of bounds!";
-  str_why = "Value less than 0 or over maximum value.";
+  str_why = "Value does not match conditions.";
   line = -1;
   file = 0;
 }
@@ -54,7 +54,7 @@ ExceptionOutOfRange::ExceptionOutOfRange(const ExceptionOutOfRange& _exception)
 ExceptionOutOfRange::ExceptionOutOfRange(int _line, const char *_file)
 {
   str_what = "Value out of bounds!";
-  str_why = "Value less than 0 or over maximum value.";
+  str_why = "Value does not match conditions.";
   line = _line;
   file = _file;
 }
@@ -64,15 +64,15 @@ ExceptionOutOfRange::~ExceptionOutOfRange()
   line = -1;
 }
 
-ExceptionBadAlloc::ExceptionBadAlloc()
+Exception404::Exception404()
 {
-  str_why = 0;
-  str_what = "Bad memory allocation!";
+  str_why = "File with this name is not exist.";
+  str_what = "File not found!";
   line = -1;
   file = 0;
 }
 
-ExceptionBadAlloc::ExceptionBadAlloc(const ExceptionBadAlloc& _exception)
+Exception404::Exception404(const Exception404& _exception)
 {
   str_why = _exception.why();
   str_what = _exception.what();
@@ -80,28 +80,28 @@ ExceptionBadAlloc::ExceptionBadAlloc(const ExceptionBadAlloc& _exception)
   file = _exception.errorFile();
 }
 
-ExceptionBadAlloc::ExceptionBadAlloc(int _line, const char *_file)
+Exception404::Exception404(int _line, const char *_file)
 {
-  str_why = 0;
-  str_what = "Bad memory allocation!";
+  str_why = "File with this name is not exist.";
+  str_what = "File not found!";
   line = _line;
   file = _file;
 }
 
-ExceptionBadAlloc::~ExceptionBadAlloc()
+Exception404::~Exception404()
 {
   line = -1;
 }
 
-ExceptionTaskWithoutName::ExceptionTaskWithoutName()
+ExceptionTaskUndefined::ExceptionTaskUndefined()
 {
-  str_what = "Matrix is empty!";
-  str_why = "The matrix was not filled.";
+  str_what = "Task is undefined!";
+  str_why = "Task without name.";
   line = -1;
   file = 0;
 }
 
-ExceptionTaskWithoutName::ExceptionTaskWithoutName(const ExceptionTaskWithoutName& _exception)
+ExceptionTaskUndefined::ExceptionTaskUndefined(const ExceptionTaskUndefined& _exception)
 {
   str_why = _exception.why();
   str_what = _exception.what();
@@ -109,28 +109,28 @@ ExceptionTaskWithoutName::ExceptionTaskWithoutName(const ExceptionTaskWithoutNam
   file = _exception.errorFile();
 }
 
-ExceptionTaskWithoutName::ExceptionTaskWithoutName(int _line, const char *_file)
+ExceptionTaskUndefined::ExceptionTaskUndefined(int _line, const char *_file)
 {
-  str_what = "Matrix is empty!";
-  str_why = "The matrix was not filled.";
+  str_what = "Task is undefined!";
+  str_why = "Task without name.";
   line = _line;
   file = _file;
 }
 
-ExceptionTaskWithoutName::~ExceptionTaskWithoutName()
+ExceptionTaskUndefined::~ExceptionTaskUndefined()
 {
   line = -1;
 }
 
-ExceptionTaskWithoutDate::ExceptionTaskWithoutDate()
+ExceptionTaskDateUndefined::ExceptionTaskDateUndefined()
 {
-  str_what = "Matrix has not positive dimensions!";
-  str_why = "Number of columns or number of rows no more than zero.";
+  str_what = "Task's date is undefined!";
+  str_why = "Task without date.";
   line = -1;
   file = 0;
 }
 
-ExceptionTaskWithoutDate::ExceptionTaskWithoutDate(const ExceptionTaskWithoutDate& _exception)
+ExceptionTaskDateUndefined::ExceptionTaskDateUndefined(const ExceptionTaskDateUndefined& _exception)
 {
   str_why = _exception.why();
   str_what = _exception.what();
@@ -138,23 +138,23 @@ ExceptionTaskWithoutDate::ExceptionTaskWithoutDate(const ExceptionTaskWithoutDat
   file = _exception.errorFile();
 }
 
-ExceptionTaskWithoutDate::ExceptionTaskWithoutDate(int _line, const char *_file)
+ExceptionTaskDateUndefined::ExceptionTaskDateUndefined(int _line, const char *_file)
 {
-  str_what = "Matrix has not positive dimensions!";
-  str_why = "Number of columns or number of rows no more than zero.";
+  str_what = "Task's date is undefined!";
+  str_why = "Task without date.";
   line = _line;
   file = _file;
 }
 
-ExceptionTaskWithoutDate::~ExceptionTaskWithoutDate()
+ExceptionTaskDateUndefined::~ExceptionTaskDateUndefined()
 {
   line = -1;
 }
 
 ExceptionFileIsNotOpen::ExceptionFileIsNotOpen()
 {
-  str_what = "Matrices have different dimensions!";
-  str_why = "Number of columns or rows in the first matrix, respectively, is not equal to the number of columns or rows in the second matrix.";
+  str_what = "File is not open!";
+  str_why = 0;
   line = -1;
   file = 0;
 }
@@ -169,8 +169,8 @@ ExceptionFileIsNotOpen::ExceptionFileIsNotOpen(const ExceptionFileIsNotOpen& _ex
 
 ExceptionFileIsNotOpen::ExceptionFileIsNotOpen(int _line, const char *_file)
 {
-  str_what = "Matrices have different dimensions!";
-  str_why = "Number of columns or rows in the first matrix, respectively, is not equal to the number of columns or rows in the second matrix.";
+  str_what = "File is not open!";
+  str_why = 0;
   line = _line;
   file = _file;
 }

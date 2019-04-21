@@ -38,7 +38,7 @@ void ToDoList::Print(TaskDate _date) const
     if (tasks[i]->date == _date) 
     {
       tasks[i]->PrintTask();
-      std::cout << std::endl;
+      //std::cout << std::endl;
     }
   }
 }
@@ -163,7 +163,7 @@ void ToDoList::Read(const char * _fileName)
       toDoFile.ignore(255, '.');
     }
 
-    tasks[i]->PrintTask();
+    //tasks[i]->PrintTask();
     toDoFile.ignore(1);
 
   }

@@ -9,7 +9,7 @@ Task::Task()
 Task::Task(const char * _toDo, TaskDate _date)
 {
   if (_toDo[0] == 0)
-    throw ExceptionTaskWithoutName(__LINE__, __FILE__);
+    throw ExceptionTaskUndefined(__LINE__, __FILE__);
   int k = 0;
   while (toDo[k] = _toDo[k++]);
   //toDo = _toDo;
@@ -19,7 +19,7 @@ Task::Task(const char * _toDo, TaskDate _date)
 Task::Task(const char * _toDo, UINT _day, UINT _month, int _year)
 {
   if (_toDo[0] == 0)
-    throw ExceptionTaskWithoutName(__LINE__, __FILE__);
+    throw ExceptionTaskUndefined(__LINE__, __FILE__);
   int k = 0;
   while (toDo[k] = _toDo[k++]);
   //toDo = _toDo;
@@ -56,7 +56,7 @@ TaskForDay::TaskForDay(const TaskForDay & _taskForDay)
 TaskForDay::TaskForDay(const char * _toDo, UINT _day, UINT _month, int _year)
 {
   if (_toDo[0] == 0)
-    throw ExceptionTaskWithoutName(__LINE__, __FILE__);
+    throw ExceptionTaskUndefined(__LINE__, __FILE__);
   int k = 0;
   while (toDo[k] = _toDo[k++]);
   //toDo = _toDo;
@@ -68,7 +68,7 @@ TaskForDay::TaskForDay(const char * _toDo, UINT _day, UINT _month, int _year)
 TaskForDay::TaskForDay(const char * _toDo, TaskDate _date)
 {
   if (_toDo[0] == 0)
-    throw ExceptionTaskWithoutName(__LINE__, __FILE__);
+    throw ExceptionTaskUndefined(__LINE__, __FILE__);
   int k = 0;
   while (toDo[k] = _toDo[k++]);
 //  toDo = _toDo;
@@ -81,7 +81,7 @@ TaskForDay::~TaskForDay()
 void TaskForDay::PrintTask()
 {
   if (toDo[0] == 0)
-    throw ExceptionTaskWithoutName(__LINE__, __FILE__);
+    throw ExceptionTaskUndefined(__LINE__, __FILE__);
   std::cout << toDo << " : ";
   date.Print();
   std::cout << std::endl;
@@ -105,7 +105,7 @@ TaskForTime::TaskForTime()
 TaskForTime::TaskForTime(const char * _toDo, TaskDate _date, UINT _duration)
 {
   if (_toDo[0] == 0)
-    throw ExceptionTaskWithoutName(__LINE__, __FILE__);
+    throw ExceptionTaskUndefined(__LINE__, __FILE__);
   int k = 0;
   while (toDo[k] = _toDo[k++]);
  // toDo = _toDo;
@@ -116,7 +116,7 @@ TaskForTime::TaskForTime(const char * _toDo, TaskDate _date, UINT _duration)
 TaskForTime::TaskForTime(const char * _toDo, UINT _day, UINT _month, int _year, UINT _duration)
 {
   if (_toDo[0] == 0)
-    throw ExceptionTaskWithoutName(__LINE__, __FILE__);
+    throw ExceptionTaskUndefined(__LINE__, __FILE__);
   int k = 0;
   while (toDo[k] = _toDo[k++]);
   //toDo = _toDo;
@@ -129,7 +129,7 @@ TaskForTime::TaskForTime(const char * _toDo, UINT _day, UINT _month, int _year, 
 TaskForTime::TaskForTime(const TaskForTime & _task)
 {
   if (_task.toDo[0] == 0)
-    throw ExceptionTaskWithoutName(__LINE__, __FILE__);
+    throw ExceptionTaskUndefined(__LINE__, __FILE__);
   int k = 0;
   while (toDo[k] = _task.toDo[k++]);
   //toDo = _task.toDo;
@@ -146,7 +146,7 @@ TaskForTime::~TaskForTime()
 void TaskForTime::PrintTask()
 {
   if (toDo[0] == 0)
-    throw ExceptionTaskWithoutName(__LINE__, __FILE__);
+    throw ExceptionTaskUndefined(__LINE__, __FILE__);
   std::cout << toDo << " : ";
   date.Print();
   std::cout << " Begins at ";
