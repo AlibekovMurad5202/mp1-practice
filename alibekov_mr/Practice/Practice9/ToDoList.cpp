@@ -185,6 +185,13 @@ void ToDoList::Read(const char * _fileName)
     tasks[i]->PrintTask();
   }
 
+  char next_symbol;
+  do
+  {
+    toDoFile >> next_symbol;
+  } while (next_symbol != '|');
+  toDoFile.putback(next_symbol);
+
   toDoFile.getline(str, 255);
   cout << str << endl;
   toDoFile.close();
