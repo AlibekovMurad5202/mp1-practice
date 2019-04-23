@@ -27,7 +27,7 @@ int main()
     bool wantToSeeExample = true;
     try 
     {
-      std::cout << "Do you want to see example?  1 - Yes.  0 - No.\n";
+      std::cout << "Do you want to see the example?  1 - Yes.  0 - No.\n";
       std::cin >> wantToSeeExample;
       if (wantToSeeExample)
       {
@@ -119,7 +119,7 @@ int main()
     if (wantToExit)
       break;
   } while (1);
-  
+
   system("pause");
   return 0;
 }

@@ -93,7 +93,15 @@ void ToDoList::Read(const char * _fileName)
       tasks[i]->toDo[k] = str[k++];
     tasks[i]->toDo[k] = 0;
 
-    toDoFile.ignore(2);
+    toDoFile.ignore(1); 
+
+    char next_symbol;
+    do
+    {
+      toDoFile >> next_symbol;
+    } while ((next_symbol == ' ') || (next_symbol == ':'));
+    toDoFile.putback(next_symbol);
+
 
     char _monthName[255];
     toDoFile >> _monthName;
@@ -104,8 +112,14 @@ void ToDoList::Read(const char * _fileName)
       int _day;
       toDoFile >> _day;
       tasks[i]->date.setDay(_day);
-    }
-    toDoFile.ignore(2);
+    }   
+    
+    do
+    {
+      toDoFile >> next_symbol;
+    } while ((next_symbol == ' ') || (next_symbol == ','));
+    toDoFile.putback(next_symbol);
+
     {
       int _year;
       toDoFile >> _year;
@@ -121,7 +135,18 @@ void ToDoList::Read(const char * _fileName)
 
     if (s != '\n')
     {
-      toDoFile.ignore(11);
+      bool charIsNumber = false;
+      
+      //toDoFile.ignore(11);
+      do
+      {
+        toDoFile >> next_symbol;
+        if ((next_symbol >= '1') && (next_symbol <= '9') || (next_symbol == '0'))
+          charIsNumber = true;
+      } while (!charIsNumber);
+      toDoFile.putback(next_symbol);
+      charIsNumber = false;
+
       {
         int _hours;
         toDoFile >> _hours;
@@ -131,7 +156,18 @@ void ToDoList::Read(const char * _fileName)
         toDoFile >> _minutes;
         tasks[i]->_time.setMinutes(_minutes);
       }
-      toDoFile.ignore(14);
+
+      do
+      {
+        toDoFile >> next_symbol;
+        if ((next_symbol >= '1') && (next_symbol <= '9') || (next_symbol == '0'))
+          charIsNumber = true;
+      } while (!charIsNumber);
+      toDoFile.putback(next_symbol);
+      charIsNumber = false;
+      
+      //toDoFile.ignore(14);
+      
       {
         int _duration;
         toDoFile >> _duration;
