@@ -137,7 +137,6 @@ void ToDoList::Read(const char * _fileName)
     {
       bool charIsNumber = false;
       
-      //toDoFile.ignore(11);
       do
       {
         toDoFile >> next_symbol;
@@ -165,8 +164,6 @@ void ToDoList::Read(const char * _fileName)
       } while (!charIsNumber);
       toDoFile.putback(next_symbol);
       charIsNumber = false;
-      
-      //toDoFile.ignore(14);
       
       {
         int _duration;
