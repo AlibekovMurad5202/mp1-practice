@@ -10,7 +10,7 @@ class Container
 public:
   Container();
   ~Container();
-  Container(const Container& c);
+  Container(const Container<T, maxsize>& c);
 
   bool IsFull() const;
   bool IsEmpty() const;
@@ -55,7 +55,6 @@ Container<T, maxsize>::Container(const Container<T, maxsize>& a)
     for (int i = 0; i < count; i++)
       arr[i] = a.arr[i];
   }
-
 }
 
 template<typename T, int maxsize>
@@ -149,4 +148,102 @@ const T& Container<T, maxsize>::operator[](int index) const
   return arr[index];
 };
 
+template<typename T, int maxsize>
+class Container<T*, maxsize>
+{
+public:
+  Container();
+  ~Container();
+  Container(const Container<T*, maxsize>& c);
+
+  bool IsFull() const;
+  bool IsEmpty() const;
+
+  void Add(T* a);
+  int Find(const T& a) const;
+  void Delete(T a);
+
+  int getCount() { return count; }
+
+  T* operator[] (int index);
+  const T* operator[] (int index) const;
+
+private:
+  T** arr;
+  int count;
+};
+
+template<typename T, int maxsize>
+Container<T*, maxsize>::Container()
+{
+  count = 0;
+  T** arr = nullptr;
+}
+
+template<typename T, int maxsize>
+Container<T*, maxsize>::~Container()
+{
+  for (int i = 0; i < count; i++)
+    delete arr[i];
+  count = 0;
+  delete arr;
+}
+
+template<typename T, int maxsize>
+Container<T*, maxsize>::Container(const Container<T*, maxsize>& a)
+{
+  count = a.count;
+  if (count == 0)
+    arr = nullptr;
+  else
+  {
+    arr = new T*[count];
+    for (int i = 0; i < count; i++)
+    {
+      arr[i] = new T;
+      *arr[i] = *a.arr[i];
+    }
+  }
+}
+
+template<typename T, int maxsize>
+bool Container<T*, maxsize>::IsFull() const
+{
+  return (count == maxsize) ? true : false;
+}
+
+template<typename T, int maxsize>
+bool Container<T*, maxsize>::IsEmpty() const
+{
+  return (count == 0) ? true : false;
+}
+
+template<typename T, int maxsize>
+int Container<T*, maxsize>::Find(const T& a) const
+{
+  for (int i = 0; i < count; i++)
+    if (*arr[i] == a)
+      return i;
+  throw ExceptionItemNotFound(__LINE__, __FILE__);
+}
+
+template<typename T, int maxsize>
+T* Container<T*, maxsize>::operator[](int index)
+{
+  if ((index < 0) || (index >= count))
+    throw ExceptionOutOfRange(__LINE__, __FILE__);
+  return arr[index];
+}
+
+template<typename T, int maxsize>
+const T* Container<T*, maxsize>::operator[](int index) const
+{
+  if ((index < 0) || (index >= count))
+    throw ExceptionOutOfRange(__LINE__, __FILE__);
+  return arr[index];
+}
+
+
+
+;
 #endif // !__CONTAINER_H__
