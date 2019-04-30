@@ -183,7 +183,7 @@ public:
   bool IsEmpty() const;
 
   void Add(T* a);
-  int Find(const T& a) const;
+  int Find(T* a) const;
   void Delete(T* a);
 
   int getCount() { return count; }
@@ -252,12 +252,12 @@ bool Container<T*, maxsize>::IsEmpty() const
 }
 
 template<typename T, int maxsize>
-int Container<T*, maxsize>::Find(const T& a) const
+int Container<T*, maxsize>::Find(T* a) const
 {
   std::cout << "int Container<T*, maxsize>::Find(const T& a) const" << std::endl;
 
   for (int i = 0; i < count; i++)
-    if (*arr[i] == a)
+    if (arr[i] == a)
       return i;
   throw ExceptionItemNotFound(__LINE__, __FILE__);
 }
@@ -287,7 +287,7 @@ void Container<T*, maxsize>::Delete(T* a)
 {
   if (IsEmpty())
     throw ExceptionEmptyContainer(__LINE__, __FILE__);
-  int index = Find(*a);
+  int index = Find(a);
 
   if (count == 1)
   {
