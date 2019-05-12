@@ -64,35 +64,6 @@ ExceptionOutOfRange::~ExceptionOutOfRange()
   line = -1;
 }
 
-Exception404::Exception404()
-{
-  str_why = "File with this name is not exist.";
-  str_what = "File not found!";
-  line = -1;
-  file = 0;
-}
-
-Exception404::Exception404(const Exception404& _exception)
-{
-  str_why = _exception.why();
-  str_what = _exception.what();
-  line = _exception.errorLine();
-  file = _exception.errorFile();
-}
-
-Exception404::Exception404(int _line, const char* _file)
-{
-  str_why = "File with this name is not exist.";
-  str_what = "File not found!";
-  line = _line;
-  file = _file;
-}
-
-Exception404::~Exception404()
-{
-  line = -1;
-}
-
 ExceptionFullContainer::ExceptionFullContainer()
 {
   str_what = "Cannot add item!";

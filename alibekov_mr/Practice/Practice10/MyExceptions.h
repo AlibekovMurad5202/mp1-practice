@@ -36,15 +36,6 @@ public:
   ~ExceptionOutOfRange();
 };
 
-class Exception404 : public MyException
-{
-public:
-  Exception404();
-  Exception404(const Exception404& _exception);
-  Exception404(int _line, const char* _file);
-  ~Exception404();
-};
-
 class ExceptionFullContainer : public MyException
 {
 public:

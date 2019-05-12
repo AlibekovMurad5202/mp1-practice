@@ -76,16 +76,9 @@ int main()
   }
 
 
-
-
-
   std::cout << std::endl << "End of Container!" << std::endl << std::endl;
 
-
-
-
-
-  /*
+  
   {
     Container<int*, 4> c1;
     Container<int*, 4> c2;
@@ -116,7 +109,7 @@ int main()
       c3.Add(a2);
       c3.Add(a3);
       std::cout << c3.IsEmpty() << std::endl;
-      std::cout << c3.Find(9) << std::endl;
+      std::cout << c3.Find(a2) << std::endl;
       PRINT_P(c3.getCount(), c3);
       *c3[0] = *a6;
       PRINT_P(c3.getCount(), c3);
@@ -161,6 +154,6 @@ int main()
       I cann't fix it. I'm just a computer. :(" << std::endl;
     }
   }
-  */
+
   return 0;
 }
