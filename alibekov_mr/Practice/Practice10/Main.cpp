@@ -14,20 +14,34 @@ int main()
     {
       c1.Delete(9);
     }
-    catch (MyException const& e)
+    catch (ExceptionEmptyContainer const& e)
     {
       std::cout << "Error: " << e.what() << std::endl;
       std::cout << "Reason: " << e.why() << std::endl;
-      std::cout << "errorLine: " << e.errorLine();
-      std::cout << "\nerrorFile:" << e.errorFile() << std::endl;
+      std::cout << "errorLine: " << e.errorLine() << std::endl;
+      std::cout << "errorFile:" << e.errorFile() << std::endl;
     }
-    std::cout << c3.IsFull() << std::endl;
-    std::cout << c3.IsEmpty() << std::endl;
+
+    std::cout << "Is container c3 full? ";
+    if (c3.IsFull())
+      std::cout << " Yes" << std::endl;
+    else std::cout << " No" << std::endl;   
+
+    std::cout << "Is container c3 empty? ";
+    if (c3.IsEmpty())
+      std::cout << " Yes" << std::endl;
+    else std::cout << " No" << std::endl;
+
     c3.Add(3);
     c3.Add(9);
-    std::cout << c3.getCount() << std::endl;
+    std::cout << "Count of elements in container c3: " << c3.getCount() << std::endl;
     c3.Add(7);
-    std::cout << c3.IsEmpty() << std::endl;
+
+    std::cout << "Is container c3 empty? ";
+    if (c3.IsEmpty())
+      std::cout << " Yes" << std::endl;
+    else std::cout << " No" << std::endl;
+
     std::cout << c3.Find(9) << std::endl;
     PRINT(c3.getCount(), c3);
     c3[0] = 4;
@@ -39,23 +53,23 @@ int main()
       c3.Add(14);
       PRINT(c3.getCount(), c3);
     }
-    catch (MyException const& e)
+    catch (ExceptionFullContainer const& e)
     {
       std::cout << "Error: " << e.what() << std::endl;
       std::cout << "Reason: " << e.why() << std::endl;
-      std::cout << "errorLine: " << e.errorLine();
-      std::cout << "\nerrorFile:" << e.errorFile() << std::endl;
+      std::cout << "errorLine: " << e.errorLine() << std::endl;
+      std::cout << "errorFile:" << e.errorFile() << std::endl;
     }
     try
     {
       c3[-1] = 0;
     }
-    catch (MyException const& e)
+    catch (ExceptionOutOfRange const& e)
     {
       std::cout << "Error: " << e.what() << std::endl;
       std::cout << "Reason: " << e.why() << std::endl;
-      std::cout << "errorLine: " << e.errorLine();
-      std::cout << "\nerrorFile:" << e.errorFile() << std::endl;
+      std::cout << "errorLine: " << e.errorLine() << std::endl;
+      std::cout << "errorFile:" << e.errorFile() << std::endl;
     }
     c3.Delete(9);
     PRINT(c3.getCount(), c3);
@@ -64,14 +78,14 @@ int main()
   {
     std::cout << "Error: " << e.what() << std::endl;
     std::cout << "Reason: " << e.why() << std::endl;
-    std::cout << "errorLine: " << e.errorLine();
-    std::cout << "\nerrorFile:" << e.errorFile() << std::endl;
+    std::cout << "errorLine: " << e.errorLine() << std::endl;
+    std::cout << "errorFile:" << e.errorFile() << std::endl;
   }
-  catch (...)
+  catch (std::exception const& e)
   {
-    std::cout << std::endl << "I don't know what was happened. I'm scared. \
-      I cann't fix it. I'm just a computer. :(" << std::endl;
+    std::cout << e.what << std::endl;
   }
+
 
 
   std::cout << std::endl << "End of Container!" << std::endl << std::endl;
@@ -94,20 +108,34 @@ int main()
       {
         c1.Delete(a2);
       }
-      catch (MyException const& e)
+      catch (ExceptionEmptyContainer const& e)
       {
         std::cout << "Error: " << e.what() << std::endl;
         std::cout << "Reason: " << e.why() << std::endl;
-        std::cout << "errorLine: " << e.errorLine();
-        std::cout << "\nerrorFile:" << e.errorFile() << std::endl;
+        std::cout << "errorLine: " << e.errorLine() << std::endl;
+        std::cout << "errorFile:" << e.errorFile() << std::endl;
       }
-      std::cout << c3.IsFull() << std::endl;
-      std::cout << c3.IsEmpty() << std::endl;
+
+      std::cout << "Is container c3 full? ";
+      if (c3.IsFull())
+        std::cout << " Yes" << std::endl;
+      else std::cout << " No" << std::endl;
+
+      std::cout << "Is container c3 empty? ";
+      if (c3.IsEmpty())
+        std::cout << " Yes" << std::endl;
+      else std::cout << " No" << std::endl;
+
       c3.Add(a1);
       c3.Add(a2);
-      std::cout << c3.getCount() << std::endl;
+      std::cout << "Count of elements in container c3: " << c3.getCount() << std::endl;
       c3.Add(a3);
-      std::cout << c3.IsEmpty() << std::endl;
+
+      std::cout << "Is container c3 empty? ";
+      if (c3.IsEmpty())
+        std::cout << " Yes" << std::endl;
+      else std::cout << " No" << std::endl;
+
       std::cout << c3.Find(a2) << std::endl;
       PRINT_P(c3.getCount(), c3);
       *c3[0] = *a6;
@@ -119,23 +147,23 @@ int main()
         c3.Add(a5);
         PRINT_P(c3.getCount(), c3);
       }
-      catch (MyException const& e)
+      catch (ExceptionFullContainer const& e)
       {
         std::cout << "Error: " << e.what() << std::endl;
         std::cout << "Reason: " << e.why() << std::endl;
-        std::cout << "errorLine: " << e.errorLine();
-        std::cout << "\nerrorFile:" << e.errorFile() << std::endl;
+        std::cout << "errorLine: " << e.errorLine() << std::endl;
+        std::cout << "errorFile:" << e.errorFile() << std::endl;
       }
       try
       {
         *c3[-1] = *a6;
       }
-      catch (MyException const& e)
+      catch (ExceptionOutOfRange const& e)
       {
         std::cout << "Error: " << e.what() << std::endl;
         std::cout << "Reason: " << e.why() << std::endl;
-        std::cout << "errorLine: " << e.errorLine();
-        std::cout << "\nerrorFile:" << e.errorFile() << std::endl;
+        std::cout << "errorLine: " << e.errorLine() << std::endl;
+        std::cout << "errorFile:" << e.errorFile() << std::endl;
       }
       c3.Delete(a2);
       PRINT_P(c3.getCount(), c3);
@@ -144,13 +172,12 @@ int main()
     {
       std::cout << "Error: " << e.what() << std::endl;
       std::cout << "Reason: " << e.why() << std::endl;
-      std::cout << "errorLine: " << e.errorLine();
-      std::cout << "\nerrorFile:" << e.errorFile() << std::endl;
+      std::cout << "errorLine: " << e.errorLine() << std::endl;
+      std::cout << "errorFile:" << e.errorFile() << std::endl;
     }
-    catch (...)
+    catch (std::exception const& e)
     {
-      std::cout << std::endl << "I don't know what was happened. I'm scared. \
-      I cann't fix it. I'm just a computer. :(" << std::endl;
+      std::cout << e.what << std::endl;
     }
   }
 
