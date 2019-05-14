@@ -1,10 +1,7 @@
 #include "Container.h"
 
-#define PRINT(a, b) std::cout << std::endl; \
-        for(int i = 0; i < a; i++) std::cout << b[i] << std::endl; 
-
-#define PRINT_P(a, b) std::cout << std::endl; \
-        for(int i = 0; i < a; i++) std::cout << *b[i] << std::endl; 
+#define PRINT(a, b) std::cout << std::endl; for(int i = 0; i < a; i++) std::cout << b[i] << std::endl; 
+#define PRINT_P(a, b) std::cout << std::endl; for(int i = 0; i < a; i++) std::cout << *b[i] << std::endl; 
 
 int main()
 {
@@ -28,6 +25,7 @@ int main()
     std::cout << c3.IsEmpty() << std::endl;
     c3.Add(3);
     c3.Add(9);
+    std::cout << c3.getCount() << std::endl;
     c3.Add(7);
     std::cout << c3.IsEmpty() << std::endl;
     std::cout << c3.Find(9) << std::endl;
@@ -107,6 +105,7 @@ int main()
       std::cout << c3.IsEmpty() << std::endl;
       c3.Add(a1);
       c3.Add(a2);
+      std::cout << c3.getCount() << std::endl;
       c3.Add(a3);
       std::cout << c3.IsEmpty() << std::endl;
       std::cout << c3.Find(a2) << std::endl;
