@@ -3,6 +3,8 @@
 
 #include "Date.h"
 
+const std::string unknown = "UNKNOWN";
+
 class Education
 {
 public:

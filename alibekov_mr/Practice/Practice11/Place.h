@@ -7,6 +7,8 @@
 
 #define UINT unsigned int
 
+const std::string unknown = "UNKNOWN";
+
 class Place
 {
 public:

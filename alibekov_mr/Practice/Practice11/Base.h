@@ -6,12 +6,13 @@
 class Base
 {
 public:
-  Person *persons;
+  Person **persons;
+  int count;
 
   Base();
   ~Base();
   Base(const Base& _base);
-  explicit Base(Person* p);
+  explicit Base(int _count);
 
   void Print() const;
   void PrintTheListOfPensioners() const;

@@ -5,6 +5,8 @@
 #include "Passport.h"
 #include "Education.h"
 
+const std::string unknown = "UNKNOWN";
+
 class Person
 {
 public:
