@@ -46,7 +46,7 @@ const Date & Date::operator=(const Date & _date)
   return *this;
 }
 
-void Date::Print()
+void Date::Print() const
 {
   std::cout << months[month] << " " << day << ", ";
   if (year > 0)
@@ -86,7 +86,7 @@ void Date::setMonth(UINT _month)
   month = _month;
 }
 
-void Date::setMonth(char *_monthName)
+void Date::setMonth(std::string _monthName)
 {
   for (UINT j = 1; j < 14; j++)
   {

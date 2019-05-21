@@ -6,8 +6,9 @@
 #include "MyExceptions.h"
 #include "iostream"
 #include "cstdio"
+#include "string"
 
-static const char* months[13] = { 0, "January" , "February", "March", "April", "May",
+static const std::string months[13] = { 0, "January" , "February", "March", "April", "May",
        "June", "July", "August", "September", "October", "November", "December" };
 
 class Date
@@ -15,13 +16,13 @@ class Date
 public:
   Date();
   Date(UINT _day, UINT _month, int _year);
-  Date(const TaskDate & _date);
+  Date(const Date & _date);
   ~Date();
 
   bool operator== (const Date& _date) const;
-  const TaskDate & operator=(const Date & _date);
+  const Date & operator=(const Date & _date);
 
-  void Print();
+  void Print() const;
 
   UINT getDay();
   UINT getMonth();
@@ -29,7 +30,7 @@ public:
 
   void setDay(UINT _day);
   void setMonth(UINT _month);
-  void setMonth(char *_monthName);
+  void setMonth(std::string _monthName);
   void setYear(int _year);
 
 private:

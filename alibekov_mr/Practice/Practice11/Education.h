@@ -1,18 +1,25 @@
 #ifndef __EDUCATION_H__
 #define __EDUCATION_H__
 
+#include "Date.h"
+
 class Education
 {
+public:
   std::string school;
-  unsigned number_of_class;
+  UINT number_of_class;
   std::string university;
-  unsigned course;
+  UINT grade;
+  Date graduationDate;
+  Date universityGraduationDate;
   std::string other;
 
-public:
   Education();
   ~Education();
-
+  Education(const Education& _ed);
+  
+  const Education& operator= (const Education& _ed);
+  bool operator== (const Education& _ed) const;
 };
 
 #endif
