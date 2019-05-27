@@ -12,31 +12,26 @@ void main()
     printf("Ne sushestvuet(-ut)\n");
     return; 
   }
-
   if ((x1 == x2) && (y1 == y2) && (r1 == r2)) 
   {
     printf("Sovpadaut (beskonechno mnogo obshih tochek)\n");
     return;
   }
-
   if (r_megdu_centrami > (r1 + r2))
   {
     printf("Ne imeut nichego obshego (0 obshih tochek)\n");
     return;
   }
-
   if (r_megdu_centrami == (r1 - r2))
   {
     printf("Kasautsya i odna vnutry drugoy (1 obshaya tochka)\n");
     return;
   }
-
   if (r_megdu_centrami == (r1 + r2))
   {
     printf("Kasautsya i odna ne vnutry drugoy (1 obshaya tochka)\n");
     return;
   }
-
   if (r_megdu_centrami < (r1 - r2))
   {
     printf("Odna vnutry drugoy i ne kasautsya (0 obshih tochek)\n");
