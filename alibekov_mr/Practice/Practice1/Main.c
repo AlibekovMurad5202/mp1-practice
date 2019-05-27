@@ -1,6 +1,6 @@
 #include<stdio.h>
 
-void main()  
+void main() 
 {
   double pl_DVP, pl_DSP, pl_d, m, m_stenka, m_2bokovini, m_2krishi, m_2dveri, m_polki;
   double w, h, d;
@@ -8,7 +8,7 @@ void main()
   scanf("%lf %lf %lf", &w, &h, &d);
   printf("Vvedite (v kg/(m^3)): pl_DVP, pl_DSP, pl_d\n");
   scanf("%lf %lf %lf", &pl_DVP, &pl_DSP, &pl_d);
-  if ((w < 80) || (w > 120) || (h < 180) || (h > 220) || (d < 50) || (d > 90) || (pl_DVP <= 0) || (pl_DSP <= 0) || (pl_d <= 0)) 
+  if ((w < 80) || (w > 120) || (h < 180) || (h > 220) || (d < 50) || (d > 90) || (pl_DVP <= 0) || (pl_DSP <= 0) || (pl_d <= 0))
   {
     printf("Vvedeni nepravilnie parametri\n");
     return;
