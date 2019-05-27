@@ -1,6 +1,6 @@
 #include<stdio.h>
 
-void main() 
+void main()  
 {
   double pl_DVP, pl_DSP, pl_d, m, m_stenka, m_2bokovini, m_2krishi, m_2dveri, m_polki;
   double w, h, d;
