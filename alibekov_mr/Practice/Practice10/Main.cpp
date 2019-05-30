@@ -83,7 +83,7 @@ int main()
   }
   catch (std::exception const& e)
   {
-    std::cout << e.what << std::endl;
+    std::cout << e.what() << std::endl;
   }
 
 
@@ -177,7 +177,7 @@ int main()
     }
     catch (std::exception const& e)
     {
-      std::cout << e.what << std::endl;
+      std::cout << e.what() << std::endl;
     }
   }
 
