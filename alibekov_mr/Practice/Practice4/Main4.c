@@ -13,7 +13,7 @@ typedef struct
     char name[MAX_LENGTH];
     int price;
     int cashback;
-    char id[5];
+    char id[4];
     int k;
 } TItem;
 
