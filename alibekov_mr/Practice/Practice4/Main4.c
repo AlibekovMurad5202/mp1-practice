@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<time.h>
+#include<string.h>
 #define N 10000
 #define MAX_LENGTH 16
 #define NUMBER_OF_ITEMS 71
@@ -12,7 +13,7 @@ typedef struct
     char name[MAX_LENGTH];
     int price;
     int cashback;
-    char id[4];
+    char id[5];
     int k;
 } TItem;
 
@@ -21,152 +22,62 @@ TItem items[N];
 void Fill_names()
 {
     int i;
-    for (i = 1; i < NUMBER_OF_ITEMS; i += 7)
-    {
-        items[i].name[0] = 'G';
-        items[i].name[1] = 'u';
-        items[i].name[2] = 'n';
-        items[i].name[3] = ' ';
-        items[i].name[4] = ' ';
-        items[i].name[5] = ' ';
-        items[i].name[6] = ' ';
-    }
-    for (i = 2; i < NUMBER_OF_ITEMS; i += 7)
-    {
-        items[i].name[0] = 'P';
-        items[i].name[1] = 'o';
-        items[i].name[2] = 't';
-        items[i].name[3] = 'a';
-        items[i].name[4] = 't';
-        items[i].name[5] = 'o';
-        items[i].name[6] = ' ';
-    }
-    for (i = 3; i < NUMBER_OF_ITEMS; i += 7)
-    {
-        items[i].name[0] = 'T';
-        items[i].name[1] = 'o';
-        items[i].name[2] = 'm';
-        items[i].name[3] = 'a';
-        items[i].name[4] = 't';
-        items[i].name[5] = 'o';
-        items[i].name[6] = ' ';
-    }
-    for (i = 4; i < NUMBER_OF_ITEMS; i += 7)
-    {
-        items[i].name[0] = 'E';
-        items[i].name[1] = 'y';
-        items[i].name[2] = 'e';
-        items[i].name[3] = ' ';
-        items[i].name[4] = ' ';
-        items[i].name[5] = ' ';
-        items[i].name[6] = ' ';
-    }
-    for (i = 5; i < NUMBER_OF_ITEMS; i += 7)
-    {
-        items[i].name[0] = 'F';
-        items[i].name[1] = 'r';
-        items[i].name[2] = 'o';
-        items[i].name[3] = 'g';
-        items[i].name[4] = ' ';
-        items[i].name[5] = ' ';
-        items[i].name[6] = ' ';
-    }
-    for (i = 6; i < NUMBER_OF_ITEMS; i += 7)
-    {
-        items[i].name[0] = 'B';
-        items[i].name[1] = 'u';
-        items[i].name[2] = 'g';
-        items[i].name[3] = ' ';
-        items[i].name[4] = ' ';
-        items[i].name[5] = ' ';
-        items[i].name[6] = ' ';
-    }
-    for (i = 7; i < NUMBER_OF_ITEMS; i += 7)
-    {
-        items[i].name[0] = 'C';
-        items[i].name[1] = 'h';
-        items[i].name[2] = 'e';
-        items[i].name[3] = 'e';
-        items[i].name[4] = 's';
-        items[i].name[5] = 'e';
-        items[i].name[6] = ' ';
-    }
     for (i = 1; i < NUMBER_OF_ITEMS; i++)
     {
         switch (i % 10)
         {
-        case 0: break;
-        case 1: items[i].name[7] = 'f';
-                items[i].name[8] = 'r';
-                items[i].name[9] = 'e';
-                items[i].name[10] = 's';
-                items[i].name[11] = 'h';
-                break;
-        case 2: items[i].name[7] = 'a';
-                items[i].name[8] = 'l';
-                items[i].name[9] = 'i';
-                items[i].name[10] = 'v';
-                items[i].name[11] = 'e';
-                break;
-        case 3: items[i].name[7] = 'y';
-                items[i].name[8] = 'o';
-                items[i].name[9] = 'u';
-                items[i].name[10] = 'n';
-                items[i].name[11] = 'g';
-                break;
-        case 4: items[i].name[7] = 'a';
-                items[i].name[8] = 'n';
-                items[i].name[9] = 'c';
-                items[i].name[10] = 'i';
-                items[i].name[11] = 'e';
-                items[i].name[12] = 'n';
-                items[i].name[13] = 't';
-                break;
-        case 5: items[i].name[7] = 'e';
-                items[i].name[8] = 'l';
-                items[i].name[9] = 'i';
-                items[i].name[10] = 't';
-                items[i].name[11] = 'e';
-                break;
-        case 6: items[i].name[7] = 'k';
-                items[i].name[8] = 'i';
-                items[i].name[9] = 'n';
-                items[i].name[10] = 'd';
-                break;
-        case 7: items[i].name[7] = 'c';
-                items[i].name[8] = 'o';
-                items[i].name[9] = 'l';
-                items[i].name[10] = 'o';
-                items[i].name[11] = 'r';
-                break;
-        case 8: items[i].name[7] = 'r';
-                items[i].name[8] = 'o';
-                items[i].name[9] = 't';
-                items[i].name[10] = 't';
-                items[i].name[11] = 'e';
-                items[i].name[12] = 'n';
-                break;
-        case 9: items[i].name[7] = 'f';
-                items[i].name[8] = 'u';
-                items[i].name[9] = 'n';
-                items[i].name[10] = 'n';
-                items[i].name[11] = 'y';
-                break;
+        case 0: strcat(items[i].name, "Normal ");
+            break;
+        case 1: strcat(items[i].name, "Fresh ");
+            break;
+        case 2: strcat(items[i].name, "Alive ");
+            break;
+        case 3: strcat(items[i].name, "Young ");
+            break;
+        case 4: strcat(items[i].name, "Ancient ");
+            break;
+        case 5: strcat(items[i].name, "Elite ");
+            break;
+        case 6: strcat(items[i].name, "Kind ");
+            break;
+        case 7: strcat(items[i].name, "Color ");
+            break;
+        case 8: strcat(items[i].name, "Rotten ");
+            break;
+        case 9: strcat(items[i].name, "Funny ");
+            break;
+        }
+
+        switch (i % 7)
+        {
+        case 0: strcat(items[i].name, "gun");
+            break;
+        case 1: strcat(items[i].name, "potato");
+            break;
+        case 2: strcat(items[i].name, "tomato");
+            break;
+        case 3: strcat(items[i].name, "eye");
+            break;
+        case 4: strcat(items[i].name, "frog");
+            break;
+        case 5: strcat(items[i].name, "bug");
+            break;
+        case 6: strcat(items[i].name, "cheese");
+            break;
         }
     }
 }
 
 void Fill_struct_without_names()
 {
+    int i;
     srand((unsigned)time(0));
-    int i, j;
     for (i = 1; i < NUMBER_OF_ITEMS; i++)
     {
-        j = i;
         if (items[i].name[0] != '0')
         {
-            items[i].price = 399.0 / RAND_MAX * rand() + 20;
-            items[i].cashback = 49.0 / RAND_MAX * rand() + 1;
+            items[i].price = (int)(399.0 / RAND_MAX * rand() + 20);
+            items[i].cashback = (int)(49.0 / RAND_MAX * rand() + 1);
             items[i].id[3] = i % 10;
             items[i].id[2] = (i / 10) % 10;
             items[i].id[1] = (i / 100) % 10;
@@ -235,12 +146,11 @@ int Scan_new_item()
 
 void Output_info_about_item(int id)
 {
-    printf("     Name: ");
     int i = 0;
-    printf("%s", items[id].name);
-    printf("\n     Price: %d rub.", items[id].price);
-    printf("\n     Cashback: %d %c\n     ID_code: ", items[id].cashback, '%');
-    for (; i < 4; i++) printf("%d", (int)items[id].id[i]);
+    printf("     Name: %s\n", items[id].name);
+    printf("     Price: %d rub.\n", items[id].price);
+    printf("     Cashback: %d %c\n     ID_code: ", items[id].cashback, '%');
+    for (; i < 4; i++) printf("%d", items[id].id[i]);
     printf("\n");
 }
 
@@ -279,8 +189,8 @@ void Bill()
     {
         if (items[i].k != 0)
         {
-            pay += (items[i].price) * (1 - (0.01 * items[i].cashback))* (items[i].k);
-            cash_back += (items[i].price) * (0.01 * items[i].cashback)* (items[i].k);
+            pay += (items[i].price) * (int)(1 - (0.01 * items[i].cashback))* (items[i].k);
+            cash_back += (items[i].price) * (int)(0.01 * items[i].cashback)* (items[i].k);
         }
     }
     printf("\n                                   Bill: %d rub.", pay + cash_back);
