@@ -62,13 +62,13 @@ void main()
             switch (znak)
             {
             case '<': b = x;
-                break;
+                      break;
             case '>': a = x;
-                break;
+                      break;
             case '=': printf("I win.\nYour number = %d. ", x);
-                i == 1 ? printf("Win in 1 step.\n") : printf("Win in %d steps.\n", i);
-                PC_igraet = -1;
-                break;
+                      i == 1 ? printf("Win in 1 step.\n") : printf("Win in %d steps.\n", i);
+                      PC_igraet = -1;
+                      break;
             }
         }
 
