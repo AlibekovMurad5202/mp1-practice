@@ -27,43 +27,43 @@ void Fill_names()
         switch (i % 10)
         {
         case 0: strcat(items[i].name, "Normal ");
-            break;
+                break;
         case 1: strcat(items[i].name, "Fresh ");
-            break;
+                break;
         case 2: strcat(items[i].name, "Alive ");
-            break;
+                break;
         case 3: strcat(items[i].name, "Young ");
-            break;
+                break;
         case 4: strcat(items[i].name, "Ancient ");
-            break;
+                break;
         case 5: strcat(items[i].name, "Elite ");
-            break;
+                break;
         case 6: strcat(items[i].name, "Kind ");
-            break;
+                break;
         case 7: strcat(items[i].name, "Color ");
-            break;
+                break;
         case 8: strcat(items[i].name, "Rotten ");
-            break;
+                break;
         case 9: strcat(items[i].name, "Funny ");
-            break;
+                break;
         }
 
         switch (i % 7)
         {
         case 0: strcat(items[i].name, "gun");
-            break;
+                break;
         case 1: strcat(items[i].name, "potato");
-            break;
+                break;
         case 2: strcat(items[i].name, "tomato");
-            break;
+                break;
         case 3: strcat(items[i].name, "eye");
-            break;
+                break;
         case 4: strcat(items[i].name, "frog");
-            break;
+                break;
         case 5: strcat(items[i].name, "bug");
-            break;
+                break;
         case 6: strcat(items[i].name, "cheese");
-            break;
+                break;
         }
     }
 }
