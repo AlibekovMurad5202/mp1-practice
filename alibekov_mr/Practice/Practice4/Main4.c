@@ -6,14 +6,14 @@
 #define MAX_LENGTH 16
 #define NUMBER_OF_ITEMS 71
 
-int flag1 = 0, flag3 = 0, flag4 = 0;
+int flag1 = 0, flag2 = 0, flag3 = 0;
 
 typedef struct
 {
     char name[MAX_LENGTH];
     int price;
     int cashback;
-    char id[5];
+    char id[4];
     int k;
 } TItem;
 
@@ -102,7 +102,7 @@ int Choose_an_action()
         }
         if (z == 1) printf("Please enter ID_code of item: ");
     }
-    else if (flag4 == 1)
+    else if (flag3 == 1)
     {
         printf("Please, enter number of action what you want to do:\n5 - Bill;\n");
         printf("6 - Exit from %cShop for witches%c.\nEnter: ", '"', '"');
@@ -158,7 +158,7 @@ void Add_item(int id)
 {
     items[id].k++;
     printf("\n");
-    flag3 = 1;
+    flag2 = 1;
 }
 
 void Check()
@@ -222,7 +222,7 @@ void main()
                 break;
         case 5: Bill();
                 return;
-        case 6: if (flag3 == 1)
+        case 6: if (flag2 == 1)
                 {
                     printf("Please, pay before you exit.\n");
                     Bill();
