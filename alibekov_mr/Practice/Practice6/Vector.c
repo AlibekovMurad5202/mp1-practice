@@ -2,7 +2,7 @@
 #include "math.h"
 #include "stdio.h"
 #include "stdlib.h"
-#define PI 3.1415926
+#define PI acos(-1.)
 
 int CreateVector(int *_n, vector **_vector) 
 {
@@ -112,7 +112,7 @@ int ScalarProduct(vector *v1, vector *v2, double *_scalarProduct)
 
 int Angle(vector *v1, vector *v2, double *_rezultInGrad) 
 {
-	if ((v1 == NULL) || (v2 == NULL)) 
+    if ((v1 == NULL) || (v2 == NULL)) 
 	{
 		printf("Error: Vector is empty! ");
 		return VectorIsEmpty;
