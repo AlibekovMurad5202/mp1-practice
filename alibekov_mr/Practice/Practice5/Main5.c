@@ -255,7 +255,8 @@ void main()
             ULL *ind = (ULL *)malloc(cof * sizeof(ULL));
             ind[0] = 0;
             input_a(a, sizes);
-            printf("\nChoose method of sort:\n1)Choose Sort\n2)Insert Sort\n3)Bubble Sort\n4)Counting Sort\n5)Quick Sort\n6)Merge Sort\n");
+            printf("\nChoose method of sort:\n1)Choose Sort\n2)Insert Sort\n3)Bubble Sort\n");
+            printf("4)Counting Sort\n5)Quick Sort\n6)Merge Sort\n");
             scanf("%d", &choose);
             printf("Choose characteristic of sort: 1 - down     0 - up\n");
             scanf("%d", &down);
