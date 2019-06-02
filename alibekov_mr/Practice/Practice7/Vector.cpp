@@ -2,268 +2,273 @@
 
 Vector::Vector()
 {
-  size = 0;
-  elements = nullptr;
+    size = 0;
+    elements = nullptr;
 }
 
 Vector::Vector(int _size)
 {
-  if (_size <= 0) 
-  {
-    ExceptionNotPositiveDimension e(__LINE__, __FILE__);
-    throw e;
-  }
-  size = _size;
-  elements = new double[size];
-  std::cout << "Enter elements: " << std::endl;
-  for (int i = 0; i < size; i++) 
-    std::cin >> elements[i];
-  std::cout << "Vector full" << std::endl;
+    if (_size <= 0)
+    {
+        ExceptionNotPositiveDimension e(__LINE__, __FILE__);
+        throw e;
+    }
+
+    size = _size;
+    elements = new double[size];
+    memset(elements, 0, (sizeof(double) * size));
 }
 
-Vector::Vector(int _size, double * _elements)
+Vector::Vector(int _size, double* _elements)
 {
-  if (_size <= 0) 
-  {
-    ExceptionNotPositiveDimension e(__LINE__, __FILE__);
-    throw e;
-  }
-  size = _size;
-  elements = new double [size];
-  for (int i = 0; i < size; i++) 
-    elements[i] = _elements[i];
+    if (_size <= 0)
+    {
+        ExceptionNotPositiveDimension e(__LINE__, __FILE__);
+        throw e;
+    }
+
+    size = _size;
+    elements = new double[size];
+    memcpy(elements, _elements, (sizeof(double) * size));
 }
 
 Vector::Vector(const Vector & _vector)
 {
-  if (_vector.size == 0) 
-  {
-    ExceptionEmptyVector e(__LINE__, __FILE__);
-    throw e;
-  }
-  size = _vector.size;
-  elements = new double[size];
-  for (int i = 0; i < size; i++) 
-    elements[i] = _vector[i];
+    if (_vector.size == 0)
+    {
+        ExceptionEmptyVector e(__LINE__, __FILE__);
+        throw e;
+    }
+
+    size = _vector.size;
+    elements = new double[size];
+    memcpy(elements, _vector.elements, (sizeof(double) * size));
 }
 
 Vector::~Vector()
 {
-  size = 0;
-  delete[] elements;
+    size = 0;
+    delete[] elements;
 }
 
 Vector Vector::operator+(const Vector & _vector) const
 {
-  if (_vector.size == 0)
-  {
-    ExceptionEmptyVector e(__LINE__, __FILE__);
-    throw e;
-  }
-  if (size != _vector.size) 
-  {
-    ExceptionDifferentDimensions e(__LINE__, __FILE__);
-    throw e;
-  }
-  Vector tmp(*this);
-  for (int i = 0; i < size; i++)
-    tmp[i] += _vector[i];
-  return tmp;
+    if (_vector.size == 0)
+    {
+        ExceptionEmptyVector e(__LINE__, __FILE__);
+        throw e;
+    }
+
+    if (size != _vector.size)
+    {
+        ExceptionDifferentDimensions e(__LINE__, __FILE__);
+        throw e;
+    }
+
+    Vector tmp(*this);
+    for (int i = 0; i < size; i++)
+        tmp[i] += _vector[i];
+    return tmp;
 }
 
 Vector Vector::operator-(const Vector & _vector) const
 {
-  if (_vector.size == 0)
-  {
-    ExceptionEmptyVector e(__LINE__, __FILE__);
-    throw e;
-  }
-  if (size != _vector.size) 
-  {
-    ExceptionDifferentDimensions e(__LINE__, __FILE__);
-    throw e;
-  }
-  Vector tmp(*this);
-  for (int i = 0; i < size; i++)
-    tmp[i] -= _vector[i];
-  return tmp;
+    if (_vector.size == 0)
+    {
+        ExceptionEmptyVector e(__LINE__, __FILE__);
+        throw e;
+    }
+
+    if (size != _vector.size)
+    {
+        ExceptionDifferentDimensions e(__LINE__, __FILE__);
+        throw e;
+    }
+
+    Vector tmp(*this);
+    for (int i = 0; i < size; i++)
+        tmp[i] -= _vector[i];
+    return tmp;
 }
 
 double Vector::operator*(const Vector & _vector) const
 {
-  if (_vector.size == 0)
-  {
-    ExceptionEmptyVector e(__LINE__, __FILE__);
-    throw e;
-  }
-  if (size != _vector.size) 
-  {
-    ExceptionDifferentDimensions e(__LINE__, __FILE__);
-    throw e;
-  }
-  double scalarProduct = 0;
-  for (int i = 0; i < size; i++)
-    scalarProduct += elements[i] * _vector[i];
-  return scalarProduct;
+    if (_vector.size == 0)
+    {
+        ExceptionEmptyVector e(__LINE__, __FILE__);
+        throw e;
+    }
+
+    if (size != _vector.size)
+    {
+        ExceptionDifferentDimensions e(__LINE__, __FILE__);
+        throw e;
+    }
+
+    double scalarProduct = 0;
+    for (int i = 0; i < size; i++)
+        scalarProduct += elements[i] * _vector[i];
+    return scalarProduct;
 }
 
 Vector Vector::operator+(double _d) const
 {
-  Vector tmp(*this);
-  for (int i = 0; i < size; i++) 
-  {
-    tmp[i] = elements[i] + _d;
-  }
-  return tmp;
+    Vector tmp(*this);
+    for (int i = 0; i < size; i++)
+    {
+        tmp[i] = elements[i] + _d;
+    }
+    return tmp;
 }
 
 Vector Vector::operator-(double _d) const
 {
-  Vector tmp(*this);
-  for (int i = 0; i < size; i++) 
-  {
-    tmp[i] = elements[i] - _d;
-  }
-  return tmp;
+    Vector tmp(*this);
+    for (int i = 0; i < size; i++)
+    {
+        tmp[i] = elements[i] - _d;
+    }
+    return tmp;
 }
 
 Vector Vector::operator*(double _d) const
 {
-  Vector tmp(*this);
-  for (int i = 0; i < size; i++) 
-  {
-    tmp[i] = elements[i] * _d;
-  }
-  return tmp;
-}
-
-const Vector & Vector::operator=(const Vector & _vector)
-{
-  if (_vector.size == 0)
-  {
-    ExceptionEmptyVector e(__LINE__, __FILE__);
-    throw e;
-  }
-  if (this != &_vector) 
-  {
-    size = _vector.size;
-    delete[] elements;
-    elements = new double[size];
+    Vector tmp(*this);
     for (int i = 0; i < size; i++)
-      elements[i] = _vector[i];
-  }
-  return *this;
+    {
+        tmp[i] = elements[i] * _d;
+    }
+    return tmp;
 }
 
-double & Vector::operator[](int index)
+const Vector& Vector::operator=(const Vector & _vector)
 {
-  if ((index < 0) || (index >= size)) 
-  {
-    ExceptionOutOfRange e(__LINE__, __FILE__);
-    throw e;
-  }
-  return elements[index];
+    if (_vector.size == 0)
+    {
+        ExceptionEmptyVector e(__LINE__, __FILE__);
+        throw e;
+    }
+
+    if (this != &_vector)
+    {
+        size = _vector.size;
+        delete[] elements;
+        elements = new double[size];
+        memcpy(elements, _vector.elements, (sizeof(double) * size));
+    }
+    return *this;
 }
 
-const double & Vector::operator[](int index) const
+double& Vector::operator[](int index)
 {
-  if ((index < 0) || (index >= size)) 
-  {
-    ExceptionOutOfRange e(__LINE__, __FILE__);
-    throw e;
-  }
-  return elements[index];
+    if ((index < 0) || (index > size))
+    {
+        ExceptionOutOfRange e(__LINE__, __FILE__);
+        throw e;
+    }
+
+    return elements[index];
 }
 
-Vector & Vector::operator+=(double _d)
+const double& Vector::operator[](int index) const
 {
-  for (int i = 0; i < size; i++) 
-  {
-    elements[i] += _d;
-  }
-  return *this;
+    if ((index < 0) || (index > size))
+    {
+        ExceptionOutOfRange e(__LINE__, __FILE__);
+        throw e;
+    }
+
+    return elements[index];
 }
 
-Vector & Vector::operator-=(double _d)
+Vector& Vector::operator+=(double _d)
 {
-  for (int i = 0; i < size; i++) 
-  {
-    elements[i] -= _d;
-  }
-  return *this;
+    for (int i = 0; i < size; i++)
+        elements[i] += _d;
+    return *this;
 }
 
-Vector & Vector::operator*=(double _d)
+Vector& Vector::operator-=(double _d)
 {
-  for (int i = 0; i < size; i++) 
-  {
-    elements[i] *= _d;
-  }
-  return *this;
+    for (int i = 0; i < size; i++)
+        elements[i] -= _d;
+    return *this;
 }
 
-double Vector::Length()
+Vector& Vector::operator*=(double _d)
 {
-  double lengthSquared = 0;
-  for (int i = 0; i < size; i++) 
-  {
-    lengthSquared += elements[i] * elements[i];
-  }
-  return sqrt(lengthSquared);
+    for (int i = 0; i < size; i++)
+        elements[i] *= _d;
+    return *this;
 }
 
-void Vector::Print()
+double Vector::Length() const
 {
-  for (int i = 0; i < size; i++) 
-    std::cout << "\n" << elements[i]; std::cout << "\n";
+    return sqrt((*this) * (*this));
 }
 
-void * Vector::operator new(size_t _size)
+void* Vector::operator new(size_t _size)
 {
-  void *pointerToMemory;
-  pointerToMemory = malloc(_size);
-  if (!pointerToMemory) 
-  {
-    ExceptionBadAlloc e(__LINE__, __FILE__);
-    throw e;
-  }
-  return pointerToMemory;
+    // For "operator new" the size of the object (_size)  
+    // is calculated and passed to the function automatically.
+
+    void* pointerToMemory;
+    pointerToMemory = malloc(_size);
+
+    if (!pointerToMemory)
+    {
+        ExceptionBadAlloc e(__LINE__, __FILE__);
+        throw e;
+    }
+
+    return pointerToMemory;
 }
 
-void Vector::operator delete(void * pointerOfDeletingElement)
+void Vector::operator delete(void* pointerOfDeletingElement)
 {
-  free(pointerOfDeletingElement);
+    free(pointerOfDeletingElement);
 }
 
-void * Vector::operator new[](size_t _size)
+void* Vector::operator new[](size_t _size)
 {
-  void *pointerToMemory;
-  pointerToMemory = malloc(_size);
-  if (!pointerToMemory) 
-  {
-    ExceptionBadAlloc e(__LINE__, __FILE__);
-    throw e;
-  }
-  return pointerToMemory;
+    if (_size <= 0)
+    {
+        ExceptionOutOfRange e(__LINE__, __FILE__);
+        throw e;
+    }
+
+    void* pointerToMemory;
+    pointerToMemory = malloc(_size);
+
+    if (!pointerToMemory)
+    {
+        ExceptionBadAlloc e(__LINE__, __FILE__);
+        throw e;
+    }
+
+    return pointerToMemory;
 }
 
-void Vector::operator delete[](void * pointerOfDeletingElement)
+void Vector::operator delete[](void* pointerOfDeletingElement)
 {
-  free(pointerOfDeletingElement);
+    free(pointerOfDeletingElement);
 }
 
-std::ostream & operator<<(std::ostream & out, const Vector & _vector)
+std::ostream& operator<<(std::ostream & out, const Vector & _vector)
 {
-  out << " (";
-  for (int i = 0; i < _vector.size; i++)
-    out << " " << _vector[i];
-  out << " )" << std::endl;
-  return out;
+    if (_vector.size == 0)
+        return out;
+    out << " (";
+    for (int i = 0; i < _vector.size; i++)
+        out << " " << _vector[i];
+    out << " )" << std::endl;
+    return out;
 }
 
-std::istream & operator>>(std::istream & in, Vector & _vector)
+std::istream& operator>>(std::istream & in, Vector & _vector)
 {
-  for (int i = 0; i < _vector.size; i++)
-    in >> _vector[i];
-  return in;
+    std::cout << "Enter elements: " << std::endl;
+    for (int i = 0; i < _vector.size; i++)
+        in >> _vector[i];
+    return in;
 };
