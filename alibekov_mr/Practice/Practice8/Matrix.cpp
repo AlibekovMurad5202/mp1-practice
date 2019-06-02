@@ -19,7 +19,7 @@ Matrix::Matrix(int _rows, int _columns)
     rows = _rows;
     columns = _columns;
     cells = new double[rows * columns];
-    //memset(cells, 0, (sizeof(double) * rows * columns));
+    memset(cells, 0, (sizeof(double) * rows * columns));
 }
 
 Matrix::Matrix(int _rows, int _columns, double* _cells)
@@ -33,12 +33,7 @@ Matrix::Matrix(int _rows, int _columns, double* _cells)
     rows = _rows;
     columns = _columns;
     cells = new double[rows * columns];
-    //memcpy(cells, _cells, (sizeof(double) * rows * columns));
-    for (int i = 0; i < rows; i++)
-    {
-        for (int j = 0; j < columns; j++)
-            cells[(columns * i) + j] = _cells[(columns * i) + j];
-    }
+    memcpy(cells, _cells, (sizeof(double) * rows * columns));
 }
 
 Matrix::Matrix(const Matrix & _matrix)
@@ -52,12 +47,7 @@ Matrix::Matrix(const Matrix & _matrix)
     rows = _matrix.rows;
     columns = _matrix.columns;
     cells = new double[rows * columns];
-    //memcpy(cells, _matrix.cells, (sizeof(double) * rows * columns));
-    for (int i = 0; i < rows; i++)
-    {
-        for (int j = 0; j < columns; j++)
-            cells[(columns * i) + j] = _matrix.cells[(columns * i) + j];
-    }
+    memcpy(cells, _matrix.cells, (sizeof(double) * rows * columns));
 }
 
 Matrix::~Matrix()
@@ -218,12 +208,7 @@ const Matrix& Matrix::operator=(const Matrix & _matrix)
         columns = _matrix.columns;
         delete[] cells;
         cells = new double[rows * columns];
-        //memcpy(cells, _matrix.cells, sizeof(double) * rows * columns);
-        for (int i = 0; i < rows; i++)
-        {
-            for (int j = 0; j < columns; j++)
-                cells[(columns * i) + j] = _matrix.cells[(columns * i) + j];
-        }
+        memcpy(cells, _matrix.cells, sizeof(double) * rows * columns);
     }
     return *this;
 }
