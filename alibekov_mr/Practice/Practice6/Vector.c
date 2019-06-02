@@ -49,7 +49,7 @@ int Addition(vector* v1, vector* v2, vector** rezult)
     return ItWorks;
 }
 
-int Subtraction(vector * v1, vector * v2, vector * *rezult)
+int Subtraction(vector* v1, vector* v2, vector** rezult)
 {
     if ((v1 == NULL) || (v2 == NULL))
     {
@@ -71,7 +71,7 @@ int Subtraction(vector * v1, vector * v2, vector * *rezult)
     return ItWorks;
 }
 
-int Length(vector * _vector, double* _length)
+int Length(vector* _vector, double* _length)
 {
     if (_vector == NULL)
     {
@@ -89,7 +89,7 @@ int Length(vector * _vector, double* _length)
     return ItWorks;
 }
 
-int ScalarProduct(vector * v1, vector * v2, double* _scalarProduct)
+int ScalarProduct(vector* v1, vector* v2, double* _scalarProduct)
 {
     if ((v1 == NULL) || (v2 == NULL))
     {
@@ -110,7 +110,7 @@ int ScalarProduct(vector * v1, vector * v2, double* _scalarProduct)
     return ItWorks;
 }
 
-int Angle(vector * v1, vector * v2, double* _rezultInGrad)
+int Angle(vector* v1, vector* v2, double* _rezultInGrad)
 {
     if ((v1 == NULL) || (v2 == NULL))
     {
