@@ -19,6 +19,7 @@ Matrix::Matrix(int _rows, int _columns)
     rows = _rows;
     columns = _columns;
     cells = new double[rows * columns];
+    //memset(cells, 0, (sizeof(double) * rows * columns));
 }
 
 Matrix::Matrix(int _rows, int _columns, double* _cells)
@@ -32,6 +33,7 @@ Matrix::Matrix(int _rows, int _columns, double* _cells)
     rows = _rows;
     columns = _columns;
     cells = new double[rows * columns];
+    //memcpy(cells, _cells, (sizeof(double) * rows * columns));
     for (int i = 0; i < rows; i++)
     {
         for (int j = 0; j < columns; j++)
@@ -50,6 +52,7 @@ Matrix::Matrix(const Matrix & _matrix)
     rows = _matrix.rows;
     columns = _matrix.columns;
     cells = new double[rows * columns];
+    //memcpy(cells, _matrix.cells, (sizeof(double) * rows * columns));
     for (int i = 0; i < rows; i++)
     {
         for (int j = 0; j < columns; j++)
@@ -71,11 +74,13 @@ Matrix Matrix::operator+(const Matrix & _matrix) const
         ExceptionEmptyMatrix e(__LINE__, __FILE__);
         throw e;
     }
+
     if ((rows != _matrix.rows) || (columns != _matrix.columns))
     {
         ExceptionDifferentDimensions e(__LINE__, __FILE__);
         throw e;
     }
+
     Matrix tmp(*this);
     for (int i = 0; i < rows; i++)
     {
@@ -109,6 +114,7 @@ Matrix Matrix::operator-(const Matrix & _matrix) const
         ExceptionEmptyMatrix e(__LINE__, __FILE__);
         throw e;
     }
+
     if ((rows != _matrix.rows) || (columns != _matrix.columns))
     {
         ExceptionDifferentDimensions e(__LINE__, __FILE__);
@@ -148,6 +154,7 @@ Matrix Matrix::operator*(const Matrix & _matrix) const
         ExceptionEmptyMatrix e(__LINE__, __FILE__);
         throw e;
     }
+
     if (_matrix.rows != columns)
     {
         ExceptionUndefinedMultiplication e(__LINE__, __FILE__);
@@ -162,7 +169,8 @@ Matrix Matrix::operator*(const Matrix & _matrix) const
             double dotProductOfRowOfTheFirstMatrixAndColumnOfTheSecondMatrix = 0;
             for (int k = 0; k < columns; k++)
             {
-                dotProductOfRowOfTheFirstMatrixAndColumnOfTheSecondMatrix += cells[(columns * i) + k] * _matrix.cells[(_matrix.columns * k) + j];
+                dotProductOfRowOfTheFirstMatrixAndColumnOfTheSecondMatrix += 
+                    cells[(columns * i) + k] * _matrix.cells[(_matrix.columns * k) + j];
             }
             tmp.cells[(tmp.columns * i) + j] = dotProductOfRowOfTheFirstMatrixAndColumnOfTheSecondMatrix;
         }
@@ -210,6 +218,7 @@ const Matrix& Matrix::operator=(const Matrix & _matrix)
         columns = _matrix.columns;
         delete[] cells;
         cells = new double[rows * columns];
+        //memcpy(cells, _matrix.cells, sizeof(double) * rows * columns);
         for (int i = 0; i < rows; i++)
         {
             for (int j = 0; j < columns; j++)
@@ -258,10 +267,21 @@ std::ostream& operator<<(std::ostream & out, Matrix & _matrix)
         {
             dml[j] = 0;
             double l = (_matrix[i])[j];
-            do {
-                l /= 10;
-                dml[j]++;
-            } while (l != 0);
+            if ((l >= 1) || (l <= -1))
+            {
+                do {
+                    l /= 10;
+                    dml[j]++;
+                } while ((l >= 1) || (l <= -1));
+            }
+            else
+            {
+                do {
+                    l *= 10;
+                    dml[j]++;
+                } while ((l < 1) && (l > -1));
+            }
+
             if (s < dml[j]) s = dml[j];
         }
         dml[j] = s;
@@ -284,10 +304,20 @@ std::ostream& operator<<(std::ostream & out, Matrix & _matrix)
             out << (_matrix[i])[j];
             int s = 0;
             double l = (_matrix[i])[j];
-            do {
-                s++;
-                l /= 10;
-            } while (l != 0);
+            if ((l >= 1) || (l <= -1))
+            {
+                do {
+                    s++;
+                    l /= 10;
+                } while ((l >= 1) || (l <= -1));
+            }
+            else
+            {
+                do {
+                    s++;
+                    l *= 10;
+                } while ((l < 1) && (l > -1));
+            }
             for (int f = 0; f < dml[j] - s + 1; f++)
                 out << " ";
         }
@@ -300,10 +330,20 @@ std::ostream& operator<<(std::ostream & out, Matrix & _matrix)
         out << (_matrix[_matrix.rows - 1])[j];
         int s = 0;
         double l = (_matrix[_matrix.rows - 1])[j];
-        do {
-            s++;
-            l /= 10;
-        } while (l != 0);
+        if ((l >= 1) || (l <= -1))
+        {
+            do {
+                s++;
+                l /= 10;
+            } while ((l >= 1) || (l <= -1));
+        }
+        else
+        {
+            do {
+                s++;
+                l *= 10;
+            } while ((l < 1) && (l > -1));
+        }
         for (int f = 0; f < dml[j] - s; f++)
             out << " ";
         j != _matrix.columns - 1 ? out << " " : out << "_|\n";
