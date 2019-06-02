@@ -1,144 +1,144 @@
 #include "MyExceptions.h"
 
-MyException::MyException() 
+MyException::MyException()
 {
-  str_what = 0; line = 0; file = 0; 
+    str_what = 0; line = 0; file = 0;
 }
 
-MyException::MyException(int _line, const char *_file)
+MyException::MyException(int _line, const char* _file)
 {
-  str_what = 0; line = _line; file = _file;
-}
-  
-MyException::MyException(const MyException& _exception) 
-            : str_what(_exception.what()),
-              line(_exception.errorLine()), 
-              file(_exception.errorFile()) {}
-
-MyException::MyException(const char* message, int _line, const char *_file)
-            : str_what(message), 
-              line(_line), 
-              file(_file) {}
-
-MyException::~MyException() 
-{
-  line = -1; 
+    str_what = 0; line = _line; file = _file;
 }
 
-ExceptionOutOfRange::ExceptionOutOfRange() 
+MyException::MyException(const MyException& _exception)
+    : str_what(_exception.what()),
+    line(_exception.errorLine()),
+    file(_exception.errorFile()) {}
+
+MyException::MyException(const char* message, int _line, const char* _file)
+    : str_what(message),
+    line(_line),
+    file(_file) {}
+
+MyException::~MyException()
 {
-  str_what = "Index out of bounds!"; 
-  line = -1; 
-  file = 0; 
+    line = -1;
 }
 
-ExceptionOutOfRange::ExceptionOutOfRange(const ExceptionOutOfRange& _exception) 
+ExceptionOutOfRange::ExceptionOutOfRange()
 {
-  str_what = _exception.what();
-  line = _exception.errorLine();
-  file = _exception.errorFile();
+    str_what = "Index out of bounds!";
+    line = -1;
+    file = 0;
 }
 
-ExceptionOutOfRange::ExceptionOutOfRange(int _line, const char *_file) 
+ExceptionOutOfRange::ExceptionOutOfRange(const ExceptionOutOfRange& _exception)
 {
-  str_what = "Index out of bounds!"; line = _line; file = _file;
+    str_what = _exception.what();
+    line = _exception.errorLine();
+    file = _exception.errorFile();
 }
 
-ExceptionOutOfRange::~ExceptionOutOfRange() 
+ExceptionOutOfRange::ExceptionOutOfRange(int _line, const char* _file)
 {
-  line = -1; 
+    str_what = "Index out of bounds!"; line = _line; file = _file;
 }
 
-ExceptionDifferentDimensions::ExceptionDifferentDimensions() 
+ExceptionOutOfRange::~ExceptionOutOfRange()
 {
-  str_what = "Vectors have different dimensions!"; line = -1; file = 0;
+    line = -1;
 }
 
-ExceptionDifferentDimensions::ExceptionDifferentDimensions(const ExceptionDifferentDimensions& _exception) 
+ExceptionDifferentDimensions::ExceptionDifferentDimensions()
 {
-  str_what = _exception.what();
-  line = _exception.errorLine();
-  file = _exception.errorFile();
+    str_what = "Vectors have different dimensions!"; line = -1; file = 0;
 }
 
-ExceptionDifferentDimensions::ExceptionDifferentDimensions(int _line, const char *_file) 
+ExceptionDifferentDimensions::ExceptionDifferentDimensions(const ExceptionDifferentDimensions& _exception)
 {
-  str_what = "Vectors have different dimensions!"; line = _line; file = _file;
+    str_what = _exception.what();
+    line = _exception.errorLine();
+    file = _exception.errorFile();
 }
 
-ExceptionDifferentDimensions::~ExceptionDifferentDimensions() 
+ExceptionDifferentDimensions::ExceptionDifferentDimensions(int _line, const char* _file)
 {
-  line = -1; 
+    str_what = "Vectors have different dimensions!"; line = _line; file = _file;
 }
 
-ExceptionBadAlloc::ExceptionBadAlloc() 
+ExceptionDifferentDimensions::~ExceptionDifferentDimensions()
 {
-  str_what = "Bad memory allocation!";
-  line = -1;
-  file = 0; 
+    line = -1;
 }
 
-ExceptionBadAlloc::ExceptionBadAlloc(const ExceptionBadAlloc& _exception) 
+ExceptionBadAlloc::ExceptionBadAlloc()
 {
-  str_what = _exception.what();
-  line = _exception.errorLine();
-  file = _exception.errorFile();
+    str_what = "Bad memory allocation!";
+    line = -1;
+    file = 0;
 }
 
-ExceptionBadAlloc::ExceptionBadAlloc(int _line, const char *_file) 
+ExceptionBadAlloc::ExceptionBadAlloc(const ExceptionBadAlloc& _exception)
 {
-  str_what = "Bad memory allocation!"; line = _line; file = _file;
+    str_what = _exception.what();
+    line = _exception.errorLine();
+    file = _exception.errorFile();
 }
 
-ExceptionBadAlloc::~ExceptionBadAlloc() 
+ExceptionBadAlloc::ExceptionBadAlloc(int _line, const char* _file)
 {
-  line = -1; 
+    str_what = "Bad memory allocation!"; line = _line; file = _file;
 }
 
-ExceptionEmptyVector::ExceptionEmptyVector() 
+ExceptionBadAlloc::~ExceptionBadAlloc()
 {
-  str_what = "Vector is empty!"; 
-  line = -1; 
-  file = 0; 
+    line = -1;
 }
 
-ExceptionEmptyVector::ExceptionEmptyVector(const ExceptionEmptyVector& _exception) 
+ExceptionEmptyVector::ExceptionEmptyVector()
 {
-  str_what = _exception.what();
-  line = _exception.errorLine();
-  file = _exception.errorFile();
+    str_what = "Vector is empty!";
+    line = -1;
+    file = 0;
 }
 
-ExceptionEmptyVector::ExceptionEmptyVector(int _line, const char *_file) 
+ExceptionEmptyVector::ExceptionEmptyVector(const ExceptionEmptyVector& _exception)
 {
-  str_what = "Vector is empty!"; line = _line; file = _file;
+    str_what = _exception.what();
+    line = _exception.errorLine();
+    file = _exception.errorFile();
 }
 
-ExceptionEmptyVector::~ExceptionEmptyVector() 
+ExceptionEmptyVector::ExceptionEmptyVector(int _line, const char* _file)
 {
-  line = -1; 
+    str_what = "Vector is empty!"; line = _line; file = _file;
 }
 
-ExceptionNotPositiveDimension::ExceptionNotPositiveDimension() 
+ExceptionEmptyVector::~ExceptionEmptyVector()
 {
-  str_what = "Dimension is or less than zero!"; 
-  line = -1; 
-  file = 0; 
+    line = -1;
 }
 
-ExceptionNotPositiveDimension::ExceptionNotPositiveDimension(const ExceptionNotPositiveDimension& _exception) 
+ExceptionNotPositiveDimension::ExceptionNotPositiveDimension()
 {
-  str_what = _exception.what();
-  line = _exception.errorLine();
-  file = _exception.errorFile();
+    str_what = "Dimension is or less than zero!";
+    line = -1;
+    file = 0;
 }
 
-ExceptionNotPositiveDimension::ExceptionNotPositiveDimension(int _line, const char *_file) 
+ExceptionNotPositiveDimension::ExceptionNotPositiveDimension(const ExceptionNotPositiveDimension& _exception)
 {
-  str_what = "Dimension is or less than zero!"; line = _line; file = _file;
+    str_what = _exception.what();
+    line = _exception.errorLine();
+    file = _exception.errorFile();
 }
 
-ExceptionNotPositiveDimension::~ExceptionNotPositiveDimension() 
-{ 
-  line = -1; 
+ExceptionNotPositiveDimension::ExceptionNotPositiveDimension(int _line, const char* _file)
+{
+    str_what = "Dimension is or less than zero!"; line = _line; file = _file;
+}
+
+ExceptionNotPositiveDimension::~ExceptionNotPositiveDimension()
+{
+    line = -1;
 };

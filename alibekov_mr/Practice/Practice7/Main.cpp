@@ -2,68 +2,337 @@
 
 int main() {
 
-  Vector* v5 = nullptr;
-  Vector* v_arr = nullptr;
-  
-  try
-  {
-    Vector v1(3);
-    Vector v2(v1);
-    Vector v3(2);
-    Vector v4;
-    v1 = v1;
-    v5 = new Vector;
-    v_arr = new Vector[10];
-    for (int i = 0; i < 10; i++) {
-      v_arr[i] = v2;
-    }
-    *v5 = v2;
+    Vector* v7 = nullptr;
+    Vector* v_arr = nullptr;
+
+/*    Vector v1;
     try {
-      double q = v1[-1];
+        std::cout << v1.Length();
     }
-    catch (ExceptionOutOfRange const & e) {
-      std::cout << e.what();
-      std::cout << "errorLine: " << e.errorLine() << "\nerrorFile:" << e.errorFile();
+    catch (ExceptionEmptyVector const& e)
+    {
+        std::cout << e.what();
+        std::cout << "errorLine: " << e.errorLine() << std::endl;
+        std::cout << "errorFile: " << e.errorFile() << std::endl;
     }
+
+    Vector v2(2);
     try {
-      v2 += 5;
+        v2[0] = 1.;
+        v2[1] = 2.;
+        double q = v2[-1];
     }
-    catch (ExceptionEmptyVector const & e) {
-      std::cout << e.what();
-      std::cout << "errorLine: " << e.errorLine() << "\nerrorFile:" << e.errorFile();
+    catch (ExceptionOutOfRange const& e) {
+        std::cout << e.what();
+        std::cout << "errorLine: " << e.errorLine() << std::endl;
+        std::cout << "errorFile: " << e.errorFile() << std::endl;
     }
-    v3.Print();
+    std::cout << v2;
+
+    Vector v3(3);
+    v3[0] = v2[1];
+    v3[1] = -2.;
+    v3[2] = -3.;
+    std::cout << v3;
+
     try {
-      v_arr[9] = v1 + v2;
-      std::cout << v_arr[9];
+        Vector v3_err(-2);
     }
-    catch (ExceptionDifferentDimensions const & e) {
-      std::cout << e.what();
-      std::cout << "errorLine: " << e.errorLine() << "\nerrorFile:" << e.errorFile();
-    }
-
-    v5->Print();
-    for (int i = 0; i < 10; i++) {
-      std::cout << v_arr[i];
+    catch (ExceptionNotPositiveDimension const& e)
+    {
+        std::cout << e.what();
+        std::cout << "errorLine: " << e.errorLine() << std::endl;
+        std::cout << "errorFile: " << e.errorFile() << std::endl;
     }
 
-    std::cout << v_arr[3].Length() << std::endl;
+    double d_arr[] = { 0, 1, 2, 3 };
+    int d_count = 4;
+    Vector v4(d_count, d_arr);
+    std::cout << v4;
 
-  }
-  catch (MyException const & e)
-  {
-    std::cout << e.what() << std::endl;
-    std::cout << "errorLine: " << e.errorLine() << "\nerrorFile:" << e.errorFile();
-  }
-  catch (...) 
-  {
-    std::cout << std::endl << "I don't know what was happened. I'm scared. \
-      I cann't fix it. I'm just a computer. :(" << std::endl;
-  }
+    try {
+        Vector v4_err(-4, d_arr);
+    }
+    catch (ExceptionNotPositiveDimension const& e)
+    {
+        std::cout << e.what();
+        std::cout << "errorLine: " << e.errorLine() << std::endl;
+        std::cout << "errorFile: " << e.errorFile() << std::endl;
+    }
 
-  delete v5;
-  delete[] v_arr;
+    Vector v5(v4);
+    std::cout << v5;
 
-  system("pause");
-  return 0;
+    try {
+        Vector v5_err(v1);
+    }
+    catch (ExceptionEmptyVector const& e)
+    {
+        std::cout << e.what();
+        std::cout << "errorLine: " << e.errorLine() << std::endl;
+        std::cout << "errorFile: " << e.errorFile() << std::endl;
+    }
+
+    Vector v6(6);
+    std::cin >> v6;
+    v6.Print();
+
+    v7 = new Vector;
+    v_arr = new Vector[13];
+
+    v_arr[0] = v2;
+    std::cout << v_arr[0];
+    
+    v_arr[1] = v3;
+    std::cout << v_arr[1];
+    
+    v_arr[1] = v_arr[1];
+    std::cout << v_arr[1];
+    
+    try {
+        v_arr[2] = v1;
+    }
+    catch (ExceptionEmptyVector const& e)
+    {
+        std::cout << e.what();
+        std::cout << "errorLine: " << e.errorLine() << std::endl;
+        std::cout << "errorFile: " << e.errorFile() << std::endl;
+    }
+    
+    v_arr[3] = v_arr[0] + v2;
+    std::cout << v_arr[3];
+    std::cout << v_arr[3].Length();
+
+    try {
+        v_arr[4] = v_arr[0] + v3;
+    }
+    catch (ExceptionDifferentDimensions const& e)
+    {
+        std::cout << e.what();
+        std::cout << "errorLine: " << e.errorLine() << std::endl;
+        std::cout << "errorFile: " << e.errorFile() << std::endl;
+    }
+
+    v_arr[5] = v_arr[0] - v2;
+    std::cout << v_arr[5];
+
+    try {
+        v_arr[6] = v_arr[0] - v3;
+    }
+    catch (ExceptionDifferentDimensions const& e)
+    {
+        std::cout << e.what();
+        std::cout << "errorLine: " << e.errorLine() << std::endl;
+        std::cout << "errorFile: " << e.errorFile() << std::endl;
+    }
+
+    double rez1 = v_arr[0] * v_arr[3];
+    std::cout << rez1;
+
+    try {
+        double rez2 = v_arr[0] * v3;
+    }
+    catch (ExceptionDifferentDimensions const& e)
+    {
+        std::cout << e.what();
+        std::cout << "errorLine: " << e.errorLine() << std::endl;
+        std::cout << "errorFile: " << e.errorFile() << std::endl;
+    }
+
+    v_arr[7] = v3;
+    v_arr[7] += 7;
+    std::cout << v_arr[7];
+
+    v_arr[8] = v3;
+    v_arr[8] -= 8;
+    std::cout << v_arr[8];
+
+    v_arr[9] = v3;
+    v_arr[9] *= 9;
+    std::cout << v_arr[9];
+
+    v_arr[10] = v2 + 10.;
+    std::cout << v_arr[10];
+
+    v_arr[11] = v2 - 11.;
+    std::cout << v_arr[11];
+
+    v_arr[12] = v2 * 12.;
+    std::cout << v_arr[12];*/
+
+    try
+    {
+        Vector v1;
+        try {
+            std::cout << v1.Length();
+        }
+        catch (ExceptionEmptyVector const& e)
+        {
+            std::cout << e.what();
+            std::cout << "errorLine: " << e.errorLine() << std::endl;
+            std::cout << "errorFile: " << e.errorFile() << std::endl;
+        }
+
+        Vector v2(2);
+        v2[0] = 1.;
+        v2[1] = 2.6;
+        std::cout << v2;
+
+        try {
+            double q = v2[-1];
+        }
+        catch (ExceptionOutOfRange const& e) {
+            std::cout << e.what();
+            std::cout << "errorLine: " << e.errorLine() << std::endl;
+            std::cout << "errorFile: " << e.errorFile() << std::endl;
+        }
+
+        Vector v3(3);
+        v3[0] = v2[1];
+        v3[1] = -2.;
+        v3[2] = -3.;
+        std::cout << v3;
+
+        try {
+            Vector v3_err(-2);
+        }
+        catch (ExceptionNotPositiveDimension const& e)
+        {
+            std::cout << e.what();
+            std::cout << "errorLine: " << e.errorLine() << std::endl;
+            std::cout << "errorFile: " << e.errorFile() << std::endl;
+        }
+
+        double d_arr[] = { 0, 1, 2, 3 };
+        int d_count = 4;
+        Vector v4(d_count, d_arr);
+        std::cout << v4;
+
+        try {
+            Vector v4_err(-4, d_arr);
+        }
+        catch (ExceptionNotPositiveDimension const& e)
+        {
+            std::cout << e.what();
+            std::cout << "errorLine: " << e.errorLine() << std::endl;
+            std::cout << "errorFile: " << e.errorFile() << std::endl;
+        }
+
+        Vector v5(v4);
+        std::cout << v5;
+
+        try {
+            Vector v5_err(v1);
+        }
+        catch (ExceptionEmptyVector const& e)
+        {
+            std::cout << e.what();
+            std::cout << "errorLine: " << e.errorLine() << std::endl;
+            std::cout << "errorFile: " << e.errorFile() << std::endl;
+        }
+
+        Vector v6(6);
+        std::cin >> v6;
+        v6.Print();
+
+        v7 = new Vector;
+        v_arr = new Vector[13];
+
+        v_arr[0] = v2;
+        std::cout << v_arr[0];
+
+        v_arr[1] = v3;
+        std::cout << v_arr[1];
+
+        v_arr[1] = v_arr[1];
+        std::cout << v_arr[1];
+
+        try {
+            v_arr[2] = v1;
+        }
+        catch (ExceptionEmptyVector const& e)
+        {
+            std::cout << e.what();
+            std::cout << "errorLine: " << e.errorLine() << std::endl;
+            std::cout << "errorFile: " << e.errorFile() << std::endl;
+        }
+
+        v_arr[3] = v_arr[0] + v2;
+        std::cout << v_arr[3];
+        std::cout << v_arr[3].Length();
+
+        try {
+            v_arr[4] = v_arr[0] + v3;
+        }
+        catch (ExceptionDifferentDimensions const& e)
+        {
+            std::cout << e.what();
+            std::cout << "errorLine: " << e.errorLine() << std::endl;
+            std::cout << "errorFile: " << e.errorFile() << std::endl;
+        }
+
+        v_arr[5] = v_arr[0] - v2;
+        std::cout << v_arr[5];
+
+        try {
+            v_arr[6] = v_arr[0] - v3;
+        }
+        catch (ExceptionDifferentDimensions const& e)
+        {
+            std::cout << e.what();
+            std::cout << "errorLine: " << e.errorLine() << std::endl;
+            std::cout << "errorFile: " << e.errorFile() << std::endl;
+        }
+
+        double rez1 = v_arr[0] * v_arr[3];
+        std::cout << rez1;
+
+        try {
+            double rez2 = v_arr[0] * v3;
+        }
+        catch (ExceptionDifferentDimensions const& e)
+        {
+            std::cout << e.what();
+            std::cout << "errorLine: " << e.errorLine() << std::endl;
+            std::cout << "errorFile: " << e.errorFile() << std::endl;
+        }
+
+        v_arr[7] = v3;
+        v_arr[7] += 7;
+        std::cout << v_arr[7];
+
+        v_arr[8] = v3;
+        v_arr[8] -= 8;
+        std::cout << v_arr[8];
+
+        v_arr[9] = v3;
+        v_arr[9] *= 9;
+        std::cout << v_arr[9];
+
+        v_arr[10] = v2 + 10.;
+        std::cout << v_arr[10];
+
+        v_arr[11] = v2 - 11.;
+        std::cout << v_arr[11];
+
+        v_arr[12] = v2 * 12.;
+        std::cout << v_arr[12];
+    }
+    catch (MyException const& e)
+    {
+        std::cout << e.what() << std::endl;
+        std::cout << "errorLine: " << e.errorLine() << std::endl;
+        std::cout << "errorFile:" << e.errorFile() << std::endl;
+    }
+    catch (...)
+    {
+        std::cout << std::endl << "I don't know what was happened. I'm scared. \
+        I cann't fix it. I'm just a computer. :(" << std::endl;
+    }
+
+    delete v7;
+    delete[] v_arr;
+
+    system("pause");
+    return 0;
 }
