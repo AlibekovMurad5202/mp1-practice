@@ -4,7 +4,6 @@ Matrix::Matrix()
 {
     rows = 0;
     columns = 0;
-
     cells = nullptr;
 }
 
@@ -232,7 +231,7 @@ std::istream& operator>>(std::istream & in, Matrix & _matrix)
         for (int i = 0; i < _matrix.rows; i++)
             std::cin >> _matrix.cells[(_matrix.columns * i) + j];
     }
-    std::cout << "Matrix full" << std::endl;
+    std::cout << std::endl;
     return in;
 }
 

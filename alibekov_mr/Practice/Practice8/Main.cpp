@@ -2,84 +2,179 @@
 
 int main()
 {
-
-    Matrix* m5 = nullptr;
     Matrix* m_arr = nullptr;
 
     try
     {
+        Matrix m0;
+        std::cout << m0;
+
         Matrix m1(3, 3);
         std::cin >> m1;
         std::cout << m1;
+
+        try {
+            Matrix m1_err(-3, 2);
+        }
+        catch (ExceptionNotPositiveDimension const& e) 
+        {
+            std::cout << std::endl << e.what() << std::endl;
+            std::cout << "errorLine: " << e.errorLine() << std::endl;
+            std::cout << "errorFile: " << e.errorFile() << std::endl;
+        }
+
         Matrix m2(m1);
         std::cout << m2;
-        Matrix m3(3, 1);
-        std::cin >> m3;
+
+        try {
+            Matrix m2_err(m0);
+        }
+        catch (ExceptionEmptyMatrix const& e)
+        {
+            std::cout << std::endl << e.what() << std::endl;
+            std::cout << "errorLine: " << e.errorLine() << std::endl;
+            std::cout << "errorFile: " << e.errorFile() << std::endl;
+        }
+
+        double d_arr1[] = { 1, 2, 3 };
+        Matrix m3(3, 1, d_arr1);
         std::cout << m3;
-        Matrix m6(2, 3);
-        std::cin >> m6;
-        std::cout << m6;
-        Matrix m4;
-        m1 = m1;
-        m5 = new Matrix;
-        m_arr = new Matrix[3];
-        for (int i = 0; i < 3; i++) {
-            m_arr[i] = m2;
-        }
-        *m5 = m2;
+
         try {
-            double q = (m1[-1])[0];
+            Matrix m3_err(-3, 2, d_arr1);
         }
-        catch (ExceptionOutOfRange const& e) {
-            std::cout << e.what();
-            std::cout << "errorLine: " << e.errorLine() << "\nerrorFile:" << e.errorFile();
+        catch (ExceptionNotPositiveDimension const& e)
+        {
+            std::cout << std::endl << e.what() << std::endl;
+            std::cout << "errorLine: " << e.errorLine() << std::endl;
+            std::cout << "errorFile: " << e.errorFile() << std::endl;
         }
+
+        double d_arr2[] = { 3, 7, 8, 4, 1, 2 };
+        Matrix m4(2, 3, d_arr2);
+        std::cout << m4;
+
+        Matrix m5(2, 3);
+        std::cin >> m5;
+        std::cout << m5;
+
+        m_arr = new Matrix[16];
+
+        m_arr[0] = m4;
+        std::cout << m_arr[0];
+        
+        m_arr[1] = m1;
+        std::cout << m_arr[1];
+        
+        m_arr[2] = m3;
+        std::cout << m_arr[2];
+        
+        m_arr[2] = m_arr[2];
+        std::cout << m_arr[2];
+        
         try {
-            m_arr[0] = m2 + 5;
-            std::cout << m_arr[0];
+            m_arr[3] = m0;
         }
-        catch (ExceptionEmptyMatrix const& e) {
-            std::cout << e.what();
-            std::cout << "errorLine: " << e.errorLine() << "\nerrorFile:" << e.errorFile();
+        catch (ExceptionEmptyMatrix const& e)
+        {
+            std::cout << std::endl << e.what() << std::endl;
+            std::cout << "errorLine: " << e.errorLine() << std::endl;
+            std::cout << "errorFile: " << e.errorFile() << std::endl;
         }
+        
+        m_arr[4] = m4 * m3;
+        std::cout << m_arr[4];
+
         try {
-            m_arr[1] = m1 + m2;
-            std::cout << m_arr[1];
+            m_arr[5] = m3 * m1;
         }
         catch (ExceptionDifferentDimensions const& e) {
-            std::cout << e.what();
-            std::cout << "errorLine: " << e.errorLine() << "\nerrorFile:" << e.errorFile();
+            std::cout << std::endl << e.what() << std::endl;
+            std::cout << "errorLine: " << e.errorLine() << std::endl;
+            std::cout << "errorFile: " << e.errorFile() << std::endl;
         }
-
-        std::cout << *m5;
-        for (int i = 0; i < 3; i++) {
-            std::cout << m_arr[i];
-        }
-
-        try {
-            m_arr[2] = m1 * m3;
-        }
-        catch (ExceptionUndefinedMultiplication const& e) {
-            std::cout << e.what();
-            std::cout << "errorLine: " << e.errorLine() << "\nerrorFile:" << e.errorFile();
-        }
+        
+        m_arr[6] = m4 + m5;
+        std::cout << m_arr[6];
 
         try {
-            m_arr[1] = m3 * m6;
+            m_arr[7] = m3 + m1;
         }
-        catch (ExceptionUndefinedMultiplication const& e) {
-            std::cout << e.what();
-            std::cout << "errorLine: " << e.errorLine() << "\nerrorFile:" << e.errorFile();
+        catch (ExceptionDifferentDimensions const& e) {
+            std::cout << std::endl << e.what() << std::endl;
+            std::cout << "errorLine: " << e.errorLine() << std::endl;
+            std::cout << "errorFile: " << e.errorFile() << std::endl;
         }
-        std::cout << m1 << m3 << m_arr[2] << std::endl;
 
+        m_arr[8] = m4 - m5;
+        std::cout << m_arr[8];
+
+        try {
+            m_arr[9] = m3 - m1;
+        }
+        catch (ExceptionDifferentDimensions const& e) {
+            std::cout << std::endl << e.what() << std::endl;
+            std::cout << "errorLine: " << e.errorLine() << std::endl;
+            std::cout << "errorFile: " << e.errorFile() << std::endl;
+        }
+
+        m_arr[10] = m4 + 9.;
+        std::cout << m_arr[10];
+
+        try {
+            m_arr[11] = m0 + 1.;
+        }
+        catch (ExceptionEmptyMatrix const& e)
+        {
+            std::cout << std::endl << e.what() << std::endl;
+            std::cout << "errorLine: " << e.errorLine() << std::endl;
+            std::cout << "errorFile: " << e.errorFile() << std::endl;
+        }
+
+        m_arr[12] = m4 - 9.;
+        std::cout << m_arr[12];
+
+        try {
+            m_arr[13] = m0 - 1.;
+        }
+        catch (ExceptionEmptyMatrix const& e)
+        {
+            std::cout << std::endl << e.what() << std::endl;
+            std::cout << "errorLine: " << e.errorLine() << std::endl;
+            std::cout << "errorFile: " << e.errorFile() << std::endl;
+        }
+
+        m_arr[14] = m4 * 9.;
+        std::cout << m_arr[14];
+
+        try {
+            m_arr[15] = m0 * 1.;
+        }
+        catch (ExceptionEmptyMatrix const& e)
+        {
+            std::cout << std::endl << e.what() << std::endl;
+            std::cout << "errorLine: " << e.errorLine() << std::endl;
+            std::cout << "errorFile: " << e.errorFile() << std::endl;
+        }
+
+        double q = (m1[0])[1];
+        std::cout << q;
+
+        try {
+            double q_err = (m1[-1])[0];
+        }
+        catch (ExceptionOutOfRange const& e) {
+            std::cout << std::endl << e.what() << std::endl;
+            std::cout << "errorLine: " << e.errorLine() << std::endl;
+            std::cout << "errorFile: " << e.errorFile() << std::endl;
+        }
     }
     catch (MyException const& e)
     {
         std::cout << "Error: " << e.what() << std::endl;
         std::cout << "Reason: " << e.why() << std::endl;
-        std::cout << "errorLine: " << e.errorLine();
-        std::cout << "\nerrorFile:" << e.errorFile();
+        std::cout << "errorLine: " << e.errorLine() << std::endl;
+        std::cout << "errorFile:" << e.errorFile() << std::endl;
     }
     catch (...)
     {
@@ -87,7 +182,6 @@ int main()
       I cann't fix it. I'm just a computer. :(" << std::endl;
     }
 
-    delete m5;
     delete[] m_arr;
 
     system("pause");
