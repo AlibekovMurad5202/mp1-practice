@@ -6,12 +6,15 @@
 
 class Matrix
 {
+private:
+    int rows, columns;
+    double* cells;
+
 public:
     Matrix();
     Matrix(int _rows, int _columns);
     Matrix(int _rows, int _columns, double* _cells);
     Matrix(const Matrix& _matrix);
-
     ~Matrix();
 
     Matrix operator+ (const Matrix& _matrix) const;
@@ -27,14 +30,6 @@ public:
 
     friend std::istream& operator>> (std::istream& in, Matrix& _matrix);
     friend std::ostream& operator<< (std::ostream& out, Matrix& _matrix);
-
-private:
-    int rows;
-    int columns;
-
-    double* cells;
 };
-
-
 
 #endif // !__MATRIX__H__
