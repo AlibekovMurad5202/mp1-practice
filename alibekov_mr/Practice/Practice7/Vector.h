@@ -37,7 +37,6 @@ public:
     Vector& operator*= (double _d);
 
     double Length() const;
-    void Print() const;
 
     friend std::ostream& operator<< (std::ostream& out, const Vector& _vector);
     friend std::istream& operator>> (std::istream& in, Vector& _vector);

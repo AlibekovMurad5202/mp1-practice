@@ -207,13 +207,6 @@ double Vector::Length() const
     return sqrt((*this) * (*this));
 }
 
-void Vector::Print() const
-{
-    for (int i = 0; i < size; i++)
-        std::cout << std::endl << elements[i]; 
-    std::cout << std::endl;
-}
-
 void* Vector::operator new(size_t _size)
 {
     // For "operator new" the size of the object (_size)  
