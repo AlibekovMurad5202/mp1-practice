@@ -253,8 +253,6 @@ std::ostream& operator<<(std::ostream & out, Matrix & _matrix)
             double l = (_matrix[i])[j];
             if ((l >= 1) || (l <= -1))
             {
-                if (l < 0)
-                    dml[j]++;
                 do {
                     l /= 10;
                     dml[j]++;
@@ -262,9 +260,6 @@ std::ostream& operator<<(std::ostream & out, Matrix & _matrix)
             }
             else
             {
-                dml[j] += 2;
-                if (l < 0)
-                    dml[j]++;
                 do {
                     l *= 10;
                     dml[j]++;
@@ -295,8 +290,6 @@ std::ostream& operator<<(std::ostream & out, Matrix & _matrix)
             double l = (_matrix[i])[j];
             if ((l >= 1) || (l <= -1))
             {
-                if (l < 0)
-                    s++;
                 do {
                     s++;
                     l /= 10;
@@ -304,9 +297,6 @@ std::ostream& operator<<(std::ostream & out, Matrix & _matrix)
             }
             else
             {
-                if (l < 0)
-                    s++;
-                s += 2;
                 do {
                     s++;
                     l *= 10;
@@ -326,8 +316,6 @@ std::ostream& operator<<(std::ostream & out, Matrix & _matrix)
         double l = (_matrix[_matrix.rows - 1])[j];
         if ((l >= 1) || (l <= -1))
         {
-            if (l < 0)
-                s++;
             do {
                 s++;
                 l /= 10;
@@ -335,9 +323,6 @@ std::ostream& operator<<(std::ostream & out, Matrix & _matrix)
         }
         else
         {
-            s += 2;
-            if (l < 0)
-                s++;
             do {
                 s ++;
                 l *= 10;
