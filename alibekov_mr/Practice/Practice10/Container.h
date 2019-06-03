@@ -10,7 +10,7 @@ class Container
 public:
   Container() : count(0), arr(new T[maxsize]) {};
   ~Container();
-  Container(const Container<T, maxsize>& a): count(a.count), arr(new T[maxsize]) { for (int i = 0; i < count;) arr[i] = a.arr[i++]; }
+  Container(const Container<T, maxsize>& a): count(a.count), arr(new T[maxsize]) { memcpy(arr, a.arr, sizeof(T) * maxsize); }
 
   bool IsFull() const { return count == maxsize; }
   bool IsEmpty() const { return count == 0; }
@@ -59,7 +59,7 @@ const T& Container<T, maxsize>::operator[](int index) const
   if ((index < 0) || (index >= count))
     throw ExceptionOutOfRange(__LINE__, __FILE__);
   return arr[index];
-};
+}
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 
