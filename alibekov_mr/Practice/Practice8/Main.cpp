@@ -13,7 +13,8 @@ int main()
         std::cin >> m1;
         std::cout << m1;
 
-        try {
+        try 
+        {
             Matrix m1_err(-3, 2);
         }
         catch (ExceptionNotPositiveDimension const& e) 
@@ -26,7 +27,8 @@ int main()
         Matrix m2(m1);
         std::cout << m2;
 
-        try {
+        try 
+        {
             Matrix m2_err(m0);
         }
         catch (ExceptionEmptyMatrix const& e)
@@ -40,7 +42,8 @@ int main()
         Matrix m3(3, 1, d_arr1);
         std::cout << m3;
 
-        try {
+        try 
+        {
             Matrix m3_err(-3, 2, d_arr1);
         }
         catch (ExceptionNotPositiveDimension const& e)
@@ -72,7 +75,8 @@ int main()
         m_arr[2] = m_arr[2];
         std::cout << m_arr[2];
         
-        try {
+        try 
+        {
             m_arr[3] = m0;
         }
         catch (ExceptionEmptyMatrix const& e)
@@ -85,7 +89,8 @@ int main()
         m_arr[4] = m4 + 9.;
         std::cout << m_arr[4];
 
-        try {
+        try 
+        {
             m_arr[5] = m0 + 1.;
         }
         catch (ExceptionEmptyMatrix const& e)
@@ -98,7 +103,8 @@ int main()
         m_arr[6] = m4 - 9.;
         std::cout << m_arr[6];
 
-        try {
+        try 
+        {
             m_arr[7] = m0 - 1.;
         }
         catch (ExceptionEmptyMatrix const& e)
@@ -111,7 +117,8 @@ int main()
         m_arr[8] = m4 * 9.;
         std::cout << m_arr[8];
 
-        try {
+        try 
+        {
             m_arr[9] = m0 * 1.;
         }
         catch (ExceptionEmptyMatrix const& e)
@@ -124,7 +131,8 @@ int main()
         m_arr[10] = m4 * m3;
         std::cout << m_arr[10];
         
-        try {
+        try 
+        {
             m_arr[11] = m3 * m1;
         }
         catch (ExceptionUndefinedMultiplication const& e) {
@@ -136,7 +144,8 @@ int main()
         m_arr[12] = m4 + m5;
         std::cout << m_arr[12];
 
-        try {
+        try 
+        {
             m_arr[13] = m3 + m1;
         }
         catch (ExceptionDifferentDimensions const& e) {
@@ -148,7 +157,8 @@ int main()
         m_arr[14] = m4 - m5;
         std::cout << m_arr[14];
 
-        try {
+        try 
+        {
             m_arr[15] = m3 - m1;
         }
         catch (ExceptionDifferentDimensions const& e) {
@@ -160,7 +170,8 @@ int main()
         double q = (m1[0])[1];
         std::cout << q;
 
-        try {
+        try 
+        {
             double q_err = (m1[-1])[0];
         }
         catch (ExceptionOutOfRange const& e) {
